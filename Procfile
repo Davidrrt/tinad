@@ -1,1 +1,1 @@
-web: sh target/tinad-1.0
+web: sh /tinad
