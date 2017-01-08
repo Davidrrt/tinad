@@ -1,1 +1,1 @@
-web: sh target/bin/webapp
+web: sh target/tinad-1.0
