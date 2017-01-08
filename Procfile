@@ -1,1 +1,1 @@
-web: java -DPROD_MODE=true -jar target/tinad-1.0.war
+web:    java $JAVA_OPTS -jar target/dependency/webapp-runner.jar --port $PORT target/*.war
