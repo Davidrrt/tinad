@@ -12,7 +12,7 @@
         <meta name="author" content="">
         <link rel="stylesheet" href="./css/w3.css">
         <link rel="shortcut icon" type="image/x-icon" href="./img/log-tinad_mob.png" />
-        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+      
         <style>
             body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
             .w3-navbar,h1,button {font-family: "Montserrat", sans-serif}
