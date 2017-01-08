@@ -10,10 +10,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
-        <link rel="stylesheet" href="./css/w3.css">
         <link rel="shortcut icon" type="image/x-icon" href="./img/log-tinad_mob.png" />
         <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
          <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+         <link rel="stylesheet" href="./css/w3.css">
         <style>
             body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
             .w3-navbar,h1,button {font-family: "Montserrat", sans-serif}
@@ -43,7 +43,7 @@
                     <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
                         <a class="w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
                     </li>
-                    <li style="float:left;"><img alt="" width="70" height="70" src="./img/log-tinad_mob.png" /></li>
+                    <li style="float:left;"><a href="index.jsp"><img alt="" width="70" height="70" src="./img/log-tinad_mob.png" /></a></li>
                     <li><a class="w3-padding-large" href="inscription.jsp" style="color: #bbb9a9;"><i class="fa fa-plus"></i> Inscription</a></li>
                     <li><a class="w3-padding-large" href="connexion.jsp" style="color: #bbb9a9;"><i class="fa fa-user"></i> Connexion</a></li>
 

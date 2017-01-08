@@ -16,7 +16,7 @@
         <style>
             body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
             .w3-navbar,h1,button {font-family: "Montserrat", sans-serif}
-            .fa-anchor,.fa-coffee {font-size:200px}
+            .fa-group,.fa-mobile-phone {font-size:200px}
 
             .w3-red, .w3-hover-red:hover{ background-image:url('./img/tinad-1.jpg'); background-repeat:no-repeat;background-color: #222222!important;}
             .w3-navbar li {
@@ -66,7 +66,7 @@
                 </div>
 
                 <div class="w3-third w3-center">
-                    <i class="fa fa-anchor w3-padding-64 w3-text-red"></i>
+                    <i class="fa fa-group w3-padding-64 w3-text-red"></i>
                 </div>
             </div>
         </div>
@@ -74,7 +74,7 @@
         <div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
             <div class="w3-content">
                 <div class="w3-third w3-center">
-                    <i class="fa fa-coffee w3-padding-64 w3-text-red w3-margin-right"></i>
+                    <i class="fa fa-mobile-phone w3-padding-64 w3-text-red w3-margin-right"></i>
                 </div>
 
                 <div class="w3-twothird">
