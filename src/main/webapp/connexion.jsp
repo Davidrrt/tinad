@@ -77,7 +77,7 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="modal-footer" style="background-color: #b0ae9b;">Pas encore inscrit ? <a href="/register/">Créer un compte</a></div>
+                        <div class="modal-footer" style="background-color: #b0ae9b;">Pas encore inscrit ? <a href="inscription.jsp">Créer un compte</a></div>
 
                     </div>
                 </div>
