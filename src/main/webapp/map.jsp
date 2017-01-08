@@ -60,9 +60,9 @@
             </div>
 
         </nav>
-        <div class="container-fluid">
+        <div class="container-fluid" >
             <div class="row">
-                <div class="map-search-container col-md-6">
+                <div class="map-search-container col-md-6" style="margin-top: 11px;">
                     <form name="map-form" id="map-form" class="container-fluid" action="/map/" >
                         <div class="row"><br></div>
                         <div class="row">
@@ -82,7 +82,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6" style="margin-top: 11px;">
                     <div id="map" style="width:102%;height:650px"></div>
                 </div>
             </div>
