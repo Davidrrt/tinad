@@ -32,7 +32,7 @@
                 <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
                     <a class="w3-padding-large w3-hover-white w3-large w3-red" href="" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
                 </li>
-                <li style="float:left;"><img alt="" width="70" height="70" src="./img/log-tinad_mob.png" /></li>
+                <li style="float:left;"><a href="index.jsp"><img alt="" width="70" height="70" src="./img/log-tinad_mob.png" /></a></li>
                 <li><a class="w3-padding-large" href="inscription.jsp" style="color: #bbb9a9;"><i class="fa fa-plus"></i> Inscription</a></li>
                 <li><a class="w3-padding-large" href="connexion.jsp" style="color: #bbb9a9;"><i class="fa fa-user"></i> Connexion</a></li>
 
@@ -49,7 +49,7 @@
         </div>
 
         <header class="w3-container w3-red w3-center w3-padding-128">
-            <img alt="" width="100" height="100" src="./img/log-tinad_mob.png" />
+            <a href="index.jsp"><img alt="" width="100" height="100" src="./img/log-tinad_mob.png" /></a>
             <h1 class="w3-margin w3-jumbo">TINAD</h1>
             <p class="w3-xlarge">Site d'entraide particuliers&amp;professionel</p>
             <a class="w3-btn w3-padding-16 w3-large w3-margin-top" href="inscription.jsp" style="background-color: crimson;"><i class="fa fa-plus"></i> S'inscrire</a>
