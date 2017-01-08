@@ -52,15 +52,15 @@
             <img alt="" width="100" height="100" src="./img/log-tinad_mob.png" />
             <h1 class="w3-margin w3-jumbo">TINAD</h1>
             <p class="w3-xlarge">Site d'entraide particuliers&amp;professionel</p>
-            <button class="w3-btn w3-padding-16 w3-large w3-margin-top" style="background-color: crimson;"><i class="fa fa-plus"></i> S'inscrire</button>
-            <button class="w3-btn w3-padding-16 w3-large w3-margin-top" style="background-color: dimgrey;"><i class="fa fa-map-marker"></i> Voir annonces</button>
+            <a class="w3-btn w3-padding-16 w3-large w3-margin-top" href="inscription.jsp" style="background-color: crimson;"><i class="fa fa-plus"></i> S'inscrire</a>
+            <a class="w3-btn w3-padding-16 w3-large w3-margin-top" href="map.jsp" style="background-color: dimgrey;"><i class="fa fa-map-marker"></i> Voir annonces</a>
         </header>
 
         <div class="w3-row-padding w3-padding-64 w3-container">
             <div class="w3-content">
                 <div class="w3-twothird">
-                    <h1> la nouvelle faÃ§on de s'entraider</h1>
-                    <h5 class="w3-padding-32">Tinad est un réseau d'entraide qui met en relation des personnes qui ont besoin d'aide (particuliers ou autres) avec des personnes prêtes Ã  les aider et offrir leur service.</h5>
+                    <h1> la nouvelle façon de s'entraider</h1>
+                    <h5 class="w3-padding-32">Tinad est un réseau d'entraide qui met en relation des personnes qui ont besoin d'aide (particuliers ou autres) avec des personnes prêtes à  les aider et offrir leur service.</h5>
 
                     <p class="w3-text-grey"></p>
                 </div>
@@ -79,10 +79,10 @@
 
                 <div class="w3-twothird">
                     <h1>Partout avec vous</h1>
-                    <h5 class="w3-padding-32">Disponible sur mobile,tinad a pour but de rÃ©unir lâutilisateur en offrant leur compÃ©tence contre du service ou inversement.</h5>
+                    <h5 class="w3-padding-32">Disponible sur mobile,tinad a pour but de réunir les utilisateurs en offrant leur compétence contre du service ou inversement.</h5>
 
-                    <p class="w3-text-grey">besoin quotidienne, les personnes presses  par exemple faire un gÃ¢teau, rechercher un coiffeur, rechercher un chauffeur, offrir des formations particulier (cours), offrir ces service, â¦ seront satisfait
-                        car notre communautÃ© composÃ© de professionnel et particuliers 
+                    <p class="w3-text-grey">besoin quotidienne, les personnes presses  par exemple faire un gâteau, rechercher un coiffeur, rechercher un chauffeur, offrir des formations particulier (cours), offrir ces service, â¦ seront satisfait
+                        car notre communauté composé de professionnel et particuliers 
                     </p>
                 </div>
             </div>
