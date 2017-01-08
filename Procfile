@@ -1,1 +1,1 @@
-web: sh /target/tinad-1.0
+web: java -DPROD_MODE=true -jar target/tinad-1.0.war
