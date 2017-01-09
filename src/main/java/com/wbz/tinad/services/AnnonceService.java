@@ -18,7 +18,8 @@ public class AnnonceService {
 
     public String offrepublic() {
         Gson json = new Gson();
-        return json.toJson(annonceDao.afficheOffre(0));
+        String wawa=json.toJson(annonceDao.afficheOffre(0));
+        return wawa;
     }
 
     public String demandepublic() {
