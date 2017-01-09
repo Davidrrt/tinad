@@ -60,9 +60,9 @@
             </div>
 
         </nav>
-        <div class="container-fluid">
+        <div class="container-fluid" >
             <div class="row">
-                <div class="map-search-container col-md-6">
+                <div class="map-search-container col-md-6" style="margin-top: 11px;">
                     <form name="map-form" id="map-form" class="container-fluid" action="/map/" >
                         <div class="row"><br></div>
                         <div class="row">
@@ -74,7 +74,7 @@
                         </div>
                         <div class="row">
                             <div class="form-group col-md-6">
-                                <select id="app_search_category" name="app_search[category]" class="form-control ng-pristine ng-valid ng-touched" ng-model="data['app_search[category]']"><option value="">Quel type d'aide ?</option><option value="8">Administratif / Informatique</option><option value="3">Cours particuliers / Coaching</option><option value="6">Bricolage / Jardinage</option><option value="2">Visites de courtoisie</option><option value="4">Dons ou prêts d'objets</option><option value="1">Actions à plusieurs</option><option value="5">Enfants</option><option value="9">Animaux</option><option value="12">Autre</option></select>
+                                <select id="app_search_category" name="app_search[category]" class="form-control ng-pristine ng-valid ng-touched" ng-model="data['app_search[category]']"><option value="">Quel type d'aide ?</option><option value="8">Administratif / Informatique</option><option value="3">Cours particuliers / Coaching</option><option value="6">Bricolage / Jardinage</option><option value="4">Dons ou prêts d'objets</option><option value="1">Actions à plusieurs</option><option value="5">Enfants</option><option value="9">Animaux</option><option value="12">Autre</option></select>
                             </div>
                             <div class="form-group col-md-6" style="margin-top: 3px" >
                                 <select id="app_search_category" name="app_search[category]" class="form-control ng-pristine ng-valid ng-touched" ng-model="data['app_search[category]']"><option value="">Choisir tag</option><option value="8">Administratif / Informatique</option><option value="3">Cours particuliers / Coaching</option><option value="6">Bricolage / Jardinage</option><option value="2">Visites de courtoisie</option><option value="4">Dons ou prêts d'objets</option><option value="1">Actions à plusieurs</option><option value="5">Enfants</option><option value="9">Animaux</option><option value="12">Autre</option></select>
@@ -82,7 +82,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6" style="margin-top: 11px;">
                     <div id="map" style="width:102%;height:650px"></div>
                 </div>
             </div>

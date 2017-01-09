@@ -67,11 +67,7 @@
                             <div class="form-group">
                                 <input class="form-control" placeholder="Confirmation mot de passe" name="confirmation" type="password" value="">
                             </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input name="remember" type="checkbox" value="Remember Me">Se souvenir de moi
-                                </label>
-                            </div>
+                            
                             <!-- Change this to a button or input when using this as a form -->
                             <input class="w3-btn w3-large " style="background-color: #8a6d3b;width: 271px;" type="submit" value="Valider">
                         </form>

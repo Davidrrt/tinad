@@ -80,4 +80,7 @@ public class DAOFactory {
     public UtilisateurDao getUtilisateurDao() {
         return new UtilisateurDaoImpl( this );
     }
+    public AnnonceDao getAnnonceDao(){
+        return new AnnonceDaoImpl(this);
+    }
 }

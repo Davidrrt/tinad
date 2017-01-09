@@ -19,8 +19,18 @@
         <servlet-name>Inscription</servlet-name> 
     </servlet> 
 
-    <servlet-mapping> 
+     <servlet-mapping> 
         <servlet-name>Inscription</servlet-name> 
         <url-pattern>/Inscription </url-pattern>
+    </servlet-mapping> 
+    
+     <servlet> 
+        <servlet-class> com.wbz.tinad.servlets.Publication</servlet-class> 
+        <servlet-name>Publication</servlet-name> 
+    </servlet> 
+
+    <servlet-mapping> 
+        <servlet-name>Publication</servlet-name> 
+        <url-pattern>/Publication </url-pattern>
     </servlet-mapping> 
 </web-app>
