@@ -8,6 +8,7 @@ package com.wbz.tinad.servlets;
 import com.wbz.tinad.services.AnnonceService;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,10 +25,7 @@ public class Publication {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         AnnonceService util = new AnnonceService();
-        response.setContentType("application/json");
-        PrintWriter out = response.getWriter();
-        out.print(util.demandepublic());
-        out.flush();
+        
         if (request.getParameter("type").compareTo("0") == 0) {
             out.print(util.demandepublic());
         }
