@@ -27,28 +27,30 @@ public class AnnonceDaoImpl implements AnnonceDao {
         Connection connexion = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        Annonce[] utilisateur = null;
+       
         ArrayList<Annonce> tab = new ArrayList<Annonce>();
 
         try {
            
             connexion = daoFactory.getConnection();
-            preparedStatement = initialisationRequetePreparee(connexion, SQL_SELECT_OFFRE, true, type);
+            preparedStatement = initialisationRequetePreparee(connexion, SQL_SELECT_OFFRE, false, type);
             resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
+            while(resultSet.next()) {
                 tab.add(map(resultSet));
             }
+             Annonce[] utilisateur = null;
             utilisateur = new Annonce[tab.size()];
             for (int i = 0; i < tab.size(); i++) {
                 utilisateur[i] = (Annonce) tab.get(i);
             }
+            return utilisateur;
         } catch (SQLException e) {
-            throw new DAOException(e);
+            throw new DAOException(e.getMessage());
         } finally {
             fermeturesSilencieuses(resultSet, preparedStatement, connexion);
         }
 
-        return utilisateur;
+        
     }
 
     private static Annonce map(ResultSet resultSet) throws SQLException {
