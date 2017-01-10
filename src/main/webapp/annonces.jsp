@@ -1,4 +1,4 @@
-<% 
- String[] tab=(String[])request.getAttribute("json");
+<%
+String [] tab=(String [])request.getAttribute("json");
 out.print(tab[0]);
 %>
