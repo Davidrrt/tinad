@@ -12,8 +12,9 @@
         <meta name="author" content="">
         <link rel="shortcut icon" type="image/x-icon" href="./img/log-tinad_mob.png" />
         <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
-         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
-         <link rel="stylesheet" href="./css/w3.css">
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="./css/w3.css">
+        <script src="js/angular.min.js"></script>
         <style>
             body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
             .w3-navbar,h1,button {font-family: "Montserrat", sans-serif}
@@ -60,7 +61,7 @@
             </div>
 
         </nav>
-        <div class="container-fluid" >
+        <div class="container-fluid" ng-app="myApp" ng-controller="namesCtrl">
             <div class="row">
                 <div class="map-search-container col-md-6" style="margin-top: 11px;">
                     <form name="map-form" id="map-form" class="container-fluid" action="/map/" >
@@ -81,6 +82,18 @@
                             </div>
                         </div>
                     </form>
+                    <h2 class="title"><i class="fa fa-clock-o"></i>Annonces récentes</h2>
+                    <table class="table table-striped table-bordered table-hover">
+                        <tr>
+                            <th>Nom</th>
+                            <th>Details</th>
+                        </tr>
+                        <tr ng-repeat="x in names[0].wawa">
+                             <td>{{x.idutilisateur}}</td>
+                            <td>{{x.titre}}</td>
+                           
+                        </tr>
+                    </table>
                 </div>
                 <div class="col-md-6" style="margin-top: 11px;">
                     <div id="map" style="width:102%;height:650px"></div>
@@ -104,7 +117,16 @@
             </div>
             <p>Tout droits réserve à <a href="#" target="_blank">Tinad company</a></p>
         </footer>
+        <script type="text/javascript">
+            var module = angular.module('myApp', []);
+            var str = <jsp:include page="Publication"></jsp:include>;
+            //console.log(str);
+            module.controller('namesCtrl', function ($scope, $http) {
+                $scope.names =str;
+                console.log($scope.names[0].wawa);
+            });
 
+        </script>
         <script>
             function initMap() {
                 var map = new google.maps.Map(document.getElementById('map'), {
