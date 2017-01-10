@@ -14,6 +14,7 @@ import static com.wbz.tinad.servlets.Inscription.CONF_DAO_FACTORY;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.System.out;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -40,12 +41,12 @@ public class Publication extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         AnnonceService util = new AnnonceService(annonceDao);
         Gson t = new Gson();
-        String[] json = new String[2];
-        json[0] = util.offrepublic();
-        json[1] = util.demandepublic();
-        response.setContentType("text/html");
+        //String json = new String[2];
+        ArrayList<String> json = util.offrepublic();
+        //json[1] = util.demandepublic();
+        response.setContentType("application/json");
         PrintWriter out=response.getWriter();
-        out.print(t.toJson(json));
+        out.print(json);
         //json[2]=t.toJson(utilisateurDao.listeMembres());
         //request.setAttribute("json", json);
        // request.getRequestDispatcher("annonces.jsp").forward(request, response);
