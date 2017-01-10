@@ -39,13 +39,16 @@ public class Publication extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         AnnonceService util = new AnnonceService(annonceDao);
-        // Gson t = new Gson();
+        Gson t = new Gson();
         String[] json = new String[2];
         json[0] = util.offrepublic();
         json[1] = util.demandepublic();
+        response.setContentType("text/html");
+        PrintWriter out=response.getWriter();
+        out.print(t.toJson(json));
         //json[2]=t.toJson(utilisateurDao.listeMembres());
-        request.setAttribute("json", json);
-        request.getRequestDispatcher("annonces.jsp").forward(request, response);
+        //request.setAttribute("json", json);
+       // request.getRequestDispatcher("annonces.jsp").forward(request, response);
     }
 
     @Override
