@@ -5,7 +5,11 @@
  */
 package com.wbz.tinad.servlets;
 
+import com.google.gson.Gson;
+import com.wbz.tinad.dao.AnnonceDao;
+import com.wbz.tinad.dao.DAOFactory;
 import com.wbz.tinad.services.AnnonceService;
+import static com.wbz.tinad.servlets.Inscription.CONF_DAO_FACTORY;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.System.out;
@@ -20,23 +24,26 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class Publication extends HttpServlet {
 
+    public static final String CONF_DAO_FACTORY = "daofactory";
+
+    private AnnonceDao utilisateurDao;
+
     @Override
     public void init() throws ServletException {
+        this.utilisateurDao = ((DAOFactory) getServletContext().getAttribute(CONF_DAO_FACTORY)).getAnnonceDao();
     }
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        AnnonceService util = new AnnonceService();
-
-        if (request.getParameter("type").compareTo("0") == 0) {
-            out.print(util.offrepublic());
+        AnnonceService util = new AnnonceService(utilisateurDao);
+        if (request.getParameter("type") != null) {
+            String[] json=new String[2];
+            json[0]=util.offrepublic();
+            json[1]=util.demandepublic();
+            request.setAttribute("json",json);
+            request.getRequestDispatcher("annonces.jsp").forward(request, response);
         }
-        if (request.getParameter("type").compareTo("1") == 0) {
-            out.print(util.demandepublic());
-        } else {
-            out.print("none");
-        }
+        out.print("none");
     }
 
     @Override
