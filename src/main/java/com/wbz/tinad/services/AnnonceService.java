@@ -16,6 +16,9 @@ public class AnnonceService {
 
     private AnnonceDao annonceDao;
 
+    public AnnonceService(AnnonceDao annonceDao){
+        this.annonceDao=annonceDao;
+    }
     public String offrepublic() {
         Gson json = new Gson();
         String wawa=json.toJson(annonceDao.afficheOffre(0));
