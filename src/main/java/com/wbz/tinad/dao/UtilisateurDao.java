@@ -14,4 +14,6 @@ public interface UtilisateurDao {
 
     Utilisateur trouver( String email ) throws DAOException;
 
+    Utilisateur[] listeMembres() throws DAOException;
+
 }

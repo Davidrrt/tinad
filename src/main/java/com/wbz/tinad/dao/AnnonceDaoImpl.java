@@ -26,8 +26,7 @@ public class AnnonceDaoImpl implements AnnonceDao {
     public Annonce[] afficheOffre(int type) throws DAOException {
         Connection connexion = null;
         PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-       
+        ResultSet resultSet = null;  
         ArrayList<Annonce> tab = new ArrayList<Annonce>();
 
         try {

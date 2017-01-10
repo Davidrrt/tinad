@@ -5,16 +5,19 @@
  */
 package com.wbz.tinad.dao;
 
+import com.wbz.tinad.beans.Annonce;
 import static com.wbz.tinad.dao.DAOUtilitaire.*;
 import com.wbz.tinad.beans.Utilisateur;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class UtilisateurDaoImpl implements UtilisateurDao {
 
     private DAOFactory daoFactory;
+    private static final String SQL_SELECT_LISTE = "SELECT id, email, nom, mot_de_passe, date_inscription FROM Utilisateur WHERE statut='11'";
     private static final String SQL_SELECT_PAR_EMAIL = "SELECT id, email, nom, mot_de_passe, date_inscription FROM Utilisateur WHERE email = ?";
     private static final String SQL_INSERT = "INSERT INTO Utilisateur (email, mot_de_passe, nom, date_inscription) VALUES (?, ?, ?, NOW())";
 
@@ -84,7 +87,38 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
      * ResultSet) et un bean Utilisateur.
      */
 
-    private static Utilisateur map(ResultSet resultSet) throws SQLException {
+  
+
+    public Utilisateur[] listeMembres() throws DAOException {
+       Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        Utilisateur[] utilisateur = null;
+          
+        ArrayList<Utilisateur> tab = new ArrayList<Utilisateur>();
+
+        try {
+       
+            connexion = daoFactory.getConnection();
+            preparedStatement = initialisationRequetePreparee(connexion, SQL_SELECT_LISTE, false, (Object) null);
+            resultSet = preparedStatement.executeQuery();
+            
+            if (resultSet.next()) {
+                tab.add(map(resultSet));
+            }
+            utilisateur = new Utilisateur[tab.size()];
+            for (int i = 0; i < tab.size(); i++) {
+                utilisateur[i] = (Utilisateur) tab.get(i);
+            }
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        } finally {
+            fermeturesSilencieuses(resultSet, preparedStatement, connexion);
+        }
+
+        return utilisateur;
+    }
+      private static Utilisateur map(ResultSet resultSet) throws SQLException {
         Utilisateur utilisateur = new Utilisateur();
         utilisateur.setId(resultSet.getLong("id"));
         utilisateur.setEmail(resultSet.getString("email"));
