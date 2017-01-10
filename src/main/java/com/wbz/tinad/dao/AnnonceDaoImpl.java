@@ -33,7 +33,7 @@ public class AnnonceDaoImpl implements AnnonceDao {
         try {
            
             connexion = daoFactory.getConnection();
-            preparedStatement = initialisationRequetePreparee(connexion, SQL_SELECT_OFFRE, false, type);
+            preparedStatement = initialisationRequetePreparee(connexion, SQL_SELECT_OFFRE, true, type);
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 tab.add(map(resultSet));
