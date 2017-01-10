@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class AnnonceDaoImpl implements AnnonceDao {
 
     private DAOFactory daoFactory;
-    private static final String SQL_SELECT_OFFRE = "SELECT * FROM service WHERE type = ?";
+    private static final String SQL_SELECT_OFFRE = "SELECT idcategorie,idutilisateur,titre,description,datedebutdisponibilite,datefindisponibilite FROM service WHERE type = ?";
 
     AnnonceDaoImpl(DAOFactory daoFactory) {
         this.daoFactory = daoFactory;
@@ -53,12 +53,12 @@ public class AnnonceDaoImpl implements AnnonceDao {
 
     private static Annonce map(ResultSet resultSet) throws SQLException {
         Annonce utilisateur = new Annonce();
-        utilisateur.setIdCategorie(resultSet.getInt("idCategorie"));
-        utilisateur.setIdutilisateur(resultSet.getInt("Idutilisateur"));
-        utilisateur.setTitre(resultSet.getString("Titre"));
-        utilisateur.setDescription(resultSet.getString("Description"));
-        utilisateur.setDateDebut(resultSet.getDate("dateDebutDisponibilite"));
-        utilisateur.setDateFin(resultSet.getDate("dateFinDisponibilite"));
+        utilisateur.setIdCategorie(resultSet.getInt("idcategorie"));
+        utilisateur.setIdutilisateur(resultSet.getInt("idutilisateur"));
+        utilisateur.setTitre(resultSet.getString("titre"));
+        utilisateur.setDescription(resultSet.getString("description"));
+        utilisateur.setDateDebut(resultSet.getDate("datedebutdisponibilite"));
+        utilisateur.setDateFin(resultSet.getDate("datefindisponibilite"));
         return utilisateur;
     }
 
