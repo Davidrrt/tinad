@@ -2,7 +2,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 .w3-navbar,h1,button {font-family: "Montserrat", sans-serif}
 .fa-anchor,.fa-coffee {font-size:200px}
 
-.w3-red, .w3-hover-red:hover{ background-image:url('./img/tinad-1.jpg'); background-repeat:no-repeat;background-color: #222222!important;}
+.w3-red, .w3-hover-red:hover{ background-image:url('../img/tinad-1.jpg'); background-repeat:no-repeat;background-color: #222222!important;}
 .w3-navbar li {
     float: right;
 }
@@ -126,4 +126,30 @@ article.welp-card-proposition header img {
     -ms-box-shadow: 0 0 5px rgba(0,0,0,.7);
     -o-box-shadow: 0 0 5px rgba(0,0,0,.7);
     box-shadow: 0 0 5px rgba(0,0,0,.7);
+}
+article.welp-card-need h1.welp-card-title {
+    font-size: 1.1em;
+    font-weight: 700;
+    margin-bottom: 0;
+    margin-top: 13px;
+}
+article.welp-card-proposition .welp-card-heart {
+    color: #54CF72;
+    font-size: 30px;
+    position: absolute;
+    top: 5px;
+    left: 10px;
+}
+article.welp-card-need h2.welp-card-categorie {
+    font-size: 1em;
+    margin-top: 5px;
+    margin-bottom: 4px;
+    color: #6c6464;
+    font-weight: 700;
+}
+article.welp-card-need h1.welp-card-title a {
+    color: #19B7E6;
+}
+article.welp-card-proposition h2.welp-card-title a {
+    color: #54CF72;
 }
