@@ -7,6 +7,7 @@ package com.wbz.tinad.services;
 
 import com.google.gson.Gson;
 import com.wbz.tinad.dao.AnnonceDao;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,14 +20,20 @@ public class AnnonceService {
     public AnnonceService(AnnonceDao annonceDao){
         this.annonceDao=annonceDao;
     }
-    public String offrepublic() {
+    public ArrayList<String> offrepublic() {
         Gson json = new Gson();
         String wawa=json.toJson(annonceDao.afficheOffre(0));
-        return wawa;
+        String js = wawa.substring(1,wawa.length()-1);
+        ArrayList<String> tab=new ArrayList<String>();
+        tab.add("{\"wawa\":["+js+"]}");
+        return tab;
     }
 
     public String demandepublic() {
         Gson json = new Gson();
-        return json.toJson(annonceDao.afficheOffre(1));
+           String wawa=json.toJson(annonceDao.afficheOffre(0));
+        String js = wawa.substring(1);
+        
+        return "[\"demande\":"+js;
     }
 }
