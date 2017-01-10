@@ -15,25 +15,7 @@
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="./css/w3.css">
         <script src="js/angular.min.js"></script>
-        <style>
-            body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
-            .w3-navbar,h1,button {font-family: "Montserrat", sans-serif}
-            .fa-anchor,.fa-coffee {font-size:200px}
-
-            .w3-red, .w3-hover-red:hover{ background-image:url('./img/tinad-1.jpg'); background-repeat:no-repeat;background-color: #222222!important;}
-            .w3-navbar li {
-                float: right;
-            }
-            .map-search-container{
-                height: 650px;
-                padding: 10px;
-                margin: 0;
-                margin-right: -8px;
-                overflow: hidden;
-                overflow-y: scroll;
-                background-color: rgba(0,0,0,.075);
-            }
-        </style>
+         <link rel="stylesheet" href="css/style.css">
     </head>
 
     <body>
@@ -81,17 +63,42 @@
                                 <select id="app_search_category" name="app_search[category]" class="form-control ng-pristine ng-valid ng-touched" ng-model="data['app_search[category]']"><option value="">Choisir tag</option><option value="8">Administratif / Informatique</option><option value="3">Cours particuliers / Coaching</option><option value="6">Bricolage / Jardinage</option><option value="2">Visites de courtoisie</option><option value="4">Dons ou prêts d'objets</option><option value="1">Actions à plusieurs</option><option value="5">Enfants</option><option value="9">Animaux</option><option value="12">Autre</option></select>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <div class="checkbox "><label for="app_search_organisation"><input type="checkbox" ng-init="data['app_search[organisation]'] = true" ng-model="data['app_search[organisation]']" name="app_search[organisation]" id="app_search_organisation" value="1" checked="checked"><i class="fa fa-empire"></i> Professionnel</label></div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="checkbox "><label for="app_search_particulier"><input type="checkbox" ng-init="data['app_search[particulier]'] = true" ng-model="data['app_search[particulier]']" name="app_search[particulier]" id="app_search_particulier" value="1" checked="checked"><i class="fa fa-user"></i> Particulier</label></div>
+                            </div>
+                        </div>
                     </form>
-                    <h2 class="title"><i class="fa fa-clock-o"></i>Annonces récentes</h2>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3><i class="fa fa-clock-o"></i>Annonces récentes<br> <small class="ng-binding">10 annonces affichées sur 506</small></h3>
+                        </div>
+                        <div class="col-sm-6 center">
+                            <div class="title-announce need-color"><i class="fa fa-heart-o"></i> Demandes d'aide</div>
+                            <article class="welp-card-need"><header></header></article>
+                        </div>
+                        <div class="col-sm-6 center">
+                            <div class="title-announce proposition-color"><i class="fa fa-heart"></i> Propositions d'aide</div>
+                            <article class="welp-card-proposition"><header>
+                                    <a href="/propositions/1071/administratif-informatique/aide-et-depannage-informatique-1">
+                                        <img src="https://www.welp.fr/img/action-detail/avatar.png?1483963234"  alt="Aide et Dépannage Informatique" title="Aide et Dépannage Informatique">
+                                    </a>
+                                </header><div class="welp-card-content"></div></article>
+                        </div>
+                    </div>
+
                     <table class="table table-striped table-bordered table-hover">
                         <tr>
                             <th>Nom</th>
                             <th>Details</th>
                         </tr>
                         <tr ng-repeat="x in names[0].wawa">
-                             <td>{{x.idutilisateur}}</td>
+                            <td>{{x.idutilisateur}}</td>
                             <td>{{x.titre}}</td>
-                           
+
                         </tr>
                     </table>
                 </div>
@@ -122,7 +129,7 @@
             var str = <jsp:include page="Publication"></jsp:include>;
             //console.log(str);
             module.controller('namesCtrl', function ($scope, $http) {
-                $scope.names =str;
+                $scope.names = str;
                 console.log($scope.names[0].wawa);
             });
 
