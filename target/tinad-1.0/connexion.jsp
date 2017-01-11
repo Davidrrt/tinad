@@ -27,7 +27,7 @@
     </head>
 
     <body>
-        
+
         <div class="w3-top">
             <ul class="w3-navbar w3-red w3-card-2 w3-left-align w3-large">
                 <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
@@ -48,45 +48,49 @@
                 </ul>
             </div>
         </div>
-          
-            <header class="w3-container w3-red w3-center w3-padding-128">
-                <div class="col-md-4 col-md-offset-4">
-                    <div class="login-panel panel panel-default">
-                        <div class="panel-heading" style="background-color: #b0ae9b;color: white;">
-                            <h3 class="panel-title">Se connecter</h3>
-                        </div>
-                        <div class="panel-body" style="background-color: #c4c3b4;">
-                            <form role="form">
 
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Adresse email" name="email" type="email" autofocus>
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Mot de passe" name="password" type="password" value="">
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input name="remember" type="checkbox" value="Remember Me">Se souvenir de moi
-                                    </label>
-                                </div>
-                                <!-- Change this to a button or input when using this as a form -->
-                                <a href="index.html" class="w3-btn w3-large " style="background-color: #8a6d3b;width: 271px;">Connexion</a>
-                                <div class="forgotten-password">
-                                    <a href="/reset_password/request">J'ai oublié mon mot de passe</a><br>
+        <header class="w3-container w3-red w3-center w3-padding-128">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading" style="background-color: #b0ae9b;color: white;">
+                        <h3 class="panel-title">Se connecter</h3>
+                    </div>
+                    <div class="panel-body" style="background-color: #c4c3b4;">
+                        <form role="form">
 
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer" style="background-color: #b0ae9b;">Pas encore inscrit ? <a href="inscription.jsp">Créer un compte</a></div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Adresse email" name="email" type="email" autofocus>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Mot de passe" name="password" type="password" value="">
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input name="remember" type="checkbox" value="Remember Me">Se souvenir de moi
+                                </label>
+                            </div>
+                            <!-- Change this to a button or input when using this as a form -->
+                            <a href="index.html" class="w3-btn w3-large " style="background-color: #8a6d3b;width: 271px;">Connexion</a>
+                            <div class="forgotten-password">
+                                <a href="/reset_password/request">J'ai oublié mon mot de passe</a><br>
+
+                            </div>
+                        </form>
 
                     </div>
+                    <div class="modal-footer" style="background-color: #b0ae9b;">Pas encore inscrit ? <a href="inscription.jsp">Créer un compte</a></div>
+
                 </div>
-            </header>
+            </div>
+        </header>
 
 
 
         <div class="w3-container w3-black w3-center w3-opacity w3-padding-64">
-            <h1 class="w3-margin w3-xlarge"> </h1>
+            <script type="text/javascript">
+                var s =<jsp:include page="Publication"></jsp:include>;
+                console.log(s);
+            </script>
         </div>
 
         <footer class="w3-container w3-padding-64 w3-center w3-opacity">

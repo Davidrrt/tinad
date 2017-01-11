@@ -12,27 +12,10 @@
         <meta name="author" content="">
         <link rel="shortcut icon" type="image/x-icon" href="./img/log-tinad_mob.png" />
         <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
-         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
-         <link rel="stylesheet" href="./css/w3.css">
-        <style>
-            body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
-            .w3-navbar,h1,button {font-family: "Montserrat", sans-serif}
-            .fa-anchor,.fa-coffee {font-size:200px}
-
-            .w3-red, .w3-hover-red:hover{ background-image:url('./img/tinad-1.jpg'); background-repeat:no-repeat;background-color: #222222!important;}
-            .w3-navbar li {
-                float: right;
-            }
-            .map-search-container{
-                height: 650px;
-                padding: 10px;
-                margin: 0;
-                margin-right: -8px;
-                overflow: hidden;
-                overflow-y: scroll;
-                background-color: rgba(0,0,0,.075);
-            }
-        </style>
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="./css/w3.css">
+        <script src="js/angular.min.js"></script>
+        <link rel="stylesheet" href="css/style.css">
     </head>
 
     <body>
@@ -60,7 +43,7 @@
             </div>
 
         </nav>
-        <div class="container-fluid" >
+        <div class="container-fluid" ng-app="myApp" ng-controller="namesCtrl">
             <div class="row">
                 <div class="map-search-container col-md-6" style="margin-top: 11px;">
                     <form name="map-form" id="map-form" class="container-fluid" action="/map/" >
@@ -80,7 +63,49 @@
                                 <select id="app_search_category" name="app_search[category]" class="form-control ng-pristine ng-valid ng-touched" ng-model="data['app_search[category]']"><option value="">Choisir tag</option><option value="8">Administratif / Informatique</option><option value="3">Cours particuliers / Coaching</option><option value="6">Bricolage / Jardinage</option><option value="2">Visites de courtoisie</option><option value="4">Dons ou prêts d'objets</option><option value="1">Actions à plusieurs</option><option value="5">Enfants</option><option value="9">Animaux</option><option value="12">Autre</option></select>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <div class="checkbox "><label for="app_search_organisation"><input type="checkbox" ng-init="data['app_search[organisation]'] = true" ng-model="data['app_search[organisation]']" name="app_search[organisation]" id="app_search_organisation" value="1" checked="checked"><i class="fa fa-empire"></i> Professionnel</label></div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="checkbox "><label for="app_search_particulier"><input type="checkbox" ng-init="data['app_search[particulier]'] = true" ng-model="data['app_search[particulier]']" name="app_search[particulier]" id="app_search_particulier" value="1" checked="checked"><i class="fa fa-user"></i> Particulier</label></div>
+                            </div>
+                        </div>
                     </form>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3><i class="fa fa-clock-o"></i>Annonces récentes<br> <small class="ng-binding">10 annonces affichées sur 506</small></h3>
+                        </div>
+                         
+                        <div class="col-sm-6 center">
+                           <div class="title-announce need-color"><i class="fa fa-heart-o"></i> Demandes</div>
+                            <article class="welp-card-need"  ng-repeat="y in names[1].demande">
+                                <header>
+                                    <a href="">
+                                        <img src="https://www.welp.fr/uploads/need/0001/03/thumb_2508_need_home.jpeg" ng-src="https://www.welp.fr/uploads/need/0001/03/thumb_2508_need_home.jpeg" alt="Recherche pour création de site internet" title="Recherche pour création de site internet">
+                                    </a> 
+                                </header>
+                                <h1 class="welp-card-title"><a href="" sf-ng-link="{need_id: need.id, need_slug: need.slug, need_category_slug: need.category.slug}" class="ng-binding"><i class="fa fa-heart-o"></i> {{y.titre}}</a></h1>
+                                <h2 class="welp-card-categorie ng-binding"><i class="fa fa-tag"></i> Administratif / Informatique </h2>
+                                <span ng-if="!need.author.organisation" class="ng-binding ng-scope"><i class="fa fa-user"></i>{{y.idutilisateur}}</span>
+                            </article>
+                        </div>
+                       
+                        <div class="col-sm-6 center " >
+                             <div class="title-announce proposition-color"><i class="fa fa-diamond"></i> Offres</div>
+                            <article class="welp-card-proposition" ng-repeat="x in names[0].wawa"><header>
+                                    <a href="/propositions/1071/administratif-informatique/aide-et-depannage-informatique-1">
+                                        <img src="https://www.welp.fr/img/action-detail/avatar.png?1483963234"  alt="Aide et Dépannage Informatique" title="Aide et Dépannage Informatique">
+                                    </a>
+                                </header><div class="welp-card-content">
+                                    <h2 class="welp-card-title"><a href="/propositions/573/administratif-informatique/aide-dans-vos-demarches-administratives-1" sf-ng-link="{proposition_id: proposition.id, proposition_slug: proposition.slug, proposition_category_slug: proposition.category.slug}" class="ng-binding">{{x.idutilisateur}} <small>propose</small></a></h2>
+                                    <p class="welp-card-title">"{{x.titre}}"</p>
+                                    <h5 class="welp-card-categorie"><i class="fa fa-tag"></i> Administratif / Informatique </h5>
+                                </div></article>
+                        </div>
+                    </div>
+
+                   
                 </div>
                 <div class="col-md-6" style="margin-top: 11px;">
                     <div id="map" style="width:102%;height:650px"></div>
@@ -104,7 +129,16 @@
             </div>
             <p>Tout droits réserve à <a href="#" target="_blank">Tinad company</a></p>
         </footer>
+        <script type="text/javascript">
+            var module = angular.module('myApp', []);
+            var str = <jsp:include page="Publication"></jsp:include>;
+            //console.log(str);
+            module.controller('namesCtrl', function ($scope, $http) {
+                $scope.names = str;
+                console.log($scope.names);
+            });
 
+        </script>
         <script>
             function initMap() {
                 var map = new google.maps.Map(document.getElementById('map'), {
