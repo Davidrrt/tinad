@@ -23,17 +23,11 @@ public class AnnonceService {
     public ArrayList<String> offrepublic() {
         Gson json = new Gson();
         String wawa=json.toJson(annonceDao.afficheOffre(0));
+        String tab1=json.toJson(annonceDao.afficheOffre(1));
         String js = wawa.substring(1,wawa.length()-1);
+        String jsa = tab1.substring(1,tab1.length()-1);
         ArrayList<String> tab=new ArrayList<String>();
-        tab.add("{\"wawa\":["+js+"]}");
+        tab.add("{\"wawa\":["+js+"]},{\"demande\":["+jsa+"]}");
         return tab;
-    }
-
-    public String demandepublic() {
-        Gson json = new Gson();
-           String wawa=json.toJson(annonceDao.afficheOffre(0));
-        String js = wawa.substring(1);
-        
-        return "[\"demande\":"+js;
     }
 }
