@@ -45,6 +45,17 @@
             <version>2.8.0</version>
                <type>jar</type>
           </dependency>
+           <dependency>
+            <groupId>com</groupId>
+            <artifactId>activation</artifactId>
+            <version>1.9.0</version>            
+        </dependency>
+        <dependency>
+            <groupId>com</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.9.0</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
 
     <build>
