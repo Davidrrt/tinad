@@ -5,7 +5,7 @@
  */
 package com.wbz.tinad.beans;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 public class Utilisateur {
 
@@ -13,7 +13,14 @@ public class Utilisateur {
     private String    email;
     private String    motDePasse;
     private String    nom;
-    private Timestamp dateInscription;
+    private String    prenom;
+    private String    sexe;
+    private Date dateInscription;
+    private String     specialite;
+    private String adresse;
+    private Long latitude;
+    private Long longitude;
+    private String statut;
 
     public Long getId() {
         return id;
@@ -21,7 +28,12 @@ public class Utilisateur {
     public void setId(Long id ) {
         this.id = id;
     }
-
+     public String getStatut() {
+        return this.statut;
+    }
+    public void setStatut(String newStatut) {
+        this.statut = newStatut;
+    }
     public void setEmail( String email ) {
         this.email = email;
     }
@@ -42,11 +54,56 @@ public class Utilisateur {
     public String getNom() {
         return nom;
     }
-
-    public Timestamp getDateInscription() {
+    
+     public void setSexe( String nom ) {
+        this.sexe = nom;
+    }
+    public String getSexe() {
+        return this.sexe;
+    }
+    public void setPrenom( String nom ) {
+        this.prenom = nom;
+    }
+    public String getPrenom() {
+        return this.prenom;
+    }
+    public Date getDateInscription() {
         return dateInscription;
     }
-    public void setDateInscription( Timestamp dateInscription ) {
+    public void setDateInscription( Date dateInscription ) {
         this.dateInscription = dateInscription;
     }
+    
+    public String getSpecialite() {
+        return this.specialite;
+    }
+    
+    public void setSpecialite(String newSpecialite) {
+        this.specialite=newSpecialite;
+    }
+    
+    public String getAdresse() {
+        return this.adresse;
+    }
+    public void setAdresse(String newAdresse) {
+        this.adresse=newAdresse;
+    }
+    
+    public Long getLatitude() {
+        return this.latitude;
+    }
+    
+    public void setLatitude(Long newLatitude) {
+        this.latitude=newLatitude;
+    }
+    
+    public Long getLongitude() {
+        return this.longitude;
+    }
+    
+    public void setLongitude(Long newLongitude) {
+        this.longitude=newLongitude;
+    }
+    
+  
 }
