@@ -22,7 +22,7 @@
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="./css/w3.css">
         <link href="css/style.css" rel="stylesheet" type="text/css">
-
+    
     </head>
     <body>
         <nav class="navbar navbar-default navbar-static-top" role="navigation">
@@ -59,7 +59,7 @@
 
                     <span class="avatar-container">
 
-                        <img alt="shfrg6sbdf67divgadgf6rsduff45s7gzgfdsodk5.jpg" title="shfrg6sbdf67divgadgf6rsduff45s7gzgfdsodk5.jpg" src="https://www.welp.fr/uploads/user/0001/06/thumb_5241_user_big.jpeg" width="300" height="300" class="img-avatar">
+                        <img alt="shfrg6sbdf67divgadgf6rsduff45s7gzgfdsodk5.jpg" title="shfrg6sbdf67divgadgf6rsduff45s7gzgfdsodk5.jpg" src="https://www.welp.fr/uploads/user/0001/06/thumb_5241_user_big.jpeg" width="300" height="300" class="img-avatar" style="width: 195px;height: 195px;">
                     </span>
                 </a>
                 <h1><i class="fa fa-heart"></i> Ferial <small>propose</small></h1>
