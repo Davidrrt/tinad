@@ -24,7 +24,7 @@
         <link href="css/style.css" rel="stylesheet" type="text/css">
         <style>
             header.proposition-show-header .proposition-show-title{
-                background-color: #555;
+                background-color: rgba(85, 85, 85, 0.64);
             }
             header.proposition-show-header {
                 border-bottom: 15px solid crimson;
