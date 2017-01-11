@@ -15,7 +15,7 @@
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="./css/w3.css">
         <script src="js/angular.min.js"></script>
-         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/style.css">
     </head>
 
     <body>
@@ -76,31 +76,36 @@
                         <div class="col-md-12">
                             <h3><i class="fa fa-clock-o"></i>Annonces récentes<br> <small class="ng-binding">10 annonces affichées sur 506</small></h3>
                         </div>
+                         
                         <div class="col-sm-6 center">
-                            <div class="title-announce need-color"><i class="fa fa-heart-o"></i> Demandes d'aide</div>
-                            <article class="welp-card-need"><header></header></article>
+                           <div class="title-announce need-color"><i class="fa fa-heart-o"></i> Demandes</div>
+                            <article class="welp-card-need"  ng-repeat="y in names[1].demande">
+                                <header>
+                                    <a href="">
+                                        <img src="https://www.welp.fr/uploads/need/0001/03/thumb_2508_need_home.jpeg" ng-src="https://www.welp.fr/uploads/need/0001/03/thumb_2508_need_home.jpeg" alt="Recherche pour création de site internet" title="Recherche pour création de site internet">
+                                    </a> 
+                                </header>
+                                <h1 class="welp-card-title"><a href="" sf-ng-link="{need_id: need.id, need_slug: need.slug, need_category_slug: need.category.slug}" class="ng-binding"><i class="fa fa-heart-o"></i> {{y.titre}}</a></h1>
+                                <h2 class="welp-card-categorie ng-binding"><i class="fa fa-tag"></i> Administratif / Informatique </h2>
+                                <span ng-if="!need.author.organisation" class="ng-binding ng-scope"><i class="fa fa-user"></i>{{y.idutilisateur}}</span>
+                            </article>
                         </div>
-                        <div class="col-sm-6 center">
-                            <div class="title-announce proposition-color"><i class="fa fa-heart"></i> Propositions d'aide</div>
-                            <article class="welp-card-proposition"><header>
+                       
+                        <div class="col-sm-6 center " >
+                             <div class="title-announce proposition-color"><i class="fa fa-diamond"></i> Offres</div>
+                            <article class="welp-card-proposition" ng-repeat="x in names[0].wawa"><header>
                                     <a href="/propositions/1071/administratif-informatique/aide-et-depannage-informatique-1">
                                         <img src="https://www.welp.fr/img/action-detail/avatar.png?1483963234"  alt="Aide et Dépannage Informatique" title="Aide et Dépannage Informatique">
                                     </a>
-                                </header><div class="welp-card-content"></div></article>
+                                </header><div class="welp-card-content">
+                                    <h2 class="welp-card-title"><a href="/propositions/573/administratif-informatique/aide-dans-vos-demarches-administratives-1" sf-ng-link="{proposition_id: proposition.id, proposition_slug: proposition.slug, proposition_category_slug: proposition.category.slug}" class="ng-binding">{{x.idutilisateur}} <small>propose</small></a></h2>
+                                    <p class="welp-card-title">"{{x.titre}}"</p>
+                                    <h5 class="welp-card-categorie"><i class="fa fa-tag"></i> Administratif / Informatique </h5>
+                                </div></article>
                         </div>
                     </div>
 
-                    <table class="table table-striped table-bordered table-hover">
-                        <tr>
-                            <th>Nom</th>
-                            <th>Details</th>
-                        </tr>
-                        <tr ng-repeat="x in names[0].wawa">
-                            <td>{{x.idutilisateur}}</td>
-                            <td>{{x.titre}}</td>
-
-                        </tr>
-                    </table>
+                   
                 </div>
                 <div class="col-md-6" style="margin-top: 11px;">
                     <div id="map" style="width:102%;height:650px"></div>
@@ -130,7 +135,7 @@
             //console.log(str);
             module.controller('namesCtrl', function ($scope, $http) {
                 $scope.names = str;
-                console.log($scope.names[0].wawa);
+                console.log($scope.names);
             });
 
         </script>
