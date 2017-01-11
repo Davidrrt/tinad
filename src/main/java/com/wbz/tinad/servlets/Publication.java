@@ -43,10 +43,11 @@ public class Publication extends HttpServlet {
         Gson t = new Gson();
         //String json = new String[2];
         ArrayList<String> json = util.offrepublic();
-        //json[1] = util.demandepublic();
+        //ArrayList<String> js = util.demandepublic();
         response.setContentType("application/json");
         PrintWriter out=response.getWriter();
         out.print(json);
+        //out.print(js);
         //json[2]=t.toJson(utilisateurDao.listeMembres());
         //request.setAttribute("json", json);
        // request.getRequestDispatcher("annonces.jsp").forward(request, response);
