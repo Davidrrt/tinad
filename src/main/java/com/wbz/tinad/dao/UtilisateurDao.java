@@ -6,14 +6,16 @@
 package com.wbz.tinad.dao;
 
 import com.wbz.tinad.beans.Utilisateur;
-
+import java.util.List;
 
 public interface UtilisateurDao {
 
-    void creer( Utilisateur utilisateur ) throws DAOException;
+    public void creer( Utilisateur utilisateur ) throws DAOException;
 
-    Utilisateur trouver( String email ) throws DAOException;
-
-    Utilisateur[] listeMembres() throws DAOException;
+    public Utilisateur trouver( String email ) throws DAOException;
+    
+    public int verifierUtilisateur (Utilisateur utilisateur) throws DAOException;
+    
+    public List<Utilisateur> getMembres () throws DAOException ;
 
 }

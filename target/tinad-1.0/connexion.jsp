@@ -73,7 +73,6 @@
                             <a href="index.html" class="w3-btn w3-large " style="background-color: #8a6d3b;width: 271px;">Connexion</a>
                             <div class="forgotten-password">
                                 <a href="/reset_password/request">J'ai oublié mon mot de passe</a><br>
-
                             </div>
                         </form>
 

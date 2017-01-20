@@ -73,7 +73,6 @@
                             <a href="index.html" class="w3-btn w3-large " style="background-color: #8a6d3b;width: 271px;">Connexion</a>
                             <div class="forgotten-password">
                                 <a href="/reset_password/request">J'ai oublié mon mot de passe</a><br>
-
                             </div>
                         </form>
 
@@ -88,8 +87,7 @@
 
         <div class="w3-container w3-black w3-center w3-opacity w3-padding-64">
             <script type="text/javascript">
-                var s =<jsp:include page="Publication"></jsp:include>;
-                console.log(s);
+                 
             </script>
         </div>
 
