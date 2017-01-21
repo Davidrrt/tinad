@@ -16,16 +16,8 @@
         <link rel="shortcut icon" type="image/x-icon" href="./img/log-tinad_mob.png" />
         <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
-        <style>
-            body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
-            .w3-navbar,h1,button {font-family: "Montserrat", sans-serif}
-            .fa-anchor,.fa-coffee {font-size:200px}
-
-            .w3-red, .w3-hover-red:hover{ background-image:url('./img/tinad-1.jpg'); background-repeat:no-repeat;background-color: #222222!important;}
-            .w3-navbar li {
-                float: right;
-            }
-        </style>
+         <link href="css/style.css" rel="stylesheet" type="text/css">
+         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     </head>
 
     <body>
@@ -49,7 +41,7 @@
                 </ul>
             </div>
         </div>
-        <header class="w3-container w3-red w3-center w3-padding-128">
+        <header class="w3-container w3-red w3-center w3-padding-128" style="margin-top: -20px;padding-bottom: 81px!important;">
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading" style="background-color: #b0ae9b;color: white;">
@@ -57,22 +49,70 @@
                     </div>
                     <div class="panel-body" style="background-color: #c4c3b4;">
                         <form role="form" action="Inscription" method="POST">
-
-                            <div class="form-inline" >
+                            <div class="form-inline">
                                 <div class="col-md-6">
-                                    <input class="form-control" placeholder="nom" name="nom" type="text" style="width: 223px;" autofocus>
+                                    <label style="margin-left: -172px;">Nom :</label>
                                 </div>
                                 <div class="col-md-4">
-                                    <input class="form-control" placeholder="prenom" name="prenom" type="text" autofocus>
+                                    <label style="margin-left: -88px;">Prenom :</label>
+                                </div>
+                            </div>
+                            <div class="form-inline">
+                                <div class="col-md-6">
+                                    <input class="form-control" placeholder="nom" name="nom" type="text" style="width: 223px;" autofocus="">
+                                </div>
+                                <div class="col-md-4">
+                                    <input class="form-control" placeholder="prenom" name="prenom" type="text" autofocus="">
                                 </div>
                             </div>
                             <br><br>
                             <div class="form-inline">
-                                <div class="col-md-6">
-                                    <input class="form-control" placeholder="Adresse email" name="email" type="email" style="width: 223px;" autofocus>
+                                <div class="col-md-12">
+                                    <label style="margin-left: -360px;">Date de naissance :</label>
+                                </div>
+
+                            </div>
+
+                            <div class="form-inline">
+                                <div class="col-md-4">
+                                    <select class="form-control" name="genre" style="width: 128px;">
+                                        <option>Janvier</option>
+                                        <option>Fevrier</option>
+                                        <option>Mars</option>
+                                        <option>Avril</option>
+                                        <option>Mai</option>
+                                        <option>Juin</option>
+                                        <option>Juillet</option>
+                                        <option>Aout</option>
+                                        <option>Septembre</option>
+                                        <option>Octobre</option>
+                                        <option>Novembre</option>
+                                        <option>Decembre</option>
+                                    </select>
                                 </div>
                                 <div class="col-md-4">
-                                    <select class="form-control"  name="genre" style="width: 197px;">
+                                    <input class="form-control" placeholder="Jour" name="jour" type="number" style="width: 128px;margin-left: -39px;" autofocus="">
+                                </div>
+                                <div class="col-md-4">
+                                    <input class="form-control" placeholder="Année" name="jour" type="number" style="width: 128px;margin-left: -81px;" autofocus="">
+                                </div>
+                            </div>
+                            <br><br>
+
+                            <div class="form-inline">
+                                <div class="col-md-6">
+                                    <label style="margin-left: -167px;">Email :</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <label style="margin-left: -101px;">Genre :</label>
+                                </div>
+                            </div>
+                            <div class="form-inline">
+                                <div class="col-md-6">
+                                    <input class="form-control" placeholder="Adresse email" name="email" type="email" style="width: 223px;" autofocus="">
+                                </div>
+                                <div class="col-md-4">
+                                    <select class="form-control" name="genre" style="width: 197px;">
                                         <option>Masculin</option>
                                         <option>Feminin</option>
                                         <option>Autre</option>
@@ -82,22 +122,36 @@
                             <br><br>
                             <div class="form-inline">
                                 <div class="col-md-6">
+                                    <label style="margin-left: -112px;">Mot de passe :</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <label style="margin-left: -53px;">Confirmation :</label>
+                                </div>
+                            </div>
+                            <div class="form-inline">
+                                <div class="col-md-6">
                                     <input class="form-control" placeholder="Mot de passe" name="motdepasse" type="password" value="" style="width: 223px;">
                                 </div>
                                 <div class="col-md-4">
-                                    <input class="form-control" placeholder="Confirmation mot de passe" name="confirmation" type="password" value="">
+                                    <input class="form-control" placeholder="Confirmation " name="confirmation" type="password" value="">
                                 </div>
                             </div>
                             <br><br>
+                            <div class="form-inline">
+                                <div class="col-md-6">
+                                    <label style="margin-left: -71px;">Adresse ou quartier :</label>
+                                </div>
+
+                            </div>
                             <div class="form-group">
                                 <input class="form-control" placeholder="Adresse ou quartier" name="position" type="text" style="width: 465px; margin-left: 29px;" value="">
                             </div>
                             <br>
-                     
+                            <div style="margin-left:10px;" class="g-recaptcha" data-sitekey="6LfbsxIUAAAAANkuC_5deRvVicJpJsl1RlGC_MkD"></div>
                             <!-- Change this to a button or input when using this as a form -->
                             <input class="w3-btn w3-large " style="background-color: #8a6d3b;width: 271px;" type="submit" value="Valider">
                         </form>
-                            
+
 
                     </div>
 

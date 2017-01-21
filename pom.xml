@@ -36,7 +36,7 @@
         </dependency>
         <dependency>
             <groupId>com</groupId>
-            <artifactId>recaptcha</artifactId>
+            <artifactId>recaptcha4j</artifactId>
             <version>0.0.8</version>            
         </dependency>
         <dependency>
