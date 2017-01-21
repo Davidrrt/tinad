@@ -36,6 +36,11 @@
         </dependency>
         <dependency>
             <groupId>com</groupId>
+            <artifactId>recaptcha</artifactId>
+            <version>0.0.8</version>            
+        </dependency>
+        <dependency>
+            <groupId>com</groupId>
             <artifactId>postgresql</artifactId>
             <version>9.4</version>            
         </dependency>

@@ -1,4 +1,6 @@
+
 ﻿<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -55,22 +57,48 @@
                     </div>
                     <div class="panel-body" style="background-color: #c4c3b4;">
                         <form role="form" action="Inscription" method="POST">
-                            <div class="form-group">
-                                <input class="form-control" placeholder="nom" name="nom" type="text" autofocus>
+
+                            <div class="form-inline" >
+                                <div class="col-md-6">
+                                    <input class="form-control" placeholder="nom" name="nom" type="text" style="width: 223px;" autofocus>
+                                </div>
+                                <div class="col-md-4">
+                                    <input class="form-control" placeholder="prenom" name="prenom" type="text" autofocus>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <input class="form-control" placeholder="Adresse email" name="email" type="email" autofocus>
+                            <br><br>
+                            <div class="form-inline">
+                                <div class="col-md-6">
+                                    <input class="form-control" placeholder="Adresse email" name="email" type="email" style="width: 223px;" autofocus>
+                                </div>
+                                <div class="col-md-4">
+                                    <select class="form-control"  name="genre" style="width: 197px;">
+                                        <option>Masculin</option>
+                                        <option>Feminin</option>
+                                        <option>Autre</option>
+                                    </select>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <input class="form-control" placeholder="Mot de passe" name="motdepasse" type="password" value="">
+                            <br><br>
+                            <div class="form-inline">
+                                <div class="col-md-6">
+                                    <input class="form-control" placeholder="Mot de passe" name="motdepasse" type="password" value="" style="width: 223px;">
+                                </div>
+                                <div class="col-md-4">
+                                    <input class="form-control" placeholder="Confirmation mot de passe" name="confirmation" type="password" value="">
+                                </div>
                             </div>
+                            <br><br>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Confirmation mot de passe" name="confirmation" type="password" value="">
+                                <input class="form-control" placeholder="Adresse ou quartier" name="position" type="text" style="width: 465px; margin-left: 29px;" value="">
                             </div>
-                            
+                            <br>
+                     
                             <!-- Change this to a button or input when using this as a form -->
                             <input class="w3-btn w3-large " style="background-color: #8a6d3b;width: 271px;" type="submit" value="Valider">
                         </form>
+                            
+
                     </div>
 
 
