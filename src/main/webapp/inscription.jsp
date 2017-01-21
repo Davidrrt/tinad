@@ -146,8 +146,7 @@
                             <div class="form-group">
                                 <input class="form-control" placeholder="Adresse ou quartier" name="position" type="text" style="width: 465px; margin-left: 29px;" value="">
                             </div>
-                            <br>
-                            <div style="margin-left:10px;" class="g-recaptcha" data-sitekey="6LfbsxIUAAAAANkuC_5deRvVicJpJsl1RlGC_MkD"></div>
+                            <div style="margin-left: 31px;" class="g-recaptcha" data-sitekey="6LfbsxIUAAAAANkuC_5deRvVicJpJsl1RlGC_MkD"></div><br><br>
                             <!-- Change this to a button or input when using this as a form -->
                             <input class="w3-btn w3-large " style="background-color: #8a6d3b;width: 271px;" type="submit" value="Valider">
                         </form>
