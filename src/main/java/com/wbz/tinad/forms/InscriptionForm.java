@@ -58,7 +58,7 @@ public final class InscriptionForm {
                 resultat = "échec de l'inscription.";
             }
         } catch ( DAOException e ) {
-            resultat = "échec de l'inscription : une erreur imprévue est survenue, merci de rÃ©essayer dans quelques instants.";
+            resultat = "échec de l'inscription : une erreur imprévue est survenue, merci de réssayer dans quelques instants.";
             e.printStackTrace();
         }
 
