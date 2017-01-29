@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="./css/w3.css">
         <script src="js/angular.min.js"></script>
         <link rel="stylesheet" href="css/style.css">
+        <script src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyCgRfB1v9qicDQyrGds5MOAlM6s3Ylq5Jg&signed_in=false&callback=initMap" async defer></script>
     </head>
 
     <body>
@@ -51,9 +52,9 @@
                         <div class="row">
                             <h2 class="title"><i class="fa fa-map-marker"></i> Carte des annonces</h2>
                             <div class="form-group col-md-12">
-                                <input type="text" id="app_search_place_name" class="form-control" name="app_search[place][name]" placeholder="Où ?">
-                                <input type="hidden" id="app_search_place_latitude" name="app_search[place][latitude]" >
+                                <input type="text" id="address" class="form-control" name="app_search[place][name]" placeholder="Où ?">
                             </div>
+
                         </div>
                         <div class="row">
                             <div class="form-group col-md-6">
@@ -76,9 +77,9 @@
                         <div class="col-md-12">
                             <h3><i class="fa fa-clock-o"></i>Annonces récentes<br> <small class="ng-binding">10 annonces affichées sur 506</small></h3>
                         </div>
-                         
+
                         <div class="col-sm-6 center">
-                           <div class="title-announce need-color"><i class="fa fa-heart-o"></i> Demandes</div>
+                            <div class="title-announce need-color"><i class="fa fa-heart-o"></i> Demandes</div>
                             <article class="welp-card-need"  ng-repeat="y in names[1].demande">
                                 <header>
                                     <a href="">
@@ -90,9 +91,9 @@
                                 <span ng-if="!need.author.organisation" class="ng-binding ng-scope"><i class="fa fa-user"></i>{{y.idutilisateur}}</span>
                             </article>
                         </div>
-                       
+
                         <div class="col-sm-6 center " >
-                             <div class="title-announce proposition-color"><i class="fa fa-diamond"></i> Offres</div>
+                            <div class="title-announce proposition-color"><i class="fa fa-diamond"></i> Offres</div>
                             <article class="welp-card-proposition" ng-repeat="x in names[0].wawa"><header>
                                     <a href="/propositions/1071/administratif-informatique/aide-et-depannage-informatique-1">
                                         <img src="https://www.welp.fr/img/action-detail/avatar.png?1483963234"  alt="Aide et Dépannage Informatique" title="Aide et Dépannage Informatique">
@@ -105,7 +106,7 @@
                         </div>
                     </div>
 
-                   
+
                 </div>
                 <div class="col-md-6" style="margin-top: 11px;">
                     <div id="map" style="width:102%;height:650px"></div>
@@ -141,6 +142,7 @@
         </script>
         <script>
             function initMap() {
+                
                 var map = new google.maps.Map(document.getElementById('map'), {
                     center: {lat: -18.8791902, lng: 47.5079055},
                     zoom: 14,
@@ -163,8 +165,6 @@
                 }
             }
         </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgRfB1v9qicDQyrGds5MOAlM6s3Ylq5Jg&signed_in=false&callback=initMap"
-                async defer>
-        </script>
+        
     </body>
 </html>
