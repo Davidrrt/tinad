@@ -16,8 +16,9 @@
         <link rel="shortcut icon" type="image/x-icon" href="./img/log-tinad_mob.png" />
         <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
-         <link href="css/style.css" rel="stylesheet" type="text/css">
-         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        <link href="css/style.css" rel="stylesheet" type="text/css">
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        <script src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyCgRfB1v9qicDQyrGds5MOAlM6s3Ylq5Jg&callback=initMap" async defer></script>
     </head>
 
     <body>
@@ -143,9 +144,13 @@
                                 </div>
 
                             </div>
-                            <div class="form-group">
-                                <input class="form-control" placeholder="Adresse ou quartier" name="position" type="text" style="width: 465px; margin-left: 29px;" value="">
+                            <div class="form-inline">
+                                <input class="form-control" placeholder="Adresse ou quartier" id="address" name="position" type="text" style="width: 445px; margin-left: 29px;" value="">
+                                <input type="hidden" id="lat" name="lat" value="" >
+                                <input type="hidden" id="lng" name="lng" value="">
+                                <input type="button" class="btn btn-default" value="tester" onclick="codeAddress()">
                             </div>
+                           <div style="color: rgb(61, 185, 0);" id="reponse"></div>
                             <div style="margin-left: 31px;" class="g-recaptcha" data-sitekey="6LfbsxIUAAAAANkuC_5deRvVicJpJsl1RlGC_MkD"></div><br><br>
                             <!-- Change this to a button or input when using this as a form -->
                             <input class="w3-btn w3-large " style="background-color: #8a6d3b;width: 271px;" type="submit" value="Valider">
@@ -165,12 +170,30 @@
         <footer class="w3-container w3-padding-64 w3-center w3-opacity">
             <div class="w3-xlarge w3-padding-32">
                 <a href="#" class="w3-hover-text-indigo"><i class="fa fa-facebook-official"></i></a>
-                <a href="#" class="w3-hover-text-red"><i class="fa fa-pinterest-p"></i></a>
                 <a href="#" class="w3-hover-text-light-blue"><i class="fa fa-twitter"></i></a>
-                <a href="#" class="w3-hover-text-grey"><i class="fa fa-flickr"></i></a>
-                <a href="#" class="w3-hover-text-indigo"><i class="fa fa-linkedin"></i></a>
+               
             </div>
             <p>Tout droits réserve à <a href="#" target="_blank">Tinad company</a></p>
         </footer>
     </body>
+    <script type="text/javascript">
+        var geocoder;
+
+        function initMap() {
+            geocoder = new google.maps.Geocoder();
+        }
+        function codeAddress() {
+            var addres = document.getElementById("address").value;
+            geocoder.geocode({'address': addres}, function (results, status) {
+                if (status === google.maps.GeocoderStatus.OK) {
+                    document.getElementById('lat').value = results[0].geometry.location.lat();
+                    document.getElementById('lng').value = results[0].geometry.location.lng();
+                    var div=document.getElementById('reponse');
+                    div.textContent="Adresse valide !!!";
+                } else {
+                    alert("Le geocodage n\'a pu etre effectue pour la raison suivante: " + status);
+                }
+            });
+        }
+    </script>
 </html>
