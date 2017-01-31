@@ -30,4 +30,9 @@ public class AnnonceService {
         tab.add("{\"wawa\":["+js+"]},{\"demande\":["+jsa+"]}");
         return tab;
     }
+    
+    public ArrayList<String> infoprofil(){
+        ArrayList<String> tab=new ArrayList<String>();
+        return tab;
+    }
 }

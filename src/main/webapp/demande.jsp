@@ -21,6 +21,7 @@
         <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="./css/w3.css">
+        <script src="js/angular.min.js"></script>
         <link href="css/style.css" rel="stylesheet" type="text/css">
         <style>
             header.proposition-show-header .proposition-show-title{
@@ -36,7 +37,6 @@
         </style>
 
     </head>
-    <body>
     <body>
         <nav class="navbar navbar-default navbar-static-top" role="navigation">
             <div class="w3-top">
@@ -61,25 +61,27 @@
             </div>
 
         </nav>
+         <div ng-app="myApp" ng-controller="namesCtrl">
+            <div ng-repeat="y in names[1].demande  | filter:<% out.print("'"+request.getParameter("objet")+"'"); %>">
         <header class="proposition-show-header">
             <div class="proposition-img-container">
-                <img alt="coursaidewelp.jpg" title="coursaidewelp.jpg" src="https://www.welp.fr/uploads/need/0001/01/thumb_34_need_need.jpeg" width="1250" height="833">
+                <img alt="coursaidewelp.jpg" title="coursaidewelp.jpg" src="img/tinad-1.jpg" width="1250" height="833">
             </div>
             <div class="proposition-show-title">
 
-                <h1>"entraide pour trouver un premier emploi"</h1>
-                <a href="/welp/contact/1584" welp-modal="" class="welp-btn btn-need ng-isolate-scope">Aider</a>
+                <h1>"{{y.titre}}"</h1>
+                <a href="connexion.jsp" welp-modal="" class="welp-btn btn-need ng-isolate-scope">Aider</a>
             </div>
         </header>
         <div class="w3-row-padding w3-padding-64 w3-container">
             <div class="w3-content">
                 <div class="w3-twothird">
-                    <h2 class="title-proposition">Ferial <small>demande</small></h2>
+                    <h2 class="title-proposition">{{y.prenom}}<small> demande</small></h2>
                     <h5 class="w3-padding-32"><i class="fa fa-tag"></i> Cours particuliers / Coaching</h5>
-                    <h6 class="welp-darkblue-color"><i class="fa fa-map-marker"></i> 36120 Jeu-les-Bois</h6>
+                    <h6 class="welp-darkblue-color"><i class="fa fa-map-marker"></i>{{y.adresse}}</h6>
                     <p class="w3-text-grey"></p>
-                    <a href="/profile/8637/Ferial" class="btn btn-xs btn-default">
-                        <i class="fa fa-user"></i> Voir le profil de Ferial
+                    <a href="profil.jsp?id=" class="btn btn-xs btn-default">
+                        <i class="fa fa-user"></i> Voir le profil de {{y.prenom}}
                     </a>
                 </div>
                 <a class="proposition-avatar" href="/profile/8637/Ferial">
@@ -88,7 +90,7 @@
 
                     <span class="avatar-container">
 
-                        <img alt="shfrg6sbdf67divgadgf6rsduff45s7gzgfdsodk5.jpg" title="shfrg6sbdf67divgadgf6rsduff45s7gzgfdsodk5.jpg" src="https://www.welp.fr/uploads/user/0001/06/thumb_5241_user_big.jpeg" width="300" height="300" class="img-avatar" style="width: 195px;height: 195px;">
+                        <img alt="shfrg6sbdf67divgadgf6rsduff45s7gzgfdsodk5.jpg" title="shfrg6sbdf67divgadgf6rsduff45s7gzgfdsodk5.jpg" src="img/avatar.png" width="300" height="300" class="img-avatar" style="width: 195px;height: 195px;">
                     </span>
                 </a>
             </div>
@@ -105,25 +107,33 @@
 
                     <p class="w3-text-grey"></p><p>Bonjour, <br>
                         <br>
-                        Je suis récemment diplômée et à la recherche d'un premier emploi. Je cherche des gens comme moi pour qu'on s'entre motive pendant cette période trouble qu'est la recherche d'emploi ! <br>
-                        On peut se retrouver pour parler de nos CV, LM, etc.<br>
+                        {{y.description}}<br>
                         <br>
                         N'hésitez pas à me contacter !</p>
                     <p></p>
                 </div>
             </div>
         </div>
-
-
+            </div>
+         </div>
 
         <footer class="w3-container w3-padding-64 w3-center w3-opacity">
             <div class="w3-xlarge w3-padding-32">
                 <a href="#" class="w3-hover-text-indigo"><i class="fa fa-facebook-official"></i></a>
                 <a href="#" class="w3-hover-text-light-blue"><i class="fa fa-twitter"></i></a>
-                
+
             </div>
             <p>Tout droits réserve à <a href="#" target="_blank">Tinad company</a></p>
         </footer>
     </body>
-</body>
+<script type="text/javascript">
+    var module = angular.module('myApp', []);
+    var str = <jsp:include page="Publication"></jsp:include>;
+    //console.log(str);
+    module.controller('namesCtrl', function ($scope, $http) {
+        $scope.names = str;
+        console.log($scope.names);
+    });
+
+</script>
 </html>

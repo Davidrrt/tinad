@@ -6,7 +6,6 @@
 package com.wbz.tinad.beans;
 
 import java.sql.Date;
-import java.sql.Timestamp;
 
 /**
  *
@@ -14,32 +13,68 @@ import java.sql.Timestamp;
  */
 public class Annonce {
 
-    private int idCategorie;
-    private int idutilisateur;
+    private String nom;
+    private String prenom;
     private String titre;
     private String description;
     private Date dateDebut;
     private Date datefin;
+    private String adresse;
+    private Long latitude;
+    private Long longitude;
 
     public Annonce() {
 
     }
 
-    public void setIdCategorie(int aInt) {
-        this.idCategorie = aInt;
+    public String getNom() {
+        return nom;
     }
 
-    public int getIdCategorie() {
-        return this.idCategorie;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
-    public void setIdutilisateur(int aInt) {
-        this.idutilisateur = aInt;
+    public String getPrenom() {
+        return prenom;
     }
 
-    public int getIdutilisateur() {
-        return this.idutilisateur;
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
     }
+
+    public Date getDatefin() {
+        return datefin;
+    }
+
+    public void setDatefin(Date datefin) {
+        this.datefin = datefin;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public Long getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Long latitude) {
+        this.latitude = latitude;
+    }
+
+    public Long getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Long longitude) {
+        this.longitude = longitude;
+    }
+
 
     public void setTitre(String string) {
         this.titre = string;

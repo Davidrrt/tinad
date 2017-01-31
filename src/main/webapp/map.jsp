@@ -83,12 +83,13 @@
                             <article class="welp-card-need"  ng-repeat="y in names[1].demande">
                                 <header>
                                     <a href="">
-                                        <img src="https://www.welp.fr/uploads/need/0001/03/thumb_2508_need_home.jpeg" ng-src="https://www.welp.fr/uploads/need/0001/03/thumb_2508_need_home.jpeg" alt="Recherche pour création de site internet" title="Recherche pour création de site internet">
+                                        <img src="img/home.jpeg"  alt="Recherche pour création de site internet" title="Recherche pour création de site internet">
                                     </a> 
                                 </header>
-                                <h1 class="welp-card-title"><a href="" sf-ng-link="{need_id: need.id, need_slug: need.slug, need_category_slug: need.category.slug}" class="ng-binding"><i class="fa fa-heart-o"></i> {{y.titre}}</a></h1>
+                                <h1 class="welp-card-title"><a href="demande.jsp?objet={{y.titre}}" sf-ng-link="{need_id: need.id, need_slug: need.slug, need_category_slug: need.category.slug}" class="ng-binding"><i class="fa fa-heart-o"></i> {{y.titre}}</a></h1>
                                 <h2 class="welp-card-categorie ng-binding"><i class="fa fa-tag"></i> Administratif / Informatique </h2>
-                                <span ng-if="!need.author.organisation" class="ng-binding ng-scope"><i class="fa fa-user"></i>{{y.idutilisateur}}</span>
+                                <span ng-if="!need.author.organisation" class="ng-binding ng-scope"><i class="fa fa-user"></i>{{y.prenom}}</span>
+                                <p>{{y.adresse}}</p>
                             </article>
                         </div>
 
@@ -96,12 +97,13 @@
                             <div class="title-announce proposition-color"><i class="fa fa-diamond"></i> Offres</div>
                             <article class="welp-card-proposition" ng-repeat="x in names[0].wawa"><header>
                                     <a href="/propositions/1071/administratif-informatique/aide-et-depannage-informatique-1">
-                                        <img src="https://www.welp.fr/img/action-detail/avatar.png?1483963234"  alt="Aide et Dépannage Informatique" title="Aide et Dépannage Informatique">
+                                        <img src="img/avatar.png"  alt="Aide et Dépannage Informatique" title="Aide et Dépannage Informatique">
                                     </a>
                                 </header><div class="welp-card-content">
-                                    <h2 class="welp-card-title"><a href="/propositions/573/administratif-informatique/aide-dans-vos-demarches-administratives-1" sf-ng-link="{proposition_id: proposition.id, proposition_slug: proposition.slug, proposition_category_slug: proposition.category.slug}" class="ng-binding">{{x.idutilisateur}} <small>propose</small></a></h2>
+                                    <h2 class="welp-card-title"><a href="offre.jsp?objet={{x.titre}}" class="ng-binding">{{x.prenom}} <small>propose</small></a></h2>
                                     <p class="welp-card-title">"{{x.titre}}"</p>
                                     <h5 class="welp-card-categorie"><i class="fa fa-tag"></i> Administratif / Informatique </h5>
+                                    <p>{{x.adresse}}</p>
                                 </div></article>
                         </div>
                     </div>
@@ -123,10 +125,7 @@
         <footer class="w3-container w3-padding-64 w3-center w3-opacity">
             <div class="w3-xlarge w3-padding-32">
                 <a href="#" class="w3-hover-text-indigo"><i class="fa fa-facebook-official"></i></a>
-                <a href="#" class="w3-hover-text-red"><i class="fa fa-pinterest-p"></i></a>
                 <a href="#" class="w3-hover-text-light-blue"><i class="fa fa-twitter"></i></a>
-                <a href="#" class="w3-hover-text-grey"><i class="fa fa-flickr"></i></a>
-                <a href="#" class="w3-hover-text-indigo"><i class="fa fa-linkedin"></i></a>
             </div>
             <p>Tout droits réserve à <a href="#" target="_blank">Tinad company</a></p>
         </footer>

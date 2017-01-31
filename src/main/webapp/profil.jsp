@@ -47,7 +47,7 @@
                 <div class="user-show-side col-md-4">
                     <a class="link-no-style" href="/profile/8637/Ferial">
                         <span class="avatar-container">
-                            <img alt="shfrg6sbdf67divgadgf6rsduff45s7gzgfdsodk5.jpg" title="shfrg6sbdf67divgadgf6rsduff45s7gzgfdsodk5.jpg" src="https://www.welp.fr/uploads/user/0001/06/thumb_5241_user_big.jpeg" width="300" height="300" class="img-avatar" style="width: 200px;height: 200px;">
+                            <img src="img/avatar.png" width="300" height="300" class="img-avatar" style="width: 200px;height: 200px;">
                         </span>
                     </a>
                     <br>
@@ -62,7 +62,7 @@
                     </ul>
                 </div>
                 <div class="user-show-content col-md-8">
-                    <h1>Bonjour, je m'appelle Ferial!</h1>
+                    <h1>Bonjour, je m'appelle Ferial</h1>
                     <h2>75011 Paris</h2>
                     <p class="user-description">Salut nouvelle je trouve l'idée top et j'espère contribuer à la communauté en aidant les gens autour de moi. N'hésitez pas à me contacter!</p>            <div class="user-show-testimony">
                         <div class="comments-block ">
@@ -72,7 +72,7 @@
                     <br><br>
                     <div class="row">
                         <div class="col-md-12">
-                            <h3><i class="fa fa-clock-o"></i>Annonces déposer par Ferial</h3>
+                            <h3><i class="fa fa-clock-o"></i>Annonces déjà déposer</h3>
                         </div>
 
                         <div class="col-sm-6 center">
@@ -108,7 +108,6 @@
             <div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
             <div class="w3-content">
                 <div class="w3-third w3-center">
-                    <i class="fa fa-mobile-phone w3-padding-64 w3-text-red w3-margin-right"></i>
                 </div>
 
                
@@ -118,10 +117,7 @@
     <footer class="w3-container w3-padding-64 w3-center w3-opacity">
         <div class="w3-xlarge w3-padding-32">
             <a href="#" class="w3-hover-text-indigo"><i class="fa fa-facebook-official"></i></a>
-            <a href="#" class="w3-hover-text-red"><i class="fa fa-pinterest-p"></i></a>
             <a href="#" class="w3-hover-text-light-blue"><i class="fa fa-twitter"></i></a>
-            <a href="#" class="w3-hover-text-grey"><i class="fa fa-flickr"></i></a>
-            <a href="#" class="w3-hover-text-indigo"><i class="fa fa-linkedin"></i></a>
         </div>
         <p>Tout droits réserve à <a href="#" target="_blank">Tinad company</a></p>
     </footer>

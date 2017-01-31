@@ -28,9 +28,16 @@
         <servlet-class> com.wbz.tinad.servlets.Publication</servlet-class> 
         <servlet-name>Publication</servlet-name> 
     </servlet> 
-
+     <servlet> 
+        <servlet-class> com.wbz.tinad.servlets.Connexion</servlet-class> 
+        <servlet-name>Connexion</servlet-name> 
+    </servlet> 
     <servlet-mapping> 
         <servlet-name>Publication</servlet-name> 
         <url-pattern>/Publication </url-pattern>
+    </servlet-mapping> 
+     <servlet-mapping> 
+        <servlet-name>Connexion</servlet-name> 
+        <url-pattern>/Connexion </url-pattern>
     </servlet-mapping> 
 </web-app>
