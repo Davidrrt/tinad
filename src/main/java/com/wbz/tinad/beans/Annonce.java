@@ -20,8 +20,10 @@ public class Annonce {
     private Date dateDebut;
     private Date datefin;
     private String adresse;
-    private Long latitude;
-    private Long longitude;
+    private double latitude;
+    private double longitude;
+    private String categorie;
+    private String id;
 
     public Annonce() {
 
@@ -59,19 +61,19 @@ public class Annonce {
         this.adresse = adresse;
     }
 
-    public Long getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(Long latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
-    public Long getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(Long longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
@@ -106,6 +108,18 @@ public class Annonce {
 
     public Date getDateFin() {
         return this.datefin;
+    }
+    public String getCategorie() {
+        return this.categorie;
+    }
+    public void setCategorie(String string) {
+        this.categorie=string;
+    }
+    public String getId(){
+        return this.id;
+    }
+    public void setId(String string) {
+        this.id=string;
     }
 
 }

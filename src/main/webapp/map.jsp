@@ -57,12 +57,10 @@
 
                         </div>
                         <div class="row">
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-12">
                                 <select id="app_search_category" name="app_search[category]" class="form-control ng-pristine ng-valid ng-touched" ng-model="data['app_search[category]']"><option value="">Quel type d'aide ?</option><option value="8">Administratif / Informatique</option><option value="3">Cours particuliers / Coaching</option><option value="6">Bricolage / Jardinage</option><option value="4">Dons ou prêts d'objets</option><option value="1">Actions à plusieurs</option><option value="5">Enfants</option><option value="9">Animaux</option><option value="12">Autre</option></select>
                             </div>
-                            <div class="form-group col-md-6" style="margin-top: 3px" >
-                                <select id="app_search_category" name="app_search[category]" class="form-control ng-pristine ng-valid ng-touched" ng-model="data['app_search[category]']"><option value="">Choisir tag</option><option value="8">Administratif / Informatique</option><option value="3">Cours particuliers / Coaching</option><option value="6">Bricolage / Jardinage</option><option value="2">Visites de courtoisie</option><option value="4">Dons ou prêts d'objets</option><option value="1">Actions à plusieurs</option><option value="5">Enfants</option><option value="9">Animaux</option><option value="12">Autre</option></select>
-                            </div>
+                           
                         </div>
                         <div class="row">
                             <div class="form-group col-md-6">
@@ -88,7 +86,7 @@
                                 </header>
                                 <h1 class="welp-card-title"><a href="demande.jsp?objet={{y.titre}}" sf-ng-link="{need_id: need.id, need_slug: need.slug, need_category_slug: need.category.slug}" class="ng-binding"><i class="fa fa-heart-o"></i> {{y.titre}}</a></h1>
                                 <h2 class="welp-card-categorie ng-binding"><i class="fa fa-tag"></i> Administratif / Informatique </h2>
-                                <span ng-if="!need.author.organisation" class="ng-binding ng-scope"><i class="fa fa-user"></i>{{y.prenom}}</span>
+                                <span class="ng-binding ng-scope"><i class="fa fa-user"></i>{{y.prenom}}</span>
                                 <p>{{y.adresse}}</p>
                             </article>
                         </div>
@@ -132,38 +130,46 @@
         <script type="text/javascript">
             var module = angular.module('myApp', []);
             var str = <jsp:include page="Publication"></jsp:include>;
-            //console.log(str);
+            //console.log(str[1]);
             module.controller('namesCtrl', function ($scope, $http) {
                 $scope.names = str;
-                console.log($scope.names);
+                // console.log($scope.names);
             });
 
-        </script>
-        <script>
             function initMap() {
-                
+
                 var map = new google.maps.Map(document.getElementById('map'), {
                     center: {lat: -18.8791902, lng: 47.5079055},
                     zoom: 14,
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 });
-                marker = new google.maps.Marker({
-                    map: map,
-                    draggable: true,
-                    animation: google.maps.Animation.DROP,
-                    position: {lat: -18.8791902, lng: 47.5079055}
-                });
-                marker.addListener('click', toggleBounce);
-            }
-
-            function toggleBounce() {
-                if (marker.getAnimation() !== null) {
-                    marker.setAnimation(null);
-                } else {
-                    marker.setAnimation(google.maps.Animation.BOUNCE);
+            
+                for (var i = 0; i < str[0].wawa.length; i++) {
+                    new google.maps.Marker({
+                        position: new google.maps.LatLng(str[0].wawa[i].latitude, str[0].wawa[i].longitude),
+                        map: map,
+                        title: "Marqueur wawa",
+                        icon: {
+                            url: 'img/offre.png',
+                            size: new google.maps.Size(80, 64),
+                            anchor: new google.maps.Point(28, 64)
+                        }
+                    });
+                }
+                   for (var i = 0; i < str[1].demande.length; i++) {
+                    new google.maps.Marker({
+                        position: new google.maps.LatLng(str[1].demande[i].latitude, str[1].demande[i].longitude),
+                        map: map,
+                        title: "Marqueur demande",
+                        icon: {
+                            url: 'img/demande.png',
+                            size: new google.maps.Size(80, 64),
+                            anchor: new google.maps.Point(28, 64)
+                        }
+                    });
                 }
             }
         </script>
-        
+
     </body>
 </html>
