@@ -6,6 +6,7 @@
 package com.wbz.tinad.dao;
 
 import com.wbz.tinad.beans.Annonce;
+import com.wbz.tinad.beans.Utilisateur;
 import static com.wbz.tinad.dao.DAOUtilitaire.fermeturesSilencieuses;
 import static com.wbz.tinad.dao.DAOUtilitaire.initialisationRequetePreparee;
 import java.sql.Connection;
@@ -15,9 +16,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class AnnonceDaoImpl implements AnnonceDao {
-
     private DAOFactory daoFactory;
-    private static final String SQL_SELECT_OFFRE = "SELECT idutilisateur, nom, prenom, designation, titre, description,datepublication, datedebutdisponibilite, datefindisponibilite,adresse, latitude, longitude, type FROM annonce WHERE type=?";
+    private static final String SQL_SELECT_OFFRE = "SELECT idutilisateur, nom, prenom, designation, titre, description, datedebutdisponibilite, datefindisponibilite FROM annonce WHERE type = ?";
 
     AnnonceDaoImpl(DAOFactory daoFactory) {
         this.daoFactory = daoFactory;
@@ -44,6 +44,7 @@ public class AnnonceDaoImpl implements AnnonceDao {
             }
             return utilisateur;
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new DAOException(e.getMessage());
         } finally {
             fermeturesSilencieuses(resultSet, preparedStatement, connexion);
@@ -54,17 +55,21 @@ public class AnnonceDaoImpl implements AnnonceDao {
 
     private static Annonce map(ResultSet resultSet) throws SQLException {
         Annonce utilisateur = new Annonce();
-        utilisateur.setId(resultSet.getString("idutilisateur"));
-        utilisateur.setNom(resultSet.getString("nom"));
-        utilisateur.setPrenom(resultSet.getString("prenom"));
+        Utilisateur user_annonceur= new Utilisateur();
+        user_annonceur.setNom(resultSet.getString("nom"));
+        user_annonceur.setPrenom(resultSet.getString("prenom"));        
+        
+        //utilisateur.setIdCategorie(resultSet.getInt("idcategorie"));
+        utilisateur.setCategorie(resultSet.getString("designation"));//categorie
+        utilisateur.setIdutilisateur(resultSet.getInt("idutilisateur"));
         utilisateur.setTitre(resultSet.getString("titre"));
         utilisateur.setDescription(resultSet.getString("description"));
         utilisateur.setDateDebut(resultSet.getDate("datedebutdisponibilite"));
-        utilisateur.setDateFin(resultSet.getDate("datefindisponibilite"));
-         utilisateur.setAdresse(resultSet.getString("adresse"));
-         utilisateur.setLatitude(resultSet.getDouble("latitude"));
-         utilisateur.setLongitude(resultSet.getDouble("longitude"));
-         utilisateur.setCategorie(resultSet.getString("designation"));
+        utilisateur.setDateFin(resultSet.getDate("datefindisponibilite"));   
+        
+               
+        
+        utilisateur.setUtilisateur(user_annonceur);
         return utilisateur;
     }
 

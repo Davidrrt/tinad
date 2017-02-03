@@ -4,11 +4,9 @@
  * and open the template in the editor.
  */
 package com.wbz.tinad.dao;
-
 import static com.wbz.tinad.dao.DAOUtilitaire.*;
 import com.wbz.tinad.beans.Utilisateur;
 import com.wbz.tinad.services.UtilisateurService;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,11 +21,14 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
     private static final String SQL_INSERT = "INSERT INTO UTILISATEUR (IDUTILISATEUR,NOM,PRENOM,SEXE,EMAIL,ADRESSE,MOTDEPASSE,SPECIALITE,LATITUDE,LONGITUDE,DATEINSCRIPTION) VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
     private static final String SQL_INSERT_MOTDEPASSE = " INSERT INTO MOTDEPASSE (IDMOTDEPASSE,MOTDEPASSE,DATEMODIFICATION) VALUES (DEFAULT, ?, NOW())";
     
-    private static final String SQL_SELECT_CONNEXION = "SELECT COUNT(*) AS NOMBREUTILISATEUR FROM UTILISATEUR JOIN MOTDEPASSE ON MOTDEPASSE.IDMOTDEPASSE = UTILISATEUR.IDMOTDEPASSE WHERE UTILISATEUR.EMAIL = ? AND MOTDEPASSE.MOTDEPASSE= ?";
+    private static final String SQL_SELECT_CONNEXION = "SELECT COUNT(*) AS NOMBREUTILISATEUR FROM UTILISATEUR JOIN MOTDEPASSE ON MOTDEPASSE.IDUTILISATEUR = UTILISATEUR.IDUTILISATEUR WHERE UTILISATEUR.EMAIL = ? AND MOTDEPASSE.MOTDEPASSE= ?";
     private static final String SQL_SELECT_TOUT_MEMBRE = "SELECT IDUTILISATEUR,NOM,PRENOM,SEXE,EMAIL,ADRESSE,MOTDEPASSE,SPECIALITE,LATITUDE,LONGITUDE,DATEINSCRIPTION FROM UTILISATEUR ";
-    UtilisateurDaoImpl(DAOFactory daoFactory) {
+    
+    public UtilisateurDaoImpl(DAOFactory daoFactory) {
         this.daoFactory = daoFactory;
     }
+
+  
     /* Implémentation de la méthode trouver() définie dans l'interface UtilisateurDao */
     @Override
     public Utilisateur trouver(String email) throws DAOException {
@@ -158,6 +159,9 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
         utilisateur.setMotDePasse(resultSet.getString("MOTDEPASSE"));        
         utilisateur.setDateInscription(resultSet.getDate("DATEINSCRIPTION"));
         return utilisateur;
+    }
+    public void insert(Utilisateur utilisateur) throws DAOException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
    

@@ -13,70 +13,51 @@ import java.sql.Date;
  */
 public class Annonce {
 
-    private String nom;
-    private String prenom;
+    private int idCategorie;
+    private int idutilisateur;
+    
+    private String categorie= null;
+    private Utilisateur utilisateur= null;
+    
     private String titre;
     private String description;
     private Date dateDebut;
     private Date datefin;
-    private String adresse;
-    private double latitude;
-    private double longitude;
-    private String categorie;
-    private String id;
 
     public Annonce() {
 
     }
-
-    public String getNom() {
-        return nom;
+    
+    
+    public void setCategorie(String newCategorie) {
+        this.categorie= newCategorie;
+    }
+    public String getCategorie() {
+        return this.categorie;
+    }
+    public void setUtilisateur(Utilisateur u) {
+        this.utilisateur=u;
+    }
+    public Utilisateur getUtilisateur(){
+        return this.utilisateur;
+    }
+    
+    public void setIdCategorie(int aInt) {
+        this.idCategorie = aInt;
+    }
+    
+    
+    public int getIdCategorie() {
+        return this.idCategorie;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setIdutilisateur(int aInt) {
+        this.idutilisateur = aInt;
     }
 
-    public String getPrenom() {
-        return prenom;
+    public int getIdutilisateur() {
+        return this.idutilisateur;
     }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
-    public Date getDatefin() {
-        return datefin;
-    }
-
-    public void setDatefin(Date datefin) {
-        this.datefin = datefin;
-    }
-
-    public String getAdresse() {
-        return adresse;
-    }
-
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
-    }
-
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
 
     public void setTitre(String string) {
         this.titre = string;
@@ -108,18 +89,6 @@ public class Annonce {
 
     public Date getDateFin() {
         return this.datefin;
-    }
-    public String getCategorie() {
-        return this.categorie;
-    }
-    public void setCategorie(String string) {
-        this.categorie=string;
-    }
-    public String getId(){
-        return this.id;
-    }
-    public void setId(String string) {
-        this.id=string;
     }
 
 }

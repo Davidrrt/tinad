@@ -7,8 +7,7 @@ package com.wbz.tinad.beans;
 
 import java.sql.Date;
 
-public class Utilisateur {
-
+public  class Utilisateur {
     private Long     id;
     private String    email;
     private String    motDePasse;
@@ -22,6 +21,13 @@ public class Utilisateur {
     private Long longitude;
     private String statut;
 
+    public Utilisateur(String email, String password) {
+        this.setEmail(email);
+        this.setMotDePasse(password);
+    }
+    public Utilisateur() {
+        
+    }
     public Long getId() {
         return id;
     }
