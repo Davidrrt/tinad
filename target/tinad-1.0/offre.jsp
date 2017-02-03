@@ -53,7 +53,7 @@
             <div ng-repeat="x in names[0].wawa  | filter:<% out.print("'"+request.getParameter("objet")+"'"); %>">
             <header class="proposition-show-header" >
             <div class="proposition-img-container">
-                <img alt="coursaidewelp.jpg" title="coursaidewelp.jpg" src="img/tinad-1.jpg" width="1250" height="833">
+                <img alt="coursaidewelp.jpg" title="coursaidewelp.jpg" src="img/{{x.img}}.jpg" width="1250" height="833">
             </div>
             <div class="proposition-show-title">
                 <a class="proposition-avatar" href="/profile/8637/Ferial">
@@ -65,7 +65,7 @@
                         <img alt="shfrg6sbdf67divgadgf6rsduff45s7gzgfdsodk5.jpg" title="shfrg6sbdf67divgadgf6rsduff45s7gzgfdsodk5.jpg" src="img/avatar.png" width="300" height="300" class="img-avatar" style="width: 195px;height: 195px;">
                     </span>
                 </a>
-                <h1><i class="fa fa-heart"></i> {{x.prenom}} <small>propose</small></h1>
+                <h1><i class="fa fa-heart"></i> {{x.utilisateur.prenom}} <small>propose</small></h1>
                 <a href="connexion.jsp" welp-modal="" class="welp-btn btn-need ng-isolate-scope"> Contacter</a>
             </div>
         </header>
@@ -77,7 +77,7 @@
                     <h6 class="welp-darkblue-color"><i class="fa fa-map-marker"></i> {{x.adresse}}</h6>
                     <p class="w3-text-grey"></p>
                     <a href="profil.jsp?" class="btn btn-xs btn-default">
-                        <i class="fa fa-user"></i> Voir le profil de {{x.prenom}}
+                        <i class="fa fa-user"></i> Voir le profil de {{x.utilisateur.prenom}}
                     </a>
                 </div>
             </div>

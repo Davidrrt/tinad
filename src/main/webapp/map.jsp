@@ -79,14 +79,14 @@
                         <div class="col-sm-6 center">
                             <div class="title-announce need-color"><i class="fa fa-heart-o"></i> Demandes</div>
                             <article class="welp-card-need"  ng-repeat="y in names[1].demande">
-                                <header>
+                                <header style="margin-left: 6px;">
                                     <a href="">
-                                        <img src="img/home.jpeg"  alt="Recherche pour création de site internet" title="Recherche pour création de site internet">
+                                        <img src="img/{{y.img}}" width="220" height="160">
                                     </a> 
                                 </header>
                                 <h1 class="welp-card-title"><a href="demande.jsp?objet={{y.titre}}" sf-ng-link="{need_id: need.id, need_slug: need.slug, need_category_slug: need.category.slug}" class="ng-binding"><i class="fa fa-heart-o"></i> {{y.titre}}</a></h1>
-                                <h2 class="welp-card-categorie ng-binding"><i class="fa fa-tag"></i> Administratif / Informatique </h2>
-                                <span class="ng-binding ng-scope"><i class="fa fa-user"></i>{{y.prenom}}</span>
+                                <h2 class="welp-card-categorie ng-binding"><i class="fa fa-tag"></i> {{y.categorie}}</h2>
+                                <span class="ng-binding ng-scope"><i class="fa fa-user"></i>{{y.utilisateur.prenom}}</span>
                                 <p>{{y.adresse}}</p>
                             </article>
                         </div>
@@ -95,12 +95,12 @@
                             <div class="title-announce proposition-color"><i class="fa fa-diamond"></i> Offres</div>
                             <article class="welp-card-proposition" ng-repeat="x in names[0].wawa"><header>
                                     <a href="/propositions/1071/administratif-informatique/aide-et-depannage-informatique-1">
-                                        <img src="img/avatar.png"  alt="Aide et Dépannage Informatique" title="Aide et Dépannage Informatique">
+                                        <img src="img/{{x.utilisateur.img}}"  alt="Aide et Dépannage Informatique" title="Aide et Dépannage Informatique">
                                     </a>
                                 </header><div class="welp-card-content">
-                                    <h2 class="welp-card-title"><a href="offre.jsp?objet={{x.titre}}" class="ng-binding">{{x.prenom}} <small>propose</small></a></h2>
+                                    <h2 class="welp-card-title"><a href="offre.jsp?objet={{x.titre}}" class="ng-binding">{{x.utilisateur.prenom}} <small>propose</small></a></h2>
                                     <p class="welp-card-title">"{{x.titre}}"</p>
-                                    <h5 class="welp-card-categorie"><i class="fa fa-tag"></i> Administratif / Informatique </h5>
+                                    <h5 class="welp-card-categorie"><i class="fa fa-tag"></i> {{x.categorie}} </h5>
                                     <p>{{x.adresse}}</p>
                                 </div></article>
                         </div>
@@ -146,7 +146,7 @@
             
                 for (var i = 0; i < str[0].wawa.length; i++) {
                     new google.maps.Marker({
-                        position: new google.maps.LatLng(str[0].wawa[i].latitude, str[0].wawa[i].longitude),
+                        position: new google.maps.LatLng(str[0].wawa[i].utilisateur.latitude, str[0].wawa[i].utilisateur.longitude),
                         map: map,
                         title: "Marqueur wawa",
                         icon: {
@@ -158,7 +158,7 @@
                 }
                    for (var i = 0; i < str[1].demande.length; i++) {
                     new google.maps.Marker({
-                        position: new google.maps.LatLng(str[1].demande[i].latitude, str[1].demande[i].longitude),
+                        position: new google.maps.LatLng(str[1].demande[i].utilisateur.latitude, str[1].demande[i].utilisateur.longitude),
                         map: map,
                         title: "Marqueur demande",
                         icon: {

@@ -23,6 +23,7 @@ public class Annonce {
     private String description;
     private Date dateDebut;
     private Date datefin;
+    private String img;
 
     public Annonce() {
 
@@ -91,4 +92,10 @@ public class Annonce {
         return this.datefin;
     }
 
+    public void setImg(String string) {
+        this.img=string;
+    }
+     public String getImg() {
+        return this.img;
+    }
 }

@@ -17,9 +17,10 @@ public  class Utilisateur {
     private Date dateInscription;
     private String     specialite;
     private String adresse;
-    private Long latitude;
-    private Long longitude;
+    private double latitude;
+    private double longitude;
     private String statut;
+    private String img;
 
     public Utilisateur(String email, String password) {
         this.setEmail(email);
@@ -95,21 +96,27 @@ public  class Utilisateur {
         this.adresse=newAdresse;
     }
     
-    public Long getLatitude() {
+    public double getLatitude() {
         return this.latitude;
     }
     
-    public void setLatitude(Long newLatitude) {
+    public void setLatitude(double newLatitude) {
         this.latitude=newLatitude;
     }
     
-    public Long getLongitude() {
+    public double getLongitude() {
         return this.longitude;
     }
     
-    public void setLongitude(Long newLongitude) {
+    public void setLongitude(double newLongitude) {
         this.longitude=newLongitude;
     }
     
+    public String getImg(){
+        return this.img;
+    }
+    public void setImg(String image){
+        this.img=image;
+    }
   
 }

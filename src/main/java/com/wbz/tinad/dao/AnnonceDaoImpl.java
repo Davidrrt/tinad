@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class AnnonceDaoImpl implements AnnonceDao {
     private DAOFactory daoFactory;
-    private static final String SQL_SELECT_OFFRE = "SELECT idutilisateur, nom, prenom, designation, titre, description, datedebutdisponibilite, datefindisponibilite FROM annonce WHERE type = ?";
+    private static final String SQL_SELECT_OFFRE = "SELECT idutilisateur, nom, prenom, designation, titre, description, datedebutdisponibilite, datefindisponibilite,libelle,adresse,latitude,longitude,image FROM annonce WHERE type = ?";
 
     AnnonceDaoImpl(DAOFactory daoFactory) {
         this.daoFactory = daoFactory;
@@ -44,7 +44,6 @@ public class AnnonceDaoImpl implements AnnonceDao {
             }
             return utilisateur;
         } catch (SQLException e) {
-            e.printStackTrace();
             throw new DAOException(e.getMessage());
         } finally {
             fermeturesSilencieuses(resultSet, preparedStatement, connexion);
@@ -57,9 +56,12 @@ public class AnnonceDaoImpl implements AnnonceDao {
         Annonce utilisateur = new Annonce();
         Utilisateur user_annonceur= new Utilisateur();
         user_annonceur.setNom(resultSet.getString("nom"));
-        user_annonceur.setPrenom(resultSet.getString("prenom"));        
-        
-        //utilisateur.setIdCategorie(resultSet.getInt("idcategorie"));
+        user_annonceur.setPrenom(resultSet.getString("prenom")); 
+        user_annonceur.setAdresse(resultSet.getString("adresse"));
+        user_annonceur.setLatitude(resultSet.getDouble("latitude"));
+        user_annonceur.setLongitude(resultSet.getDouble("longitude"));
+        user_annonceur.setImg(resultSet.getString("image"));
+        utilisateur.setImg(resultSet.getString("libelle"));
         utilisateur.setCategorie(resultSet.getString("designation"));//categorie
         utilisateur.setIdutilisateur(resultSet.getInt("idutilisateur"));
         utilisateur.setTitre(resultSet.getString("titre"));
