@@ -23,6 +23,7 @@
         <link rel="stylesheet" href="./css/w3.css">
         <script src="js/angular.min.js"></script>
         <link href="css/style.css" rel="stylesheet" type="text/css">
+        <script src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyCgRfB1v9qicDQyrGds5MOAlM6s3Ylq5Jg&callback=initMap" async defer></script>
     
     </head>
     <body>
@@ -53,7 +54,7 @@
             <div ng-repeat="x in names[0].wawa  | filter:<% out.print("'"+request.getParameter("objet")+"'"); %>">
             <header class="proposition-show-header" >
             <div class="proposition-img-container">
-                <img alt="coursaidewelp.jpg" title="coursaidewelp.jpg" src="img/{{x.img}}.jpg" width="1250" height="833">
+                <img alt="coursaidewelp.jpg" title="coursaidewelp.jpg" src="img/{{x.img}}" width="1250" height="833">
             </div>
             <div class="proposition-show-title">
                 <a class="proposition-avatar" href="/profile/8637/Ferial">
@@ -62,10 +63,10 @@
 
                     <span class="avatar-container">
 
-                        <img alt="shfrg6sbdf67divgadgf6rsduff45s7gzgfdsodk5.jpg" title="shfrg6sbdf67divgadgf6rsduff45s7gzgfdsodk5.jpg" src="img/avatar.png" width="300" height="300" class="img-avatar" style="width: 195px;height: 195px;">
+                        <img alt="shfrg6sbdf67divgadgf6rsduff45s7gzgfdsodk5.jpg" title="shfrg6sbdf67divgadgf6rsduff45s7gzgfdsodk5.jpg" src="img/{{x.utilisateur.img}}" width="300" height="300" class="img-avatar" style="width: 195px;height: 195px;">
                     </span>
                 </a>
-                <h1><i class="fa fa-heart"></i> {{x.utilisateur.prenom}} <small>propose</small></h1>
+                <h1><i class="fa fa-diamond"></i> {{x.utilisateur.prenom}} <small>propose</small></h1>
                 <a href="connexion.jsp" welp-modal="" class="welp-btn btn-need ng-isolate-scope"> Contacter</a>
             </div>
         </header>
@@ -73,10 +74,10 @@
             <div class="w3-content">
                 <div class="w3-twothird">
                     <h2 class="title-proposition">"{{x.titre}}"</h2>
-                    <h5 class="w3-padding-32"><i class="fa fa-tag"></i> Cours particuliers / Coaching</h5>
-                    <h6 class="welp-darkblue-color"><i class="fa fa-map-marker"></i> {{x.adresse}}</h6>
+                    <h5 class="w3-padding-32"><i class="fa fa-tag"></i> {{x.categorie}}</h5>
+                    <h6 class="welp-darkblue-color"><i class="fa fa-map-marker"></i> {{x.utilisateur.adresse}}</h6>
                     <p class="w3-text-grey"></p>
-                    <a href="profil.jsp?" class="btn btn-xs btn-default">
+                    <a href="profil.jsp?membre={{x.idutilisateur}}" class="btn btn-xs btn-default">
                         <i class="fa fa-user"></i> Voir le profil de {{x.utilisateur.prenom}}
                     </a>
                 </div>
@@ -86,7 +87,9 @@
         <div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
             <div class="w3-content">
                 <div class="w3-third w3-center">
-                    <i class="fa fa-mobile-phone w3-padding-64 w3-text-red w3-margin-right"></i>
+                      <div class="col-md-6" style="margin-top: 11px ;margin-left: -144px;">
+                                <div id="map" style="width: 299%;height: 281px;"></div>
+                            </div>
                 </div>
 
                 <div class="w3-twothird">
@@ -96,10 +99,12 @@
                         <br>
                         {{x.description}}
                        </p>
-                    </p>
+                   
                 </div>
             </div>
         </div>
+              <input type="hidden" value="{{x.utilisateur.latitude}}">
+                        <input type="hidden" value="{{x.utilisateur.longitude}}">
         </div>
         </div>
     <footer class="w3-container w3-padding-64 w3-center w3-opacity">
@@ -111,13 +116,43 @@
     </footer>
 </body>
    <script type="text/javascript">
-            var module = angular.module('myApp', []);
-            var str = <jsp:include page="Publication"></jsp:include>;
-            //console.log(str);
-            module.controller('namesCtrl', function ($scope, $http) {
-                $scope.names = str;
-                console.log($scope.names);
-            });
+        var module = angular.module('myApp', []);
+        var str = <jsp:include page="Publication"></jsp:include>;
+        //console.log(str);
+        module.controller('namesCtrl', function ($scope, $http) {
+            $scope.names = str;
+            console.log($scope.names);
+        });
+        var marker;
+        var test="<% out.print(request.getParameter("objet")); %>";
+        var late;
+        var long;
+        for(var i=0;i<str[0].wawa.length;i++){
+            if( test.localeCompare(str[0].wawa[i].titre)===0){
+                late=str[0].wawa[i].utilisateur.latitude;
+                long=str[0].wawa[i].utilisateur.longitude;
+            }
+        }
+       // console.log(late);
+        function initMap() {
 
-        </script>
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: late, lng: long},
+                zoom: 14,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+            marker = new google.maps.Marker({
+                map: map,
+                draggable: false,
+                animation: google.maps.Animation.DROP,
+                position: {lat: late, lng : long},
+                   icon: {
+                            url: 'img/offre.png',
+                            size: new google.maps.Size(80, 64),
+                            anchor: new google.maps.Point(28, 64)
+                        }
+            });
+        }
+
+    </script>
 </html>

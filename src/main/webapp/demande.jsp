@@ -23,7 +23,7 @@
         <link rel="stylesheet" href="./css/w3.css">
         <script src="js/angular.min.js"></script>
         <link href="css/style.css" rel="stylesheet" type="text/css">
-        <script src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyCgRfB1v9qicDQyrGds5MOAlM6s3Ylq5Jg&signed_in=false&callback=initMap" async defer></script>
+        <script src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyCgRfB1v9qicDQyrGds5MOAlM6s3Ylq5Jg&callback=initMap" async defer></script>
         <style>
             header.proposition-show-header .proposition-show-title{
                 background-color: rgba(85, 85, 85, 0.64);
@@ -66,7 +66,7 @@
             <div ng-repeat="y in names[1].demande| filter:<% out.print("'" + request.getParameter("objet") + "'");%>">
                 <header class="proposition-show-header">
                     <div class="proposition-img-container">
-                        <img  title="coursaidewelp.jpg" src="img/{{y.img}}" width="1250" height="833">
+                        <img src="img/{{y.img}}" width="1250" height="833">
                     </div>
                     <div class="proposition-show-title">
 
@@ -81,7 +81,7 @@
                             <h5 class="w3-padding-32"><i class="fa fa-tag"></i> Cours particuliers / Coaching</h5>
                             <h6 class="welp-darkblue-color"><i class="fa fa-map-marker"></i>{{y.utilisateur.adresse}}</h6>
                             <p class="w3-text-grey"></p>
-                            <a href="profil.jsp?id=" class="btn btn-xs btn-default">
+                            <a href="profil.jsp?membre={{x.idutilisateur}}" class="btn btn-xs btn-default">
                                 <i class="fa fa-user"></i> Voir le profil de {{y.utilisateur.prenom}}
                             </a>
                         </div>
@@ -91,7 +91,7 @@
 
                             <span class="avatar-container">
 
-                                <img alt="shfrg6sbdf67divgadgf6rsduff45s7gzgfdsodk5.jpg" title="shfrg6sbdf67divgadgf6rsduff45s7gzgfdsodk5.jpg" src="img/avatar.png" width="300" height="300" class="img-avatar" style="width: 195px;height: 195px;">
+                                <img alt="shfrg6sbdf67divgadgf6rsduff45s7gzgfdsodk5.jpg" title="shfrg6sbdf67divgadgf6rsduff45s7gzgfdsodk5.jpg" src="img/ {{y.utilisateur.img}}" width="300" height="300" class="img-avatar" style="width: 195px;height: 195px;">
                             </span>
                         </a>
                     </div>
@@ -144,7 +144,7 @@
         var late;
         var long;
         for(var i=0;i<str[1].demande.length;i++){
-            if( test.localeCompare(str[1].demande[i].titre)==0){
+            if( test.localeCompare(str[1].demande[i].titre)===0){
                 late=str[1].demande[i].utilisateur.latitude;
                 long=str[1].demande[i].utilisateur.longitude;
             }
@@ -161,7 +161,12 @@
                 map: map,
                 draggable: false,
                 animation: google.maps.Animation.DROP,
-                position: {lat: late, lng : long}
+                position: {lat: late, lng : long},
+                   icon: {
+                            url: 'img/demande.png',
+                            size: new google.maps.Size(80, 64),
+                            anchor: new google.maps.Point(28, 64)
+                        }
             });
         }
 

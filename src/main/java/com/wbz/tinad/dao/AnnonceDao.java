@@ -13,6 +13,6 @@ import com.wbz.tinad.beans.Annonce;
  */
 public interface AnnonceDao {
     
-    Annonce[] afficheOffre(int type) throws DAOException;
+    Annonce[] afficheOffre(int type,int id) throws DAOException;
     
 }

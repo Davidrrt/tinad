@@ -7,18 +7,20 @@ package com.wbz.tinad.beans;
 
 import java.sql.Date;
 
-public  class Utilisateur {
-    private Long     id;
-    private String    email;
-    private String    motDePasse;
-    private String    nom;
-    private String    prenom;
-    private String    sexe;
+public class Utilisateur {
+
+    private Long id;
+    private String email;
+    private String motDePasse;
+    private String nom;
+    private String prenom;
+    private String sexe;
     private Date dateInscription;
-    private String     specialite;
+    private String specialite;
     private String adresse;
     private double latitude;
     private double longitude;
+    private String publication;
     private String statut;
     private String img;
 
@@ -26,97 +28,121 @@ public  class Utilisateur {
         this.setEmail(email);
         this.setMotDePasse(password);
     }
+
     public Utilisateur() {
-        
+
     }
+
     public Long getId() {
         return id;
     }
-    public void setId(Long id ) {
+
+    public void setId(Long id) {
         this.id = id;
     }
-     public String getStatut() {
+
+    public String getStatut() {
         return this.statut;
     }
+
     public void setStatut(String newStatut) {
         this.statut = newStatut;
     }
-    public void setEmail( String email ) {
+
+    public void setEmail(String email) {
         this.email = email;
     }
+
     public String getEmail() {
         return email;
     }
 
-    public void setMotDePasse( String motDePasse ) {
+    public void setMotDePasse(String motDePasse) {
         this.motDePasse = motDePasse;
     }
+
     public String getMotDePasse() {
         return motDePasse;
     }
 
-    public void setNom( String nom ) {
+    public void setPublication(String publica) {
+        this.publication = publica;
+    }
+
+    public String getPublication() {
+        return this.publication;
+    }
+
+    public void setNom(String nom) {
         this.nom = nom;
     }
+
     public String getNom() {
         return nom;
     }
-    
-     public void setSexe( String nom ) {
+
+    public void setSexe(String nom) {
         this.sexe = nom;
     }
+
     public String getSexe() {
         return this.sexe;
     }
-    public void setPrenom( String nom ) {
+
+    public void setPrenom(String nom) {
         this.prenom = nom;
     }
+
     public String getPrenom() {
         return this.prenom;
     }
+
     public Date getDateInscription() {
         return dateInscription;
     }
-    public void setDateInscription( Date dateInscription ) {
+
+    public void setDateInscription(Date dateInscription) {
         this.dateInscription = dateInscription;
     }
-    
+
     public String getSpecialite() {
         return this.specialite;
     }
-    
+
     public void setSpecialite(String newSpecialite) {
-        this.specialite=newSpecialite;
+        this.specialite = newSpecialite;
     }
-    
+
     public String getAdresse() {
         return this.adresse;
     }
+
     public void setAdresse(String newAdresse) {
-        this.adresse=newAdresse;
+        this.adresse = newAdresse;
     }
-    
+
     public double getLatitude() {
         return this.latitude;
     }
-    
+
     public void setLatitude(double newLatitude) {
-        this.latitude=newLatitude;
+        this.latitude = newLatitude;
     }
-    
+
     public double getLongitude() {
         return this.longitude;
     }
-    
+
     public void setLongitude(double newLongitude) {
-        this.longitude=newLongitude;
+        this.longitude = newLongitude;
     }
-    
-    public String getImg(){
+
+    public String getImg() {
         return this.img;
     }
-    public void setImg(String image){
-        this.img=image;
+
+    public void setImg(String image) {
+        this.img = image;
     }
-  
+
 }

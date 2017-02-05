@@ -24,6 +24,7 @@ public class Annonce {
     private Date dateDebut;
     private Date datefin;
     private String img;
+    private String idcategorie;
 
     public Annonce() {
 
@@ -97,5 +98,11 @@ public class Annonce {
     }
      public String getImg() {
         return this.img;
+    }
+    public String getidCategorie() {
+       return this.idcategorie;
+    }
+    public void setidCategorie(String string) {
+        this.idcategorie=string;
     }
 }

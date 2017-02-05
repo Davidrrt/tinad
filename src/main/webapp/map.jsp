@@ -52,33 +52,28 @@
                         <div class="row">
                             <h2 class="title"><i class="fa fa-map-marker"></i> Carte des annonces</h2>
                             <div class="form-group col-md-12">
-                                <input type="text" id="address" class="form-control" name="app_search[place][name]" placeholder="Où ?">
+                                <input type="text" id="address" class="form-control" ng-model="tes" placeholder="Où ?">
                             </div>
 
                         </div>
                         <div class="row">
                             <div class="form-group col-md-12">
-                                <select id="app_search_category" name="app_search[category]" class="form-control ng-pristine ng-valid ng-touched" ng-model="data['app_search[category]']"><option value="">Quel type d'aide ?</option><option value="8">Administratif / Informatique</option><option value="3">Cours particuliers / Coaching</option><option value="6">Bricolage / Jardinage</option><option value="4">Dons ou prêts d'objets</option><option value="1">Actions à plusieurs</option><option value="5">Enfants</option><option value="9">Animaux</option><option value="12">Autre</option></select>
+                                <select class="form-control" ng-model="test1">
+                                    <option value="0" selected>Quel type d'aide ?</option>
+                                    <option value="1">Informatique</option>
+                                </select>
                             </div>
-                           
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-md-6">
-                                <div class="checkbox "><label for="app_search_organisation"><input type="checkbox" ng-init="data['app_search[organisation]'] = true" ng-model="data['app_search[organisation]']" name="app_search[organisation]" id="app_search_organisation" value="1" checked="checked"><i class="fa fa-empire"></i> Professionnel</label></div>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <div class="checkbox "><label for="app_search_particulier"><input type="checkbox" ng-init="data['app_search[particulier]'] = true" ng-model="data['app_search[particulier]']" name="app_search[particulier]" id="app_search_particulier" value="1" checked="checked"><i class="fa fa-user"></i> Particulier</label></div>
-                            </div>
+
                         </div>
                     </form>
                     <div class="row">
-                        <div class="col-md-12">
-                            <h3><i class="fa fa-clock-o"></i>Annonces récentes<br> <small class="ng-binding">10 annonces affichées sur 506</small></h3>
+                        <div class="col-md-12" ng-controller="tailleCtrl">
+                            <h3><i class="fa fa-clock-o"></i>Annonces récentes<br> <small class="ng-binding">4 annonces affichées sur {{taille}} </small></h3>
                         </div>
 
                         <div class="col-sm-6 center">
                             <div class="title-announce need-color"><i class="fa fa-heart-o"></i> Demandes</div>
-                            <article class="welp-card-need"  ng-repeat="y in names[1].demande">
+                            <article class="welp-card-need"  ng-repeat="y in names[1].demande| control:test1 | filter:tes | limitTo: 2">
                                 <header style="margin-left: 6px;">
                                     <a href="">
                                         <img src="img/{{y.img}}" width="220" height="160">
@@ -87,13 +82,13 @@
                                 <h1 class="welp-card-title"><a href="demande.jsp?objet={{y.titre}}" sf-ng-link="{need_id: need.id, need_slug: need.slug, need_category_slug: need.category.slug}" class="ng-binding"><i class="fa fa-heart-o"></i> {{y.titre}}</a></h1>
                                 <h2 class="welp-card-categorie ng-binding"><i class="fa fa-tag"></i> {{y.categorie}}</h2>
                                 <span class="ng-binding ng-scope"><i class="fa fa-user"></i>{{y.utilisateur.prenom}}</span>
-                                <p>{{y.adresse}}</p>
+                                <p><i class="fa fa-map-marker"></i>{{y.utilisateur.adresse}}</p>
                             </article>
                         </div>
 
                         <div class="col-sm-6 center " >
                             <div class="title-announce proposition-color"><i class="fa fa-diamond"></i> Offres</div>
-                            <article class="welp-card-proposition" ng-repeat="x in names[0].wawa"><header>
+                            <article class="welp-card-proposition" ng-repeat="x in names[0].wawa| control:test1 | filter:tes | limitTo: 2"><header>
                                     <a href="/propositions/1071/administratif-informatique/aide-et-depannage-informatique-1">
                                         <img src="img/{{x.utilisateur.img}}"  alt="Aide et Dépannage Informatique" title="Aide et Dépannage Informatique">
                                     </a>
@@ -101,7 +96,7 @@
                                     <h2 class="welp-card-title"><a href="offre.jsp?objet={{x.titre}}" class="ng-binding">{{x.utilisateur.prenom}} <small>propose</small></a></h2>
                                     <p class="welp-card-title">"{{x.titre}}"</p>
                                     <h5 class="welp-card-categorie"><i class="fa fa-tag"></i> {{x.categorie}} </h5>
-                                    <p>{{x.adresse}}</p>
+                                    <p><i class="fa fa-map-marker"></i>{{x.utilisateur.adresse}}</p>
                                 </div></article>
                         </div>
                     </div>
@@ -135,7 +130,30 @@
                 $scope.names = str;
                 // console.log($scope.names);
             });
-
+            module.controller('tailleCtrl', function ($scope, $http) {
+                var val = str[0].wawa.length + str[1].demande.length;
+                $scope.taille = val;
+                //console.log($scope.taille);
+            });
+            module.filter('control', function () {
+                return function (obj, tab) {
+                    console.log(obj[1].categorie);
+                    var min = parseInt(tab);
+                    //console.log(min);
+                    var table = Array();
+                    for(var i=0;i<obj.length;i++){
+                    if (min > 0) {
+                        if (obj[i].idcategorie ==min) {
+                            table.push(obj[i]);
+                        }
+                    }
+                    else {
+                          table.push(obj[i]);
+                    }
+                }
+                return table;
+                };
+            });
             function initMap() {
 
                 var map = new google.maps.Map(document.getElementById('map'), {
@@ -143,7 +161,7 @@
                     zoom: 14,
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 });
-            
+
                 for (var i = 0; i < str[0].wawa.length; i++) {
                     new google.maps.Marker({
                         position: new google.maps.LatLng(str[0].wawa[i].utilisateur.latitude, str[0].wawa[i].utilisateur.longitude),
@@ -156,7 +174,7 @@
                         }
                     });
                 }
-                   for (var i = 0; i < str[1].demande.length; i++) {
+                for (var i = 0; i < str[1].demande.length; i++) {
                     new google.maps.Marker({
                         position: new google.maps.LatLng(str[1].demande[i].utilisateur.latitude, str[1].demande[i].utilisateur.longitude),
                         map: map,
