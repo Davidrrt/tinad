@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
     <display-name>tinad</display-name>
     <session-config>
         <session-timeout>
@@ -19,20 +23,35 @@
         <servlet-name>Inscription</servlet-name> 
     </servlet> 
 
-     <servlet-mapping> 
+    <servlet-mapping> 
         <servlet-name>Inscription</servlet-name> 
         <url-pattern>/Inscription </url-pattern>
     </servlet-mapping> 
-    
-     <servlet> 
+    <servlet>
+        <servlet-class>com.wbz.tinad.servlets.Connexionfront</servlet-class>
+        <servlet-name>Connexionfront</servlet-name>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Connexionfront</servlet-name>
+        <url-pattern>/Connexionfront</url-pattern>
+    </servlet-mapping>
+      <servlet>
+        <servlet-class>com.wbz.tinad.servlets.Deconnexion</servlet-class>
+        <servlet-name>Deconnexion</servlet-name>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Deconnexion</servlet-name>
+        <url-pattern>/Deconnexion</url-pattern>
+    </servlet-mapping>
+    <servlet> 
         <servlet-class> com.wbz.tinad.servlets.Publication</servlet-class> 
         <servlet-name>Publication</servlet-name> 
     </servlet> 
-     <servlet> 
+    <servlet> 
         <servlet-class> com.wbz.tinad.servlets.Connexion</servlet-class> 
         <servlet-name>Connexion</servlet-name> 
     </servlet> 
-        <servlet> 
+    <servlet> 
         <servlet-class> com.wbz.tinad.servlets.Profil</servlet-class> 
         <servlet-name>Profil</servlet-name> 
     </servlet> 
@@ -40,11 +59,11 @@
         <servlet-name>Publication</servlet-name> 
         <url-pattern>/Publication </url-pattern>
     </servlet-mapping> 
-       <servlet-mapping> 
+    <servlet-mapping> 
         <servlet-name>Profil</servlet-name> 
         <url-pattern>/Profil </url-pattern>
     </servlet-mapping> 
-     <servlet-mapping> 
+    <servlet-mapping> 
         <servlet-name>Connexion</servlet-name> 
         <url-pattern>/Connexion </url-pattern>
     </servlet-mapping> 

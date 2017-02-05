@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.wbz.tinad.forms;
 import java.util.HashMap;
 import java.util.Map;
@@ -59,16 +55,11 @@ public final class InscriptionForm {
             }
         } catch ( DAOException e ) {
             resultat = "�chec de l'inscription : une erreur impr�vue est survenue, merci de r�ssayer dans quelques instants.";
-            e.printStackTrace();
         }
 
         return utilisateur;
     }
 
-    /*
-     * Appel �  la validation de l'adresse email reçue et initialisation de la
-     * propriété email du bean
-     */
     private void traiterEmail( String email, Utilisateur utilisateur ) {
         try {
             validationEmail( email );
@@ -78,10 +69,6 @@ public final class InscriptionForm {
         utilisateur.setEmail( email );
     }
 
-    /*
-     * Appel �  la validation des mots de passe reçus, chiffrement du mot de
-     * passe et initialisation de la propriété motDePasse du bean
-     */
     private void traiterMotsDePasse( String motDePasse, String confirmation, Utilisateur utilisateur ) {
         try {
             validationMotsDePasse( motDePasse, confirmation );
@@ -89,16 +76,6 @@ public final class InscriptionForm {
             setErreur( CHAMP_PASS, e.getMessage() );
             setErreur( CHAMP_CONF, null );
         }
-
-        /*
-         * Utilisation de la bibliothèque Jasypt pour chiffrer le mot de passe
-         * efficacement.
-         * 
-         * L'algorithme SHA-256 est ici utilisé, avec par défaut un salage
-         * aléatoire et un grand nombre d'itérations de la fonction de hashage.
-         * 
-         * La String retournée est de longueur 56 et contient le hash en Base64.
-         */
         ConfigurablePasswordEncryptor passwordEncryptor = new ConfigurablePasswordEncryptor();
         passwordEncryptor.setAlgorithm( ALGO_CHIFFREMENT );
         passwordEncryptor.setPlainDigest( false );
@@ -106,11 +83,6 @@ public final class InscriptionForm {
 
         utilisateur.setMotDePasse( motDePasseChiffre );
     }
-
-    /*
-     * Appel �  la validation du nom reçu et initialisation de la propriété nom
-     * du bean
-     */
     private void traiterNom( String nom, Utilisateur utilisateur ) {
         try {
             validationNom( nom );
@@ -119,8 +91,7 @@ public final class InscriptionForm {
         }
         utilisateur.setNom( nom );
     }
-
-    /* Validation de l'adresse email */
+    
     private void validationEmail( String email ) throws FormValidationException {
         if ( email != null ) {
             if ( !email.matches( "([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)" ) ) {
@@ -153,17 +124,11 @@ public final class InscriptionForm {
         }
     }
 
-    /*
-     * Ajoute un message correspondant au champ spécifié �  la map des erreurs.
-     */
+
     private void setErreur( String champ, String message ) {
         erreurs.put( champ, message );
     }
 
-    /*
-     * Méthode utilitaire qui retourne null si un champ est vide, et son contenu
-     * sinon.
-     */
     private static String getValeurChamp( HttpServletRequest request, String nomChamp ) {
         String valeur = request.getParameter( nomChamp );
         if ( valeur == null || valeur.trim().length() == 0 ) {

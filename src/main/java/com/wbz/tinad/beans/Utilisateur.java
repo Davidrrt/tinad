@@ -9,8 +9,8 @@ import java.sql.Date;
 
 public class Utilisateur {
 
-    private Long id;
-    private String email;
+    private int id;
+    public String email;
     private String motDePasse;
     private String nom;
     private String prenom;
@@ -33,11 +33,11 @@ public class Utilisateur {
 
     }
 
-    public Long getId() {
-        return id;
+    public int getId() {
+        return this.id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

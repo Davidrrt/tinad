@@ -21,7 +21,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
     private static final String SQL_INSERT = "INSERT INTO UTILISATEUR (IDUTILISATEUR,NOM,PRENOM,SEXE,EMAIL,ADRESSE,MOTDEPASSE,SPECIALITE,LATITUDE,LONGITUDE,DATEINSCRIPTION) VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
     private static final String SQL_INSERT_MOTDEPASSE = " INSERT INTO MOTDEPASSE (IDMOTDEPASSE,MOTDEPASSE,DATEMODIFICATION) VALUES (DEFAULT, ?, NOW())";
     
-    private static final String SQL_SELECT_CONNEXION = "SELECT COUNT(*) AS NOMBREUTILISATEUR FROM UTILISATEUR JOIN MOTDEPASSE ON MOTDEPASSE.IDUTILISATEUR = UTILISATEUR.IDUTILISATEUR WHERE UTILISATEUR.EMAIL = ? AND MOTDEPASSE.MOTDEPASSE= ?";
+    private static final String SQL_SELECT_CONNEXION = "SELECT UTILISATEUR.IDUTILISATEUR FROM UTILISATEUR JOIN MDPUP ON MDPUP.IDUTILISATEUR = UTILISATEUR.IDUTILISATEUR WHERE UTILISATEUR.EMAIL = ? AND MDPUP.motdepasse=?";
     private static final String SQL_SELECT_TOUT_MEMBRE = "SELECT IDUTILISATEUR,NOM,PRENOM,SEXE,EMAIL,ADRESSE,MOTDEPASSE,SPECIALITE,LATITUDE,LONGITUDE,DATEINSCRIPTION FROM UTILISATEUR ";
     
     public UtilisateurDaoImpl(DAOFactory daoFactory) {
@@ -41,7 +41,6 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
             connexion = daoFactory.getConnection();
             preparedStatement = initialisationRequetePreparee(connexion, SQL_SELECT_PAR_EMAIL, false, email);
             resultSet = preparedStatement.executeQuery();
-            /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
             if (resultSet.next()) {
                 utilisateur = map(resultSet);
             }
@@ -57,6 +56,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
         Connection connexion = null;
         PreparedStatement preparedStatement = null;        
         ResultSet resultSet = null;
+        int i=0;
         try {
             /* Récupération d'une connexion depuis la Factory */
             connexion = daoFactory.getConnection();
@@ -64,15 +64,14 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
             resultSet = preparedStatement.executeQuery();
             /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
             if (resultSet.next()) {
-               return resultSet.getInt("NOMBREUTILISATEUR");
+               i=resultSet.getInt("IDUTILISATEUR");
             }
         }catch (SQLException e) {
-            e.printStackTrace();
-            throw new DAOException("");
+            throw new DAOException(e);
         }finally {
              fermeturesSilencieuses(resultSet, preparedStatement, connexion);
         }
-        return 0;
+        return i;
     }
     /* Implémentation de la méthode creer() définie dans l'interface UtilisateurDao */
     @Override
@@ -107,7 +106,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
             valeursAutoGenerees = preparedStatement.getGeneratedKeys();
             if (valeursAutoGenerees.next()) {
                 /* Puis initialisation de la propriété id du bean Utilisateur avec sa valeur */
-                utilisateur.setId(valeursAutoGenerees.getLong(1));
+                utilisateur.setId(valeursAutoGenerees.getInt(1));
             } else {
                 throw new DAOException("Échec de la création de l'utilisateur en base, aucun ID auto-généré retourné.");
             }
@@ -147,7 +146,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
     //IDUTILISATEUR,NOM,PRENOM,SEXE,EMAIL,ADRESSE,SPECIALITE,LATITUDE,LONGITUDE
     private static Utilisateur map(ResultSet resultSet) throws SQLException {
         Utilisateur utilisateur = new Utilisateur();
-        utilisateur.setId(resultSet.getLong("IDUTILISATEUR"));
+        utilisateur.setId(resultSet.getInt("IDUTILISATEUR"));
         utilisateur.setNom(resultSet.getString("NOM"));
         utilisateur.setPrenom(resultSet.getString("PRENOM"));
         utilisateur.setSexe(resultSet.getString("SEXE"));
@@ -155,14 +154,10 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
         utilisateur.setAdresse(resultSet.getString("ADRESSE"));
         utilisateur.setSpecialite(resultSet.getString("SPECIALITE"));
         utilisateur.setLatitude(resultSet.getLong("LATITUDE"));
-        utilisateur.setLongitude(resultSet.getLong("LONGITUDE"));
-        utilisateur.setMotDePasse(resultSet.getString("MOTDEPASSE"));        
-        utilisateur.setDateInscription(resultSet.getDate("DATEINSCRIPTION"));
+        utilisateur.setLongitude(resultSet.getLong("LONGITUDE"));       
         return utilisateur;
     }
-    public void insert(Utilisateur utilisateur) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
 
    
 
