@@ -19,7 +19,7 @@ public class AnnonceDaoImpl implements AnnonceDao {
 
     private DAOFactory daoFactory;
     private static final String SQL_SELECT_OFFRE = "SELECT idutilisateur, nom, prenom, designation, titre, description, datedebutdisponibilite, datefindisponibilite,libelle,adresse,latitude,longitude,image,publication,idcategorie FROM annonce WHERE type = ?";
-    private static final String SQL_SELECT_ALL_SINGLE_UI = "SELECT idutilisateur, nom, prenom, designation, titre, description, datedebutdisponibilite, datefindisponibilite,libelle,adresse,latitude,longitude,image,publication FROM annonce WHERE type = ? AND idutilisateur = ?";
+    private static final String SQL_SELECT_ALL_SINGLE_UI = "SELECT idutilisateur, nom, prenom, designation, titre, description, datedebutdisponibilite, datefindisponibilite,libelle,adresse,latitude,longitude,image,publication,idcategorie FROM annonce WHERE type = ? AND idutilisateur = ?";
 
     AnnonceDaoImpl(DAOFactory daoFactory) {
         this.daoFactory = daoFactory;

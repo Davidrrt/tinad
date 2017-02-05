@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="./css/w3.css">
         <script src="js/angular.min.js"></script>
         <link rel="stylesheet" href="css/style.css">
-        <script src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyCgRfB1v9qicDQyrGds5MOAlM6s3Ylq5Jg&signed_in=false&callback=initMap" async defer></script>
+        <script src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyCgRfB1v9qicDQyrGds5MOAlM6s3Ylq5Jg&callback=initMap" async defer></script>
     </head>
 
     <body>
