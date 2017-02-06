@@ -184,12 +184,12 @@
                     <!-- Modal content -->
                     <div class="modal-content">
                         <span class="close">&times;</span>
-                        <form id="my_form" class="form-horizontal " method="POST" action="PhotoUser" enctype="multipart/form-data">
+                        <form  class="form-horizontal" method="POST" action="traite.jsp" enctype="multipart/form-data">
 
                             <legend>Changer la photo</legend>
                             <div class="form-group">
                                 <div class="col-lg-10">
-                                    <input type="file" class="form-control" name="image" accept="image/*">
+                                    <input type="file" class="form-control" name="image">
                                 </div>
                             </div>
 
@@ -208,7 +208,7 @@
 
                             <div class="form-group">
                                 <div class="col-lg-10 col-lg-offset-2">
-                                    <button type="submit" class="btn btn-primary">Envoyer</button>
+                                    <input type="submit" class="btn btn-primary" value="Envoyer">
                                 </div>
                             </div>
 
