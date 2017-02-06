@@ -27,6 +27,7 @@
         <servlet-name>Inscription</servlet-name> 
         <url-pattern>/Inscription </url-pattern>
     </servlet-mapping> 
+    
     <servlet>
         <servlet-class>com.wbz.tinad.servlets.Connexionfront</servlet-class>
         <servlet-name>Connexionfront</servlet-name>
@@ -35,7 +36,7 @@
         <servlet-name>Connexionfront</servlet-name>
         <url-pattern>/Connexionfront</url-pattern>
     </servlet-mapping>
-     <servlet>
+    <servlet>
         <servlet-class>com.wbz.tinad.servlets.Membres</servlet-class>
         <servlet-name>Membres</servlet-name>
     </servlet>
@@ -43,7 +44,7 @@
         <servlet-name>Membres</servlet-name>
         <url-pattern>/Membres</url-pattern>
     </servlet-mapping>
-      <servlet>
+    <servlet>
         <servlet-class>com.wbz.tinad.servlets.Deconnexion</servlet-class>
         <servlet-name>Deconnexion</servlet-name>
     </servlet>
@@ -63,6 +64,7 @@
         <servlet-class> com.wbz.tinad.servlets.Profil</servlet-class> 
         <servlet-name>Profil</servlet-name> 
     </servlet> 
+  
     <servlet-mapping> 
         <servlet-name>Publication</servlet-name> 
         <url-pattern>/Publication </url-pattern>
@@ -75,4 +77,13 @@
         <servlet-name>Connexion</servlet-name> 
         <url-pattern>/Connexion </url-pattern>
     </servlet-mapping> 
+    
+    <servlet>
+        <servlet-class>com.wbz.tinad.servlets.Telecharge</servlet-class>
+        <servlet-name>Telecharge</servlet-name>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Telecharge</servlet-name>
+        <url-pattern>/Telecharge</url-pattern>
+    </servlet-mapping>
 </web-app>
