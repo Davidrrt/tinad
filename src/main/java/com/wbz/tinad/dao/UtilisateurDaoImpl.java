@@ -12,7 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class UtilisateurDaoImpl implements UtilisateurDao {
     private final UtilisateurService utilisateurService=null ;
@@ -22,7 +22,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
     private static final String SQL_INSERT_MOTDEPASSE = " INSERT INTO MOTDEPASSE (IDMOTDEPASSE,MOTDEPASSE,DATEMODIFICATION) VALUES (DEFAULT, ?, NOW())";
     
     private static final String SQL_SELECT_CONNEXION = "SELECT UTILISATEUR.IDUTILISATEUR FROM UTILISATEUR JOIN MDPUP ON MDPUP.IDUTILISATEUR = UTILISATEUR.IDUTILISATEUR WHERE UTILISATEUR.EMAIL = ? AND MDPUP.motdepasse=?";
-    private static final String SQL_SELECT_TOUT_MEMBRE = "SELECT IDUTILISATEUR,NOM,PRENOM,SEXE,EMAIL,ADRESSE,MOTDEPASSE,SPECIALITE,LATITUDE,LONGITUDE,DATEINSCRIPTION FROM UTILISATEUR ";
+    private static final String SQL_SELECT_TOUT_MEMBRE ="SELECT utilisateur_id, image, nom, prenom, email, adresse, latitude, longitude, sexe, specialite, dateinscription FROM profil";
     
     public UtilisateurDaoImpl(DAOFactory daoFactory) {
         this.daoFactory = daoFactory;
@@ -117,26 +117,30 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
         }
     }
     
-     public List<Utilisateur> getMembres() throws DAOException {
-        List<Utilisateur> listUser = new ArrayList<Utilisateur>();
+     public Utilisateur[] getMembres() throws DAOException {
+        ArrayList<Utilisateur> listUser = new ArrayList<Utilisateur>();
+        Utilisateur[] tab=null;
         Connection connexion = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;        
         try {
-            /* Récupération d'une connexion depuis la Factory */
             connexion = daoFactory.getConnection();
-            preparedStatement = initialisationRequetePreparee(connexion, SQL_SELECT_TOUT_MEMBRE, false, (Object) null);
+            preparedStatement = initialisationRequetePreparee(connexion, SQL_SELECT_TOUT_MEMBRE, false);
             resultSet = preparedStatement.executeQuery();
-            /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
-            if (resultSet.next()) {
-                listUser.add(map(resultSet)) ;
+            while (resultSet.next()) {
+                Utilisateur perso=mapMembres(resultSet);
+                listUser.add(perso) ;
+            }
+            tab=new Utilisateur[listUser.size()];
+            for(int i=0;i<listUser.size();i++){
+                tab[i]=listUser.get(i);
             }
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {
             fermeturesSilencieuses(resultSet, preparedStatement, connexion);
         }
-        return listUser;
+        return tab;
     }
     /*
      * Simple méthode utilitaire permettant de faire la correspondance (le
@@ -153,13 +157,26 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
         utilisateur.setEmail(resultSet.getString("EMAIL"));
         utilisateur.setAdresse(resultSet.getString("ADRESSE"));
         utilisateur.setSpecialite(resultSet.getString("SPECIALITE"));
-        utilisateur.setLatitude(resultSet.getLong("LATITUDE"));
-        utilisateur.setLongitude(resultSet.getLong("LONGITUDE"));       
+        utilisateur.setLatitude(resultSet.getDouble("LATITUDE"));
+        utilisateur.setLongitude(resultSet.getDouble("LONGITUDE"));       
         return utilisateur;
     }
 
 
-   
+      private static Utilisateur mapMembres(ResultSet resultSet) throws SQLException {
+        Utilisateur utilisateur = new Utilisateur();
+        utilisateur.setId(resultSet.getInt("utilisateur_id"));
+        utilisateur.setNom(resultSet.getString("NOM"));
+        utilisateur.setPrenom(resultSet.getString("PRENOM"));
+        utilisateur.setSexe(resultSet.getString("SEXE"));
+        utilisateur.setEmail(resultSet.getString("EMAIL"));
+        utilisateur.setAdresse(resultSet.getString("ADRESSE"));
+        utilisateur.setSpecialite(resultSet.getString("SPECIALITE"));
+        utilisateur.setLatitude(resultSet.getDouble("LATITUDE"));
+        utilisateur.setLongitude(resultSet.getDouble("LONGITUDE")); 
+        utilisateur.setImg(resultSet.getString("image"));
+        return utilisateur;
+    }
 
     
 }

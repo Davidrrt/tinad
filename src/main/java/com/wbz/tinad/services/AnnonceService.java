@@ -6,6 +6,7 @@
 package com.wbz.tinad.services;
 
 import com.google.gson.Gson;
+import com.wbz.tinad.beans.Utilisateur;
 import com.wbz.tinad.dao.AnnonceDao;
 import java.util.ArrayList;
 
@@ -42,4 +43,5 @@ public class AnnonceService {
         tab.add("{\"offre\":[" + js + "]},{\"demande\":[" + jsa + "]}");
         return tab;
     }
+   
 }

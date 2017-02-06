@@ -4,29 +4,28 @@
  * and open the template in the editor.
  */
 package com.wbz.tinad.services;
-import java.util.*;
-import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 
-public class UtilisateurService {     
-    public boolean sendMail(String to, String from, String host, String subject, String message) throws MessagingException {
-      //Get the session object  
-      Properties properties = System.getProperties();  
-      properties.setProperty("mail.smtp.host", host);  
-      Session session = Session.getDefaultInstance(properties); 
-        try{  
-            MimeMessage mimeMessage = new MimeMessage(session);  
-            mimeMessage.setFrom(new InternetAddress(from));  
-            mimeMessage.addRecipient(Message.RecipientType.TO,new InternetAddress(to));  
-            mimeMessage.setSubject(subject);  
-            mimeMessage.setText(message); 
-         // Send message  
-            Transport.send(mimeMessage);            
-        }catch (MessagingException mex) {
-            //mex.printStackTrace();
-            throw new MessagingException("Mail non envoye!");
-        }
-        return true;
+import com.google.gson.Gson;
+import com.wbz.tinad.dao.UtilisateurDao;
+import java.util.*;
+
+public class UtilisateurService {
+
+    private UtilisateurDao utilisateurDao;
+
+    public UtilisateurService(UtilisateurDao utilisateurDao) {
+        this.utilisateurDao = utilisateurDao;
     }
+
+    public ArrayList<String> getallmembre() {
+
+        Gson json = new Gson();
+        String tab1 = json.toJson(utilisateurDao.getMembres());
+        String jsa = tab1.substring(1, tab1.length() - 1);
+        ArrayList<String> tab = new ArrayList<String>();
+        tab.add("{\"membre\":[" + jsa + "]}");
+        return tab;
+
+    }
+
 }

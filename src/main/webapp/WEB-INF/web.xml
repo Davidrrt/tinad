@@ -35,6 +35,14 @@
         <servlet-name>Connexionfront</servlet-name>
         <url-pattern>/Connexionfront</url-pattern>
     </servlet-mapping>
+     <servlet>
+        <servlet-class>com.wbz.tinad.servlets.Membres</servlet-class>
+        <servlet-name>Membres</servlet-name>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Membres</servlet-name>
+        <url-pattern>/Membres</url-pattern>
+    </servlet-mapping>
       <servlet>
         <servlet-class>com.wbz.tinad.servlets.Deconnexion</servlet-class>
         <servlet-name>Deconnexion</servlet-name>

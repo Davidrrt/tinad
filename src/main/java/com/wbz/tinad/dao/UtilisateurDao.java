@@ -16,6 +16,6 @@ public interface UtilisateurDao {
     
     public int verifierUtilisateur (Utilisateur utilisateur) throws DAOException;
     
-    public List<Utilisateur> getMembres () throws DAOException ;
+    public Utilisateur[] getMembres () throws DAOException ;
 
 }

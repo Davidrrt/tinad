@@ -20,6 +20,7 @@
         <!-- Custom Fonts -->
         <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <script src="../js/angular.min.js"></script>
+        <link href="../js/morrisjs/morris.css" rel="stylesheet">
 
 
 
@@ -42,7 +43,7 @@
                 </div>
                 <!-- /.navbar-header -->
 
-              
+
                 <!-- /.navbar-top-links -->
 
                 <div class="navbar-default sidebar" role="navigation">
@@ -59,10 +60,10 @@
                             <li>
                                 <a href="facture.jsp"><i class="fa fa-file fa-fw"></i>Gestion publicité</a>
                             </li>
-                             <li>
+                            <li>
                                 <a href="ajoututilisateur.jsp"><i class="fa fa-users fa-fw"></i>Création évenement</a>
                             </li>
-                            
+
                         </ul>
                     </div>
                     <!-- /.sidebar-collapse -->
@@ -71,104 +72,47 @@
             </nav>
             <div id="page-wrapper" >
                 <div class="container-fluid"  ng-app="myApp"  ng-controller="namesCtrl">
-                    <form method="POST" action="Employe.jsp">
-              
+                    <form method="POST" action="">
+
                         <div class="row">
                             <div class="col-lg-12">
-                                <h1 class="page-header">Liste des employés</h1>
+                                <h1 class="page-header">Liste des Membres</h1>
                             </div>
                             <!-- /.col-lg-12 -->
                         </div>
+
                         <div class="row">
-                            <h3>Recherche</h3><hr>
-                            <div class="col-md-10 ">
-                                <div class="col-lg-4">
-                                    <div class="col-lg-6">
-                                        <label>Nom ou poste :</label>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <input type="text" class="form-control" ng-model="tes" />
-                                    </div>
-                                </div>
-
-
-                                <div class="col-lg-4">
-                                    <div class="col-lg-5">
-                                        <label>profession :</label></div>
-                                    <div class="col-lg-6">
-                                        <select class="form-control" ng-model="test1" >
-                                            <option value="0"></option>
-                                            <option value="1">docteur</option>
-                                            <option value="2">infirmiere</option>
-                                            <option value="3">pharmacien</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4">
-                                    <div class="col-lg-5">
-                                        <label>par date :</label>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <input type="date" class="form-control" />
-                                    </div>
-                                </div>
-
-
+                            <div class="col-lg-8">
+                                <div id="morris-bar-chart"></div>
                             </div>
-
-                        </div>
-                        <div class="row">
-                            <hr> <br>
-                        </div>
-                        <!-- /.row -->
-
-                        <div class="row">
-                            <div class="col-lg-6 col-lg-offset-2">
-
-                                <div class="col-lg-3">
-                                    <label><p>Nouveau Employe:</p></label>
-                                </div>
-                                <div class="col-lg-7">
-                                    <select class="form-control" name="select">
-                                        <option value="1">Medecin</option>
-                                        <option value="2">Infirmiere</option>
-                                        <option value="3">Pharmacien</option>
-                                    </select>
-                                </div>
-                                <div class="col-lg-1">
-                                    <button class="btn btn-info" type="submit" name="ajout">Ajouter</button>
-                                </div>
-                                  <div class="col-lg-1">
-                                    <input type="button" class="btn btn-default" style="margin-left: 20px" onclick="document.location='restaure.jsp'" value="restaurer">
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="row"><br></div>
+                            <br></div>
                         <div class="row">
                             <div class="col-lg-8 col-lg-offset-2">
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead>
-                                    <tr>
-                                        <th>id</th>
-                                        <th>Nom</th>
-                                        <th>Profession</th>
-                                        <th>Poste</th>
-                                        <th>date</th>
-                                        <th>modification</th>
-                                        <th>suppression</th>
-                                    </tr>
+                                        <tr>
+                                            <th>Profil</th>
+                                            <th>Nom</th>
+                                            <th>Prenom</th>
+                                            <th>Adresse</th>
+                                            <th>Latitude</th>
+                                            <th>Longitude</th>
+                                            <th>Specialité</th>
+                                            <th>modification</th>
+                                            <th>suppression</th>
+                                        </tr>
                                     </thead>
-                                    <tr ng-repeat="x in names| control:test1 | filter:tes">
-                                        <td >{{x.id}}</td>
+                                    <tr ng-repeat="x in names[0].membre">
+                                        <td ><img src="../img/{{x.img}}"  width="300" height="300"  style="width: 100px;height: 118px;"></td>
                                         <td>{{x.nom}}</td>
-                                        <td>{{x.metier}}</td>
-                                        <td>{{x.poste}}</td>
-                                        <td>{{x.date}}</td>
+                                        <td>{{x.prenom}}</td>
+                                        <td>{{x.adresse}}</td>
+                                        <td>{{x.latitude}}</td>
+                                        <td>{{x.longitude}}</td>
+                                        <td>{{x.specialite}}</td>
 
                                         <td><button value="{{x.id}}" class="btn btn-primary" name="modifier">Modifier</button></td>
-                                        <td><button value="{{x.autre}}" name="supprimer" class="btn btn-danger">supprimer</button></td>
+                                        <td><button value="{{x.id}}" name="supprimer" class="btn btn-danger">supprimer</button></td>
                                     </tr>
                                 </table>
                             </div>
@@ -180,7 +124,16 @@
             <!-- /#page-wrapper -->
 
         </div>
-        
+
+        <script type="text/javascript">
+            var module = angular.module('myApp', []);
+            var str = <jsp:include page="../Membres"></jsp:include>;
+            console.log(str[0].membre);
+            module.controller('namesCtrl', function ($scope, $http) {
+                $scope.names = str;
+                // console.log($scope.names);
+            });
+        </script>
         <script src="../js/jquery.min.js"></script>
 
         <!-- Bootstrap Core JavaScript -->
@@ -188,6 +141,7 @@
 
         <!-- Custom Theme JavaScript -->
         <script src="../js/sb-admin-2.js"></script>
+        <script src="../js/morrisjs/morris.js"></script>
 
     </body>
 
