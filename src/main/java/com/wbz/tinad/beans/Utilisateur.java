@@ -24,6 +24,10 @@ public class Utilisateur {
     private String statut;
     private String img;
 
+    public Utilisateur(String id) {
+        this.setId(Integer.parseInt(id));
+    }
+
     public Utilisateur(String email, String password) {
         this.setEmail(email);
         this.setMotDePasse(password);

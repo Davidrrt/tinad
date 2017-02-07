@@ -14,5 +14,6 @@ import com.wbz.tinad.beans.Annonce;
 public interface AnnonceDao {
     
     Annonce[] afficheOffre(int type,int id) throws DAOException;
+    void creer(Annonce annonce, int type) throws Exception;
     
 }

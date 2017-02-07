@@ -5,7 +5,9 @@
  */
 package com.wbz.tinad.services;
 
+import Utilitaire.DateUtil;
 import com.google.gson.Gson;
+import com.wbz.tinad.beans.Annonce;
 import com.wbz.tinad.beans.Utilisateur;
 import com.wbz.tinad.dao.AnnonceDao;
 import java.util.ArrayList;
@@ -43,5 +45,19 @@ public class AnnonceService {
         tab.add("{\"offre\":[" + js + "]},{\"demande\":[" + jsa + "]}");
         return tab;
     }
-   
+
+    public void creer(String idUser, String idCategorie, String type, String titre, String description, String dateDebut, String dateFin, String image) throws Exception {
+        Annonce annonce = new Annonce();
+        annonce.setUtilisateur(new Utilisateur(idUser));
+        annonce.setidCategorie(idCategorie);
+        annonce.setIdCategorie(Integer.parseInt(idCategorie));
+        annonce.setTitre(titre);
+        annonce.setDescription(description);
+        annonce.setDateDebut(DateUtil.convertToDateWithException(dateDebut));
+        annonce.setDateFin(DateUtil.convertToDateWithException(dateFin));
+        annonce.setImg(image);
+        System.out.print(annonce.getIdCategorie());
+        annonceDao.creer(annonce, Integer.valueOf(type));
+    }
+
 }

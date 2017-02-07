@@ -6,7 +6,6 @@
 package com.wbz.tinad.dao;
 
 import com.wbz.tinad.beans.Utilisateur;
-import java.util.List;
 
 public interface UtilisateurDao {
 

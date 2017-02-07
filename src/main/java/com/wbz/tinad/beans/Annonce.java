@@ -12,7 +12,7 @@ import java.sql.Date;
  * @author davra
  */
 public class Annonce {
-
+     private int idAnnonce;
     private int idCategorie;
     private int idutilisateur;
     
@@ -29,7 +29,9 @@ public class Annonce {
     public Annonce() {
 
     }
-    
+     public void setIdAnnonce(int id) {
+        this.idAnnonce=id;
+    }
     
     public void setCategorie(String newCategorie) {
         this.categorie= newCategorie;

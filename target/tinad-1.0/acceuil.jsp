@@ -1,7 +1,7 @@
 <%@page import="com.wbz.tinad.beans.Utilisateur" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<%  int val =1;
+<%  int val =0;
     try {
         Utilisateur perso = (Utilisateur) session.getAttribute("sessionUtilisateur");
         val = perso.getId();
@@ -184,12 +184,13 @@
                     <!-- Modal content -->
                     <div class="modal-content">
                         <span class="close">&times;</span>
-                        <form  class="form-horizontal" method="POST" action="traite.jsp" enctype="multipart/form-data">
+                        <form  class="form-horizontal" method="POST" action="http://serverimg.alwaysdata.net/traitement.php" enctype="multipart/form-data">
 
                             <legend>Changer la photo</legend>
                             <div class="form-group">
                                 <div class="col-lg-10">
-                                    <input type="file" class="form-control" name="image">
+                                    <input type="file" class="form-control" name="file">
+                                    <input type="hidden" name="id" value="<% out.print(val); %>">
                                 </div>
                             </div>
 
@@ -222,7 +223,7 @@
 
                         <div class="user-show-side col-md-4">
                             <a class="link-no-style info" id="myBtn" href="">
-                                <img src="img/{{info[0].offre[0].utilisateur.img}}" width="300" height="300" class="img-avatar" style="width: 200px;height: 200px;">
+                                <img src="http://localhost/serveurimg/img/{{info[0].offre[0].utilisateur.img}}" width="300" height="300" class="img-avatar" style="width: 200px;height: 200px;">
                                 <span >Modifier photo</span>
                             </a>
                             <br>
@@ -279,7 +280,7 @@
                                     <div class="title-announce proposition-color"><i class="fa fa-diamond"></i> Offres</div>
                                     <article class="welp-card-proposition" ng-repeat="x in names[0].offre"><header>
                                             <a href="offre.jsp?objet={{x.titre}}">
-                                                <img src="img/{{x.utilisateur.img}}"  alt="Aide et Dépannage Informatique" title="Aide et Dépannage Informatique">
+                                                <img src="http://localhost/serveurimg/img/{{info[0].offre[0].utilisateur.img}}"  alt="Aide et Dépannage Informatique" title="Aide et Dépannage Informatique">
                                             </a>
                                         </header><div class="welp-card-content">
                                             <h2 class="welp-card-title"><a href="offre.jsp?objet={{x.titre}}" >{{x.utilisateur.prenom}} <small>propose</small></a></h2>
