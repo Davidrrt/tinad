@@ -150,7 +150,7 @@
             });
         </script>
     </head>
-    <a href="../../../../../../Desktop/test/bdd.sql"></a>
+
     <body>
         <div ng-app="myApp" ng-controller="namesCtrl">
             <div ng-controller="infoCtrl">
