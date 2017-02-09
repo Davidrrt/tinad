@@ -23,7 +23,7 @@
         <link rel="stylesheet" href="./css/w3.css">
         <script src="js/angular.min.js"></script>
         <link href="css/style.css" rel="stylesheet" type="text/css">
-        <script src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyCgRfB1v9qicDQyrGds5MOAlM6s3Ylq5Jg&callback=initMap" async defer></script>
+        <script src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyCgRfB1v9qicDQyrGds5MOAlM6s3Ylq5Jg&callback=initMap" defer></script>
         <style>
             header.proposition-show-header .proposition-show-title{
                 background-color: rgba(85, 85, 85, 0.64);
