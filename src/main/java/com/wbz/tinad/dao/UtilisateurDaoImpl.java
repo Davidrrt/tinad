@@ -27,6 +27,9 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
     private static final String SQL_SELECT_CONNEXION = "SELECT COUNT(*) AS NOMBREUTILISATEUR FROM UTILISATEUR JOIN MOTDEPASSE ON MOTDEPASSE.IDUTILISATEUR = UTILISATEUR.IDUTILISATEUR WHERE UTILISATEUR.EMAIL = ? AND MOTDEPASSE.MOTDEPASSE= ?"; 
     private static final String SQL_SELECT_TOUT_MEMBRE ="SELECT utilisateur_id, image, nom, prenom, email, adresse, latitude, longitude, sexe, specialite, dateinscription FROM profil";
     private static final String SQL_INSERT_STATUT ="INSERT INTO publication (utilisateur_id, info, datepubli) VALUES (?, ?,NOW())";
+  
+    private static final String SQL_SELECT_CONNEXION_FRONT ="SELECT UTILISATEUR.IDUTILISATEUR FROM UTILISATEUR JOIN MOTDEPASSE ON MOTDEPASSE.IDUTILISATEUR = UTILISATEUR.IDUTILISATEUR WHERE UTILISATEUR.EMAIL = ? AND MOTDEPASSE.MOTDEPASSE= ?"; 
+    
     public UtilisateurDaoImpl(DAOFactory daoFactory) {
         this.daoFactory = daoFactory;
     }
@@ -65,6 +68,25 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                return resultSet.getInt("NOMBREUTILISATEUR");
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+           throw new DAOException(e.getMessage());
+        }finally {
+             fermeturesSilencieuses(resultSet, preparedStatement, connexion);
+        }
+        return 0;
+    }
+       public int getidUtilisateur(Utilisateur utilisateur) throws DAOException {
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;        
+        ResultSet resultSet = null;
+        try {
+            connexion = daoFactory.getConnection();
+            preparedStatement = initialisationRequetePreparee(connexion, SQL_SELECT_CONNEXION_FRONT, false,utilisateur.getEmail() , utilisateur.getMotDePasse());
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+               return resultSet.getInt("IDUTILISATEUR");
             }
         }catch (SQLException e) {
             e.printStackTrace();

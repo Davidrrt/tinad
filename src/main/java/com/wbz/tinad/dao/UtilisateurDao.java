@@ -18,5 +18,6 @@ public interface UtilisateurDao {
     public Utilisateur[] getMembres () throws DAOException ;
 
     public void inserStatut(String id, String contenue) throws Exception;
+    int getidUtilisateur(Utilisateur utilisateur) throws DAOException;
 
 }

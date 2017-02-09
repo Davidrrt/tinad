@@ -35,7 +35,7 @@ public final class ConnexionForm {
         Utilisateur utilisateur = new Utilisateur();
         traiterEmail(email, utilisateur);
         traiterMotdepasse(motDePasse, utilisateur);
-        int i = utilisateurDao.verifierUtilisateur(utilisateur);
+        int i = utilisateurDao.getidUtilisateur(utilisateur);
         try {
             if (i > 0) {
                 utilisateur.setId(i);
@@ -62,7 +62,7 @@ public final class ConnexionForm {
             if (!email.matches("([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)")) {
                 throw new FormValidationException("Merci de saisir une adresse mail valide.");
             } else if (utilisateurDao.trouver(email) != null){
-                throw new FormValidationException("Cette adresse email est d√©j√  utilis√©e, merci d'en choisir une autre.");
+                throw new FormValidationException("Cette adresse email est dÈj‡  utiliser, merci d'en choisir une autre.");
             }
         } else {
             throw new FormValidationException("Merci de saisir une adresse mail.");
