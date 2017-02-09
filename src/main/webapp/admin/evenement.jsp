@@ -61,14 +61,14 @@
                         <ul class="nav" id="side-menu">
 
                            
-                               <li>
+                            <li>
                                 <a href="membres.jsp"><i class="fa fa-users  fa-fw"></i>Gestion membres</a>
                             </li>
-                            <li class="active">
+                            <li>
                                 <a href="pub.jsp"><i class="fa fa-file fa-fw"></i>Gestion publicité</a>
                             </li>
-                            <li >
-                                <a href="evenement.jsp"><i class="fa fa-beer fa-fw"></i>Gestion evenement</a>
+                            <li class="active">
+                                     <a href="evenement.jsp"><i class="fa fa-beer fa-fw"></i>Gestion evenement</a>
                             </li>
                             <li>
                                   <a href="Deconnexion"><i class="fa fa-power-off fa-fw"></i>Deconnexion</a>
@@ -84,7 +84,7 @@
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Modification publicité</h1>
+                        <h1 class="page-header">Modification evenement</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -95,20 +95,19 @@
                     <div class="col-lg-6">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                               Ajout pub
+                               Ajout evenement
                             </div>
                             <!-- /.panel-heading -->
-                            <form method="POST" action="http://localhost/serveurimg/traitementpub.php" enctype="multipart/form-data">
+                            <form method="POST" action="http://localhost/serveurimg/traitementevenement.php" enctype="multipart/form-data">
                             <div class="panel-body" style="margin-bottom: 263px;">
-                                <h4>Nouvelle publicité</h4>
+                                <h4>Nouvelle evenement</h4>
+                                
                                <input type="text" placeholder="titre"  name="titre" class="form-control">
                                <br>
-                                <select class="form-control" name="type">
-                                    <option value="1">mobile</option>
-                                    <option value="2">site gauche</option>
-                                    <option value="3">site haut</option>
-                                </select>
+                               <label>contenu :</label>
+                               <textarea class="form-control" name="contenu"></textarea>
                                 <br>
+                                <label>image :</label>
                                   <input type="file" class="form-control" name="file">
                                 <br>
                                 <input type="submit" class="btn btn-primary">

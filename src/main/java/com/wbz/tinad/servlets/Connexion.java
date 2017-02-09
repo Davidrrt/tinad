@@ -6,11 +6,13 @@
 package com.wbz.tinad.servlets;
 
 import com.wbz.tinad.beans.Utilisateur;
+import com.wbz.tinad.dao.CategorieDao;
 import com.wbz.tinad.dao.DAOFactory;
 import com.wbz.tinad.dao.UtilisateurDao;
 import com.wbz.tinad.dao.UtilisateurDaoImpl;
 import com.wbz.tinad.forms.ConnexionForm;
 import com.wbz.tinad.services.UtilisateurService;
+import static com.wbz.tinad.servlets.Categorie.CONF_DAO_FACTORY;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -21,7 +23,8 @@ import javax.servlet.http.HttpServletResponse;
 
 public class Connexion extends HttpServlet {
     public static final String CONF_DAO_FACTORY = "daofactory";
-    private UtilisateurDao utilisateurDao; 
+    private UtilisateurDao utilisateurDao;
+    
     public void init() throws ServletException {
         this.utilisateurDao = ((DAOFactory) getServletContext().getAttribute(CONF_DAO_FACTORY)).getUtilisateurDao();     
     }
@@ -67,7 +70,9 @@ public class Connexion extends HttpServlet {
                         form.traiterMotdepasse(request.getParameter("password"), utilisateur);
             int user_count= uDao.verifierUtilisateur(utilisateur);
             if(user_count==1) {                
-                out.print("{\"USER_CONNECTE\":" + uService.printUserConnecte(request.getParameter("username"))+ "}");
+                //out.print("{\"USER_CONNECTE\":" + uService.printUserConnecte(request.getParameter("username"))+ "}");
+                                        //String subject, String issuer, String username, boolean admin
+                out.print("{\"token\":\"" + UtilisateurService.generateToken("tinad","heroku",request.getParameter("username"),false)+"\","+"\"USER_CONNECTE\":" + uService.printUserConnecte(request.getParameter("username"))+"}");
             }
         }
     }

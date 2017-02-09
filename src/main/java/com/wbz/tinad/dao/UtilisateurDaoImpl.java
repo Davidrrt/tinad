@@ -23,7 +23,8 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
     private static final String SQL_INSERT_MOTDEPASSE = "INSERT INTO motdepasse(idutilisateur, datemodification, motdepasse) VALUES ( ?,NOW(), ?);";
     private static final String SQL_INSERT_IMAGE= "INSERT INTO photoprofil(utilisateur_id, libelle, dateprofil, datejour) VALUES (?, ?,NOW(),NOW())";
     
-    private static final String SQL_SELECT_CONNEXION = "SELECT UTILISATEUR.IDUTILISATEUR FROM UTILISATEUR JOIN MDPUP ON MDPUP.IDUTILISATEUR = UTILISATEUR.IDUTILISATEUR WHERE UTILISATEUR.EMAIL = ? AND MDPUP.motdepasse=?";
+      
+    private static final String SQL_SELECT_CONNEXION = "SELECT COUNT(*) AS NOMBREUTILISATEUR FROM UTILISATEUR JOIN MOTDEPASSE ON MOTDEPASSE.IDUTILISATEUR = UTILISATEUR.IDUTILISATEUR WHERE UTILISATEUR.EMAIL = ? AND MOTDEPASSE.MOTDEPASSE= ?"; 
     private static final String SQL_SELECT_TOUT_MEMBRE ="SELECT utilisateur_id, image, nom, prenom, email, adresse, latitude, longitude, sexe, specialite, dateinscription FROM profil";
     private static final String SQL_INSERT_STATUT ="INSERT INTO publication (utilisateur_id, info, datepubli) VALUES (?, ?,NOW())";
     public UtilisateurDaoImpl(DAOFactory daoFactory) {
@@ -54,26 +55,24 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
         return utilisateur;
     }    
     @Override
-    public int verifierUtilisateur(Utilisateur utilisateur) throws DAOException {
+      public int verifierUtilisateur(Utilisateur utilisateur) throws DAOException {
         Connection connexion = null;
         PreparedStatement preparedStatement = null;        
         ResultSet resultSet = null;
-        int i=0;
         try {
-            /* Récupération d'une connexion depuis la Factory */
             connexion = daoFactory.getConnection();
             preparedStatement = initialisationRequetePreparee(connexion, SQL_SELECT_CONNEXION, false,utilisateur.getEmail() , utilisateur.getMotDePasse());
             resultSet = preparedStatement.executeQuery();
-            /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
             if (resultSet.next()) {
-               i=resultSet.getInt("IDUTILISATEUR");
+               return resultSet.getInt("NOMBREUTILISATEUR");
             }
         }catch (SQLException e) {
-            throw new DAOException(e);
+            e.printStackTrace();
+           throw new DAOException(e.getMessage());
         }finally {
              fermeturesSilencieuses(resultSet, preparedStatement, connexion);
         }
-        return i;
+        return 0;
     }
     /* Implémentation de la méthode creer() définie dans l'interface UtilisateurDao */
     @Override

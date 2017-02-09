@@ -28,18 +28,23 @@ public class AnnonceService {
         Gson json = new Gson();
         String wawa = json.toJson(annonceDao.afficheOffre(0, 0));
         String tab1 = json.toJson(annonceDao.afficheOffre(1, 0));
+        String wawa1 = json.toJson(annonceDao.affichepub());
+        String tab2 = json.toJson(annonceDao.affichevenement());
         String js = wawa.substring(1, wawa.length() - 1);
         String jsa = tab1.substring(1, tab1.length() - 1);
         ArrayList<String> tab = new ArrayList<String>();
-        tab.add("{\"wawa\":[" + js + "]},{\"demande\":[" + jsa + "]}");
+        tab.add("{\"wawa\":[" + js + "]},{\"demande\":[" + jsa + "]},{\"evenement\":" + tab2 + "},{\"publicite\":" + wawa1  + "}");
         return tab;
     }
-     public ArrayList<String> offrepub() {
+
+    public ArrayList<String> offrepub() {
         Gson json = new Gson();
         String wawa = json.toJson(annonceDao.affichepub());
+        String tab1 = json.toJson(annonceDao.affichevenement());
         String js = wawa.substring(1, wawa.length() - 1);
+        String jsa = tab1.substring(1, tab1.length() - 1);
         ArrayList<String> tab = new ArrayList<String>();
-        tab.add("{\"publicite\":[" + js + "]}");
+        tab.add("{\"publicite\":[" + js + "]},{\"evenement\":[" + jsa + "]}");
         return tab;
     }
 
@@ -47,10 +52,10 @@ public class AnnonceService {
         Gson json = new Gson();
         String wawa = json.toJson(annonceDao.afficheOffre(0, id));
         String tab1 = json.toJson(annonceDao.afficheOffre(1, id));
-        String tab2= json.toJson(annonceDao.getUser(id));
+        String tab2 = json.toJson(annonceDao.getUser(id));
         String js = wawa.substring(1, wawa.length() - 1);
         String jsa = tab1.substring(1, tab1.length() - 1);
-        String jsp=tab2.substring(1, tab2.length() - 1);
+        String jsp = tab2.substring(1, tab2.length() - 1);
         ArrayList<String> tab = new ArrayList<String>();
         tab.add("{\"offre\":[" + js + "]},{\"demande\":[" + jsa + "]},{\"utilisateur\":[{" + jsp + "}]}");
         return tab;
@@ -67,7 +72,8 @@ public class AnnonceService {
         annonce.setDateFin(DateUtil.convertToDateWithException(dateFin));
         annonce.setImg(image);
         System.out.print(annonce.getIdCategorie());
-        annonceDao.creer(annonce, Integer.valueOf(type));
+        int img=annonceDao.getrandom(annonce.getIdCategorie());
+        annonceDao.creer(annonce, Integer.valueOf(type),img);
     }
 
 }

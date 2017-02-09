@@ -23,7 +23,7 @@
         <link rel="stylesheet" href="./css/w3.css">
         <script src="js/angular.min.js"></script>
         <link href="css/style.css" rel="stylesheet" type="text/css">
-        <script src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyCgRfB1v9qicDQyrGds5MOAlM6s3Ylq5Jg&callback=initMap" async defer></script>
+          <script src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyCgRfB1v9qicDQyrGds5MOAlM6s3Ylq5Jg&callback=initMap" async defer></script>
     
     </head>
     <body>
@@ -33,11 +33,17 @@
                     <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
                         <a class="w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
                     </li>
-                    <li style="float:left;"><a href="index.jsp"><img alt="" width="70" height="70" src="./img/log-tinad_mob.png" /></a></li>
-                    <li><a class="w3-padding-large" href="inscription.jsp" style="color: #bbb9a9;"><i class="fa fa-plus"></i> Inscription</a></li>
-                    <li><a class="w3-padding-large" href="connexion.jsp" style="color: #bbb9a9;"><i class="fa fa-user"></i> Connexion</a></li>
+                    
+                 <% if(session.getAttribute("sessionUtilisateur")!=null){%>
+                       <li style="float:left;"><a href="map.jsp"><img alt="" width="70" height="70" src="./img/log-tinad_mob.png"></a></li>
+                  <li><a class="w3-padding-large" href="Deconnexion" style="color: #bbb9a9;"><i class="fa fa-power-off"></i> Deconnexion</a></li>
+                   <li><a class="w3-padding-large" href="acceuil.jsp" style="color: #bbb9a9;"><i class="fa fa-user"></i> </a></li>
 
-
+                  <% }else{%>
+                   <li style="float:left;"><a href="index.jsp"><img alt="" width="70" height="70" src="./img/log-tinad_mob.png"></a></li>
+                <li><a class="w3-padding-large" href="inscription.jsp" style="color: #bbb9a9;"><i class="fa fa-plus"></i> Inscription</a></li>
+                <li><a class="w3-padding-large" href="connexion.jsp" style="color: #bbb9a9;"><i class="fa fa-user"></i> Connexion</a></li>
+                <%} %>
 
                 </ul>
 
@@ -57,7 +63,7 @@
                 <img alt="coursaidewelp.jpg" title="coursaidewelp.jpg" src="img/{{x.img}}" width="1250" height="833">
             </div>
             <div class="proposition-show-title">
-                <a class="proposition-avatar" href="/profile/8637/Ferial">
+                <a class="proposition-avatar" href="">
 
 
 

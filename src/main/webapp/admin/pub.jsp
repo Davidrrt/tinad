@@ -61,11 +61,14 @@
                         <ul class="nav" id="side-menu">
 
                            
-                            <li>
+                               <li>
                                 <a href="membres.jsp"><i class="fa fa-users  fa-fw"></i>Gestion membres</a>
                             </li>
                             <li class="active">
                                 <a href="pub.jsp"><i class="fa fa-file fa-fw"></i>Gestion publicité</a>
+                            </li>
+                            <li >
+                                <a href="evenement.jsp"><i class="fa fa-beer fa-fw"></i>Gestion evenement</a>
                             </li>
                             <li>
                                   <a href="Deconnexion"><i class="fa fa-power-off fa-fw"></i>Deconnexion</a>
@@ -95,7 +98,7 @@
                                Ajout pub
                             </div>
                             <!-- /.panel-heading -->
-                            <form method="POST" action="http://serverimg.alwaysdata.net/traitementpub.php">
+                            <form method="POST" action="http://localhost/serveurimg/traitementpub.php" enctype="multipart/form-data">
                             <div class="panel-body" style="margin-bottom: 263px;">
                                 <h4>Nouvelle publicité</h4>
                                <input type="text" placeholder="titre"  name="titre" class="form-control">
@@ -106,6 +109,7 @@
                                     <option value="3">site haut</option>
                                 </select>
                                 <br>
+                                  <input type="file" class="form-control" name="file">
                                 <br>
                                 <input type="submit" class="btn btn-primary">
                             </div>
@@ -153,20 +157,7 @@
                                
                                 </tr>
                             </table>
-                              <h4>Banniere haut de page</h4>
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>image</th>
-                                        <th>titre</th>
-                                        
-                                    </tr>
-                                </thead>
-                                <tr>
-                                    <td><img src="http://serverimg.alwaysdata.net/img/{{names[0].publicite[2].img}}" width="60" height="60"></td>
-                                    <td>{{names[0].publicite[2].titre}}</td>
-                                </tr>
-                            </table>
+                            
                         </div>
                         <!-- /.panel-body -->
                     </div>

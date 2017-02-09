@@ -59,17 +59,18 @@
                     <div class="sidebar-nav navbar-collapse">
                         <img src="../img/log-tinad_mob.png" width="200" height="200">
                         <ul class="nav" id="side-menu">
-                            <li class="active">
+                               <li class="active">
                                 <a href="membres.jsp"><i class="fa fa-users  fa-fw"></i>Gestion membres</a>
                             </li>
                             <li>
                                 <a href="pub.jsp"><i class="fa fa-file fa-fw"></i>Gestion publicité</a>
                             </li>
-                       
-                             <li>
+                            <li >
+                                     <a href="evenement.jsp"><i class="fa fa-beer fa-fw"></i>Gestion evenement</a>
+                            </li>
+                            <li>
                                   <a href="Deconnexion"><i class="fa fa-power-off fa-fw"></i>Deconnexion</a>
                             </li>
-
                         </ul>
                     </div>
                     <!-- /.sidebar-collapse -->

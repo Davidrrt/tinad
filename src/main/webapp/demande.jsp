@@ -45,12 +45,17 @@
                     <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
                         <a class="w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
                     </li>
-                    <li style="float:left;"><a href="index.jsp"><img alt="" width="70" height="70" src="./img/log-tinad_mob.png"></a></li>
-                    <li><a class="w3-padding-large" href="inscription.jsp" style="color: #bbb9a9;"><i class="fa fa-plus"></i> Inscription</a></li>
-                    <li><a class="w3-padding-large" href="connexion.jsp" style="color: #bbb9a9;"><i class="fa fa-user"></i> Connexion</a></li>
+                   
+                      <% if(session.getAttribute("sessionUtilisateur")!=null){%>
+                       <li style="float:left;"><a href="map.jsp"><img alt="" width="70" height="70" src="./img/log-tinad_mob.png"></a></li>
+                  <li><a class="w3-padding-large" href="Deconnexion" style="color: #bbb9a9;"><i class="fa fa-power-off"></i> Deconnexion</a></li>
+                   <li><a class="w3-padding-large" href="acceuil.jsp" style="color: #bbb9a9;"><i class="fa fa-user"></i> </a></li>
 
-
-
+                  <% }else{%>
+                   <li style="float:left;"><a href="index.jsp"><img alt="" width="70" height="70" src="./img/log-tinad_mob.png"></a></li>
+                <li><a class="w3-padding-large" href="inscription.jsp" style="color: #bbb9a9;"><i class="fa fa-plus"></i> Inscription</a></li>
+                <li><a class="w3-padding-large" href="connexion.jsp" style="color: #bbb9a9;"><i class="fa fa-user"></i> Connexion</a></li>
+                <%} %>
                 </ul>
 
                 <div id="navDemo" class="w3-hide w3-hide-large w3-hide-medium">
@@ -81,7 +86,7 @@
                             <h5 class="w3-padding-32"><i class="fa fa-tag"></i> Cours particuliers / Coaching</h5>
                             <h6 class="welp-darkblue-color"><i class="fa fa-map-marker"></i>{{y.utilisateur.adresse}}</h6>
                             <p class="w3-text-grey"></p>
-                            <a href="profil.jsp?membre={{x.idutilisateur}}" class="btn btn-xs btn-default">
+                            <a href="profil.jsp?membre={{y.idutilisateur}}" class="btn btn-xs btn-default">
                                 <i class="fa fa-user"></i> Voir le profil de {{y.utilisateur.prenom}}
                             </a>
                         </div>
@@ -91,7 +96,7 @@
 
                             <span class="avatar-container">
 
-                                <img alt="shfrg6sbdf67divgadgf6rsduff45s7gzgfdsodk5.jpg" title="shfrg6sbdf67divgadgf6rsduff45s7gzgfdsodk5.jpg" src="http://serverimg.alwaysdata.net/img/ {{y.utilisateur.img}}" width="300" height="300" class="img-avatar" style="width: 195px;height: 195px;">
+                                <img alt="shfrg6sbdf67divgadgf6rsduff45s7gzgfdsodk5.jpg" title="shfrg6sbdf67divgadgf6rsduff45s7gzgfdsodk5.jpg" src="http://serverimg.alwaysdata.net/img/{{y.utilisateur.img}}" width="300" height="300" class="img-avatar" style="width: 195px;height: 195px;">
                             </span>
                         </a>
                     </div>

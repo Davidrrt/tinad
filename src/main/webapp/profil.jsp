@@ -35,11 +35,17 @@
                     <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
                         <a class="w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
                     </li>
-                    <li style="float:left;"><a href="index.jsp"><img alt="" width="70" height="70" src="./img/log-tinad_mob.png" /></a></li>
-                    <li><a class="w3-padding-large" href="inscription.jsp" style="color: #bbb9a9;"><i class="fa fa-plus"></i> Inscription</a></li>
-                    <li><a class="w3-padding-large" href="connexion.jsp" style="color: #bbb9a9;"><i class="fa fa-user"></i> Connexion</a></li>
+                    
+                   <% if(session.getAttribute("sessionUtilisateur")!=null){%>
+                       <li style="float:left;"><a href="map.jsp"><img alt="" width="70" height="70" src="./img/log-tinad_mob.png"></a></li>
+                  <li><a class="w3-padding-large" href="Deconnexion" style="color: #bbb9a9;"><i class="fa fa-power-off"></i> Deconnexion</a></li>
+                   <li><a class="w3-padding-large" href="acceuil.jsp" style="color: #bbb9a9;"><i class="fa fa-user"></i> </a></li>
 
-
+                  <% }else{%>
+                   <li style="float:left;"><a href="index.jsp"><img alt="" width="70" height="70" src="./img/log-tinad_mob.png"></a></li>
+                <li><a class="w3-padding-large" href="inscription.jsp" style="color: #bbb9a9;"><i class="fa fa-plus"></i> Inscription</a></li>
+                <li><a class="w3-padding-large" href="connexion.jsp" style="color: #bbb9a9;"><i class="fa fa-user"></i> Connexion</a></li>
+                <%} %>
 
                 </ul>
 
@@ -60,7 +66,7 @@
                         <div class="user-show-side col-md-4">
                             <a class="link-no-style" href="">
                                 <span class="avatar-container">
-                                    <img src="http://serverimg.alwaysdata.net/img/{{info[0].offre[0].utilisateur.img}}" width="300" height="300" class="img-avatar" style="width: 200px;height: 200px;">
+                                    <img src="http://serverimg.alwaysdata.net/img/{{info[2].utilisateur[0].img}}" width="300" height="300" class="img-avatar" style="width: 200px;height: 200px;">
                                 </span>
                             </a>
                             <br>
@@ -74,11 +80,13 @@
 
                             </ul>
                         </div>
-                        <div class="user-show-content col-md-8">
-
-                            <h1>Bonjour, je m'appelle {{info[0].offre[0].utilisateur.prenom}}</h1>
-                            <h3><i class="fa fa-map-marker"></i>{{info[0].offre[0].utilisateur.adresse}}</h3>
-                            <p class="user-description">{{info[0].offre[0].utilisateur.publication}}</p>            
+                        <div class="user-show-content col-md-8" ng-controller="pubCtrl">
+                            <div class="row">
+                                <img src="http://serverimg.alwaysdata.net/img/{{pub[0].publicite[1].img}}">
+                            </div>
+                            <h1>Bonjour, je m'appelle {{info[2].utilisateur[0].prenom}}</h1>
+                            <h3><i class="fa fa-map-marker"></i>{{info[2].utilisateur[0].adresse}}</h3>
+                            <p class="user-description">{{info[2].utilisateur[0].publication}}</p>            
                             <div class="user-show-testimony">
                                 <div class="comments-block ">
 
@@ -142,16 +150,21 @@
     </body>
     <%
         String currPage = "Profil?id=" + val;
+        String currPage1 ="pub";
     %>
     <script type="text/javascript">
         var module = angular.module('myApp', []);
         var str = <jsp:include page="<%=currPage%>"></jsp:include>;
+        var str1 =<jsp:include page="<%=currPage1%>"></jsp:include>;
         console.log(str);
         module.controller('namesCtrl', function ($scope, $http) {
             $scope.names = str;
         });
         module.controller('infoCtrl', function ($scope, $http) {
             $scope.info = str;
+        });
+        module.controller('pubCtrl', function ($scope, $http) {
+             $scope.pub = str1;
         });
         function initMap() {
 

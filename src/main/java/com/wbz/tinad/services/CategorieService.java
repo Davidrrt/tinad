@@ -9,8 +9,7 @@ import com.google.gson.Gson;
 import com.wbz.tinad.dao.CategorieDao;
 
 public class CategorieService {
-    private  CategorieDao categorieDao;
-    
+    private  CategorieDao categorieDao = null;
     public CategorieService(CategorieDao categorieDao) {
         this.categorieDao = categorieDao;
     }
