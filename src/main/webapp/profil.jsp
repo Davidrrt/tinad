@@ -60,7 +60,7 @@
                         <div class="user-show-side col-md-4">
                             <a class="link-no-style" href="">
                                 <span class="avatar-container">
-                                    <img src="img/{{info[0].offre[0].utilisateur.img}}" width="300" height="300" class="img-avatar" style="width: 200px;height: 200px;">
+                                    <img src="http://serverimg.alwaysdata.net/img/{{info[0].offre[0].utilisateur.img}}" width="300" height="300" class="img-avatar" style="width: 200px;height: 200px;">
                                 </span>
                             </a>
                             <br>
@@ -95,7 +95,7 @@
                                     <article class="welp-card-need"  ng-repeat="y in names[1].demande">
                                         <header style="margin-left: 6px;">
                                             <a href="demande.jsp?objet={{y.titre}}">
-                                                <img src="img/{{y.img}}" width="220" height="160">
+                                                <img src="http://serverimg.alwaysdata.net/img/{{y.img}}" width="220" height="160">
                                             </a> 
                                         </header>
                                         <h1 class="welp-card-title"><a href="demande.jsp?objet={{y.titre}}"><i class="fa fa-heart-o"></i> {{y.titre}}</a></h1>
@@ -108,7 +108,7 @@
                                     <div class="title-announce proposition-color"><i class="fa fa-diamond"></i> Offres</div>
                                     <article class="welp-card-proposition" ng-repeat="x in names[0].offre"><header>
                                             <a href="offre.jsp?objet={{x.titre}}">
-                                                <img src="img/{{x.utilisateur.img}}"  alt="Aide et Dépannage Informatique" title="Aide et Dépannage Informatique">
+                                                <img src="http://serverimg.alwaysdata.net/img/{{x.utilisateur.img}}"  alt="Aide et Dépannage Informatique" title="Aide et Dépannage Informatique">
                                             </a>
                                         </header><div class="welp-card-content">
                                             <h2 class="welp-card-title"><a href="offre.jsp?objet={{x.titre}}" >{{x.utilisateur.prenom}} <small>propose</small></a></h2>

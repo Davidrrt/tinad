@@ -6,6 +6,8 @@
 package com.wbz.tinad.dao;
 
 import com.wbz.tinad.beans.Annonce;
+import com.wbz.tinad.beans.Publicite;
+import com.wbz.tinad.beans.Utilisateur;
 
 /**
  *
@@ -15,5 +17,7 @@ public interface AnnonceDao {
     
     Annonce[] afficheOffre(int type,int id) throws DAOException;
     void creer(Annonce annonce, int type) throws Exception;
+    Utilisateur getUser(int id) throws DAOException;
+    Publicite[] affichepub()throws DAOException;
     
 }

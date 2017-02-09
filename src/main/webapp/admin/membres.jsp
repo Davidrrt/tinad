@@ -1,8 +1,8 @@
-<%-- 
-    Document   : membres
-    Created on : 6 févr. 2017, 11:13:44
-    Author     : davra
---%>
+<% 
+    if(session.getAttribute("admin")==null){
+        response.sendRedirect("index.jsp");
+    }
+%>
 
 <%@page contentType="text/html" pageEncoding="windows-1252"%>
 <!DOCTYPE html>
@@ -65,11 +65,9 @@
                             <li>
                                 <a href="pub.jsp"><i class="fa fa-file fa-fw"></i>Gestion publicité</a>
                             </li>
-                            <li>
-                                <a href="evenement.jsp"><i class="fa fa-users fa-fw"></i>Création évenement</a>
-                            </li>
+                       
                              <li>
-                                  <a href="evenement.jsp"><i class="fa fa-power-off fa-fw"></i>Deconnexion</a>
+                                  <a href="Deconnexion"><i class="fa fa-power-off fa-fw"></i>Deconnexion</a>
                             </li>
 
                         </ul>
@@ -87,23 +85,6 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-            <div class="row">
-           
-                <!-- /.col-lg-6 -->
-                <div class="col-lg-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Bar Chart Example
-                        </div>
-                        <div class="panel-body">
-                            <div id="morris-bar-chart"></div>
-                        </div>
-                     
-                    </div>
-                  
-                </div>
-              
-            </div>
             <div class="row"  ng-app="myApp"  ng-controller="namesCtrl">
                   <div class="col-lg-8 col-lg-offset-2">
                                 <table class="table table-striped table-bordered table-hover">
@@ -121,7 +102,7 @@
                                         </tr>
                                     </thead>
                                     <tr ng-repeat="x in names[0].membre">
-                                        <td ><img src="../img/{{x.img}}"  width="300" height="300"  style="width: 100px;height: 118px;"></td>
+                                        <td ><img src="http://serverimg.alwaysdata.net/img/{{x.img}}"  width="300" height="300"  style="width: 100px;height: 118px;"></td>
                                         <td>{{x.nom}}</td>
                                         <td>{{x.prenom}}</td>
                                         <td>{{x.adresse}}</td>
@@ -162,54 +143,7 @@
     <!-- Morris Charts JavaScript -->
     <script src="../js/raphael.min.js"></script>
     <script src="../js/morris.min.js"></script>
-    <script type="text/javascript">
-	$(function() {
-
   
-
-    Morris.Bar({
-        element: 'morris-bar-chart',
-        data: [{
-            y: '2006',
-            a: 100,
-            b: 90
-        }, {
-            y: '2007',
-            a: 75,
-            b: 65
-        }, {
-            y: '2008',
-            a: 50,
-            b: 40
-        }, {
-            y: '2009',
-            a: 75,
-            b: 65
-        }, {
-            y: '2010',
-            a: 50,
-            b: 40
-        }, {
-            y: '2011',
-            a: 75,
-            b: 65
-        }, {
-            y: '2012',
-            a: 100,
-            b: 90
-        }],
-        xkey: 'y',
-        ykeys: ['a', 'b'],
-        labels: ['Series A', 'Series B'],
-        hideHover: 'auto',
-        resize: true
-    });
-    
-});
-
-	</script>
-
-    <!-- Custom Theme JavaScript -->
     <script src="../js/sb-admin-2.js"></script>
 
 </body>

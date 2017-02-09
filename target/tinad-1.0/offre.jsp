@@ -63,7 +63,7 @@
 
                     <span class="avatar-container">
 
-                        <img alt="shfrg6sbdf67divgadgf6rsduff45s7gzgfdsodk5.jpg" title="shfrg6sbdf67divgadgf6rsduff45s7gzgfdsodk5.jpg" src="img/{{x.utilisateur.img}}" width="300" height="300" class="img-avatar" style="width: 195px;height: 195px;">
+                        <img alt="shfrg6sbdf67divgadgf6rsduff45s7gzgfdsodk5.jpg" title="shfrg6sbdf67divgadgf6rsduff45s7gzgfdsodk5.jpg" src="http://serverimg.alwaysdata.net/img/{{x.utilisateur.img}}" width="300" height="300" class="img-avatar" style="width: 195px;height: 195px;">
                     </span>
                 </a>
                 <h1><i class="fa fa-diamond"></i> {{x.utilisateur.prenom}} <small>propose</small></h1>

@@ -17,13 +17,15 @@ import java.util.ArrayList;
 public class UtilisateurDaoImpl implements UtilisateurDao {
     private final UtilisateurService utilisateurService=null ;
     private final DAOFactory daoFactory;    
-    private static final String SQL_SELECT_PAR_EMAIL = "SELECT IDUTILISATEUR,NOM,PRENOM,SEXE,EMAIL,ADRESSE,SPECIALITE,LATITUDE,LONGITUDE FROM UTILISATEUR WHERE EMAIL = ?";
-    private static final String SQL_INSERT = "INSERT INTO UTILISATEUR (IDUTILISATEUR,NOM,PRENOM,SEXE,EMAIL,ADRESSE,MOTDEPASSE,SPECIALITE,LATITUDE,LONGITUDE,DATEINSCRIPTION) VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
-    private static final String SQL_INSERT_MOTDEPASSE = " INSERT INTO MOTDEPASSE (IDMOTDEPASSE,MOTDEPASSE,DATEMODIFICATION) VALUES (DEFAULT, ?, NOW())";
+    private static final String SQL_SELECT_PAR_EMAIL = "SELECT utilisateur_id, image, nom, prenom, email, adresse, latitude, longitude, sexe, specialite, dateinscription FROM profil WHERE email = ?";
+    
+    private static final String SQL_INSERT = "INSERT INTO utilisateur(nom, prenom, email, adresse, latitude, longitude,sexe, specialite, dateinscription, statut) VALUES (?, ?, ?, ?, ?, ?, ?, ?,NOW(), '11');";
+    private static final String SQL_INSERT_MOTDEPASSE = "INSERT INTO motdepasse(idutilisateur, datemodification, motdepasse) VALUES ( ?,NOW(), ?);";
+    private static final String SQL_INSERT_IMAGE= "INSERT INTO photoprofil(utilisateur_id, libelle, dateprofil, datejour) VALUES (?, ?,NOW(),NOW())";
     
     private static final String SQL_SELECT_CONNEXION = "SELECT UTILISATEUR.IDUTILISATEUR FROM UTILISATEUR JOIN MDPUP ON MDPUP.IDUTILISATEUR = UTILISATEUR.IDUTILISATEUR WHERE UTILISATEUR.EMAIL = ? AND MDPUP.motdepasse=?";
     private static final String SQL_SELECT_TOUT_MEMBRE ="SELECT utilisateur_id, image, nom, prenom, email, adresse, latitude, longitude, sexe, specialite, dateinscription FROM profil";
-    
+    private static final String SQL_INSERT_STATUT ="INSERT INTO publication (utilisateur_id, info, datepubli) VALUES (?, ?,NOW())";
     public UtilisateurDaoImpl(DAOFactory daoFactory) {
         this.daoFactory = daoFactory;
     }
@@ -42,7 +44,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
             preparedStatement = initialisationRequetePreparee(connexion, SQL_SELECT_PAR_EMAIL, false, email);
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                utilisateur = map(resultSet);
+                utilisateur = mapMembres(resultSet);
             }
         } catch (SQLException e) {
             throw new DAOException(e);
@@ -79,6 +81,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
         Connection connexion = null;
         PreparedStatement preparedStatement = null;
         PreparedStatement preparedStatementPass= null;
+        PreparedStatement preparedStatementImage= null;
         ResultSet valeursAutoGenerees = null;
         try {
             /* Récupération d'une connexion depuis la Factory */
@@ -86,23 +89,14 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
             //UTILISATEUR (IDUTILISATEUR,NOM,PRENOM,SEXE,EMAIL,ADRESSE,MOTDEPASSE,SPECIALITE,LATITUDE,LONGITUDE,DATEINSCRIPTION)
             preparedStatement = initialisationRequetePreparee(connexion, SQL_INSERT, true, utilisateur.getNom(),
                                                                                            utilisateur.getPrenom(),
-                                                                                           utilisateur.getSexe(),
                                                                                            utilisateur.getEmail(),
                                                                                            utilisateur.getAdresse(),
-                                                                                           utilisateur.getMotDePasse(),
-                                                                                           utilisateur.getSpecialite(),
                                                                                            utilisateur.getLatitude(),
                                                                                            utilisateur.getLongitude(),
-                                                                                           utilisateur.getStatut());
+                                                                                           utilisateur.getSexe(),
+                                                                                           utilisateur.getSpecialite());
                                                                                            
-            preparedStatementPass = initialisationRequetePreparee(connexion, SQL_INSERT,true,utilisateur.getMotDePasse());
-            int statut = preparedStatement.executeUpdate();
-            int statusPass = preparedStatementPass.executeUpdate();
-            /* Analyse du statut retourné par la requête d'insertion */
-            if (statut == 0 || statusPass == 0) {
-                throw new DAOException("Échec de la création de l'utilisateur, aucune ligne ajoutée dans la table.");
-            }
-            /* Récupération de l'id auto-généré par la requête d'insertion */
+              int statut = preparedStatement.executeUpdate();
             valeursAutoGenerees = preparedStatement.getGeneratedKeys();
             if (valeursAutoGenerees.next()) {
                 /* Puis initialisation de la propriété id du bean Utilisateur avec sa valeur */
@@ -110,6 +104,16 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
             } else {
                 throw new DAOException("Échec de la création de l'utilisateur en base, aucun ID auto-généré retourné.");
             }
+            preparedStatementPass = initialisationRequetePreparee(connexion, SQL_INSERT_MOTDEPASSE,true,utilisateur.getId(),utilisateur.getMotDePasse());
+            preparedStatementImage= initialisationRequetePreparee(connexion,SQL_INSERT_IMAGE,true,utilisateur.getId(),utilisateur.getImg());
+            int statusPass = preparedStatementPass.executeUpdate();
+            int statusimage=preparedStatementImage.executeUpdate();
+            /* Analyse du statut retourné par la requête d'insertion */
+            if (statut == 0 ) {
+                throw new DAOException("Échec de la création de l'utilisateur, aucune ligne ajoutée dans la table.");
+            }
+            /* Récupération de l'id auto-généré par la requête d'insertion */
+            
         } catch (SQLException e) {
             throw new DAOException(e);
         } finally {           
@@ -141,6 +145,26 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
             fermeturesSilencieuses(resultSet, preparedStatement, connexion);
         }
         return tab;
+    }
+       public void inserStatut(String id, String contenue) throws Exception  {
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet valeursAutoGenerees = null;
+
+        try {
+            // idservice, idcategorie, idutilisateur,titre, description, datepublication,datedebutdisponibilite ,datefindisponibilite, type , image
+            connexion = daoFactory.getConnection();
+            connexion.setAutoCommit(false);
+            preparedStatement = initialisationRequetePreparee(connexion, SQL_INSERT_STATUT,false,Integer.parseInt(id),contenue);
+            preparedStatement.executeUpdate();
+            connexion.commit();
+        } catch (Exception e) {
+            connexion.rollback();
+            e.printStackTrace();
+            throw new DAOException(e);
+        } finally {
+            fermeturesSilencieuses(valeursAutoGenerees, preparedStatement, connexion);
+        }
     }
     /*
      * Simple méthode utilitaire permettant de faire la correspondance (le
@@ -177,6 +201,8 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
         utilisateur.setImg(resultSet.getString("image"));
         return utilisateur;
     }
+
+  
 
     
 }

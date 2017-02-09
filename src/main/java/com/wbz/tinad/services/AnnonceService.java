@@ -34,15 +34,25 @@ public class AnnonceService {
         tab.add("{\"wawa\":[" + js + "]},{\"demande\":[" + jsa + "]}");
         return tab;
     }
+     public ArrayList<String> offrepub() {
+        Gson json = new Gson();
+        String wawa = json.toJson(annonceDao.affichepub());
+        String js = wawa.substring(1, wawa.length() - 1);
+        ArrayList<String> tab = new ArrayList<String>();
+        tab.add("{\"publicite\":[" + js + "]}");
+        return tab;
+    }
 
     public ArrayList<String> infoprofil(int id) {
         Gson json = new Gson();
         String wawa = json.toJson(annonceDao.afficheOffre(0, id));
         String tab1 = json.toJson(annonceDao.afficheOffre(1, id));
+        String tab2= json.toJson(annonceDao.getUser(id));
         String js = wawa.substring(1, wawa.length() - 1);
         String jsa = tab1.substring(1, tab1.length() - 1);
+        String jsp=tab2.substring(1, tab2.length() - 1);
         ArrayList<String> tab = new ArrayList<String>();
-        tab.add("{\"offre\":[" + js + "]},{\"demande\":[" + jsa + "]}");
+        tab.add("{\"offre\":[" + js + "]},{\"demande\":[" + jsa + "]},{\"utilisateur\":[{" + jsp + "}]}");
         return tab;
     }
 

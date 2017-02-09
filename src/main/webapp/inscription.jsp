@@ -68,36 +68,11 @@
                             </div>
                             <br><br>
                             <div class="form-inline">
-                                <div class="col-md-12">
-                                    <label style="margin-left: -360px;">Date de naissance :</label>
-                                </div>
-
-                            </div>
-
-                            <div class="form-inline">
-                                <div class="col-md-4">
-                                    <select class="form-control" name="genre" style="width: 128px;">
-                                        <option>Janvier</option>
-                                        <option>Fevrier</option>
-                                        <option>Mars</option>
-                                        <option>Avril</option>
-                                        <option>Mai</option>
-                                        <option>Juin</option>
-                                        <option>Juillet</option>
-                                        <option>Aout</option>
-                                        <option>Septembre</option>
-                                        <option>Octobre</option>
-                                        <option>Novembre</option>
-                                        <option>Decembre</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <input class="form-control" placeholder="Jour" name="jour" type="number" style="width: 128px;margin-left: -39px;" autofocus="">
-                                </div>
-                                <div class="col-md-4">
-                                    <input class="form-control" placeholder="Année" name="jour" type="number" style="width: 128px;margin-left: -81px;" autofocus="">
+                             <div class="col-md-6">
+                                    <input class="form-control" placeholder="specialite" name="specialite" type="text" style="width: 223px;" autofocus="">
                                 </div>
                             </div>
+
                             <br><br>
 
                             <div class="form-inline">
@@ -114,9 +89,9 @@
                                 </div>
                                 <div class="col-md-4">
                                     <select class="form-control" name="genre" style="width: 197px;">
-                                        <option>Masculin</option>
-                                        <option>Feminin</option>
-                                        <option>Autre</option>
+                                        <option value="M">Masculin</option>
+                                        <option value="F">Feminin</option>
+                                        <option value="A">Autre</option>
                                     </select>
                                 </div>
                             </div>

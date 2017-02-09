@@ -17,11 +17,23 @@
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+    
+    <servlet> 
+        <servlet-class> com.wbz.tinad.servlets.MessageServelet</servlet-class> 
+        <servlet-name>message</servlet-name> 
+    </servlet> 
+    
+    <servlet-mapping> 
+        <servlet-name>message</servlet-name> 
+        <url-pattern>/message </url-pattern>
+    </servlet-mapping> 
+   
    
     <servlet> 
         <servlet-class> com.wbz.tinad.servlets.Inscription</servlet-class> 
         <servlet-name>Inscription</servlet-name> 
     </servlet> 
+    
 
     <servlet-mapping> 
         <servlet-name>Inscription</servlet-name> 
@@ -52,6 +64,30 @@
     <servlet-mapping>
         <servlet-name>Membres</servlet-name>
         <url-pattern>/Membres</url-pattern>
+    </servlet-mapping>
+       <servlet>
+        <servlet-class>com.wbz.tinad.servlets.Ads</servlet-class>
+        <servlet-name>Ads</servlet-name>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Ads</servlet-name>
+        <url-pattern>/ads111314498494984</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-class>com.wbz.tinad.servlets.Statut</servlet-class>
+        <servlet-name>Statut</servlet-name>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Statut</servlet-name>
+        <url-pattern>/statut</url-pattern>
+    </servlet-mapping>
+     <servlet>
+        <servlet-class>com.wbz.tinad.servlets.Pub</servlet-class>
+        <servlet-name>Pub</servlet-name>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Pub</servlet-name>
+        <url-pattern>/pub</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-class>com.wbz.tinad.servlets.Deconnexion</servlet-class>

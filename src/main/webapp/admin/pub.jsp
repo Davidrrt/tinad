@@ -1,8 +1,8 @@
-<%-- 
-    Document   : membres
-    Created on : 6 févr. 2017, 11:13:44
-    Author     : davra
---%>
+<% 
+    if(session.getAttribute("admin")==null){
+        response.sendRedirect("index.jsp");
+    }
+%>
 
 <%@page contentType="text/html" pageEncoding="windows-1252"%>
 <!DOCTYPE html>
@@ -68,10 +68,7 @@
                                 <a href="pub.jsp"><i class="fa fa-file fa-fw"></i>Gestion publicité</a>
                             </li>
                             <li>
-                                <a href="evenement.jsp"><i class="fa fa-subway fa-fw"></i>Création évenement</a>
-                            </li>
-                            <li>
-                                  <a href="evenement.jsp"><i class="fa fa-power-off fa-fw"></i>Deconnexion</a>
+                                  <a href="Deconnexion"><i class="fa fa-power-off fa-fw"></i>Deconnexion</a>
                             </li>
 
                         </ul>
@@ -98,27 +95,27 @@
                                Ajout pub
                             </div>
                             <!-- /.panel-heading -->
+                            <form method="POST" action="http://serverimg.alwaysdata.net/traitementpub.php">
                             <div class="panel-body" style="margin-bottom: 263px;">
                                 <h4>Nouvelle publicité</h4>
-                               <input type="text" placeholder="titre" class="form-control">
+                               <input type="text" placeholder="titre"  name="titre" class="form-control">
                                <br>
-                                <select class="form-control" name="select">
-                                    <option>mobile</option>
-                                    <option>site gauche</option>
-                                    <option>site haut</option>
+                                <select class="form-control" name="type">
+                                    <option value="1">mobile</option>
+                                    <option value="2">site gauche</option>
+                                    <option value="3">site haut</option>
                                 </select>
                                 <br>
-                               
-                                  <input type="file" class="form-control" name="file">
                                 <br>
                                 <input type="submit" class="btn btn-primary">
                             </div>
+                            </form>
                             <!-- /.panel-body -->
                         </div>
 
                     </div>
                    
-                <div class="col-lg-6">
+                <div class="col-lg-6" ng-app="myApp" ng-controller="namesCtrl">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             Historique
@@ -132,15 +129,13 @@
                                     <tr>
                                         <th>image</th>
                                         <th>titre</th>
-                                        <th>date pub</th>
-                                        <th>action</th>
+                                       
                                     </tr>
                                 </thead>
                                 <tr>
-                                    <td><img src="" width="60" height="60"></td>
-                                    <td>Fête saint valentin</td>
-                                    <td>02/02/2017</td>
-                                    <td>  <input type="button" class="btn btn-default" value="desactiver"></td>
+                                    <td><img src="http://serverimg.alwaysdata.net/img/{{names[0].publicite[0].img}}" width="60" height="60"></td>
+                                    <td>{{names[0].publicite[0].titre}}</td>
+                                    
                                 </tr>
                             </table>
                              <h4>Banniere Gauche</h4>
@@ -149,15 +144,13 @@
                                     <tr>
                                         <th>image</th>
                                         <th>titre</th>
-                                        <th>date pub</th>
-                                        <th>action</th>
+                                       
                                     </tr>
                                 </thead>
                                 <tr>
-                                    <td><img src="" width="60" height="60"></td>
-                                    <td>Fête saint valentin</td>
-                                    <td>02/02/2017</td>
-                                    <td>  <input type="button" class="btn btn-default" value="desactiver"></td>
+                                       <td><img src="http://serverimg.alwaysdata.net/img/{{names[0].publicite[1].img}}" width="60" height="60"></td>
+                                    <td>{{names[0].publicite[1].titre}}</td>
+                               
                                 </tr>
                             </table>
                               <h4>Banniere haut de page</h4>
@@ -166,15 +159,12 @@
                                     <tr>
                                         <th>image</th>
                                         <th>titre</th>
-                                        <th>date pub</th>
-                                        <th>action</th>
+                                        
                                     </tr>
                                 </thead>
                                 <tr>
-                                    <td><img src="" width="60" height="60"></td>
-                                    <td>Fête saint valentin</td>
-                                    <td>02/02/2017</td>
-                                    <td>  <input type="button" class="btn btn-default" value="desactiver"></td>
+                                    <td><img src="http://serverimg.alwaysdata.net/img/{{names[0].publicite[2].img}}" width="60" height="60"></td>
+                                    <td>{{names[0].publicite[2].titre}}</td>
                                 </tr>
                             </table>
                         </div>
@@ -197,6 +187,17 @@
 
         <!-- Metis Menu Plugin JavaScript -->
         <script src="../js/metisMenu.min.js"></script>
+          <%
+        String currPage = "/pub";
+    %>
+    <script type="text/javascript">
+        var module = angular.module('myApp', []);
+        var str = <jsp:include page="<%=currPage%>"></jsp:include>;
+        console.log(str);
+        module.controller('namesCtrl', function ($scope, $http) {
+            $scope.names = str;
+        });
+        </script>
 
         <!-- Morris Charts JavaScript -->
 

@@ -59,8 +59,8 @@
                         <div class="row">
                             <div class="form-group col-md-12">
                                 <select class="form-control" ng-model="test1">
-                                    <option value="0" selected>Quel type d'aide ?</option>
-                                    <option value="1">Informatique</option>
+                                    <option  value="0" selected>Quel type d'aide ?</option>
+                                    <option ng-repeat="c in categorie" value="{{c.idCategorie}}" >{{c.categorie}}</option>                                    
                                 </select>
                             </div>
 
@@ -90,7 +90,7 @@
                             <div class="title-announce proposition-color"><i class="fa fa-diamond"></i> Offres</div>
                             <article class="welp-card-proposition" ng-repeat="x in names[0].wawa| control:test1 | filter:tes | limitTo: 2"><header>
                                     <a href="/propositions/1071/administratif-informatique/aide-et-depannage-informatique-1">
-                                        <img src="img/{{x.utilisateur.img}}"  alt="Aide et Dépannage Informatique" title="Aide et Dépannage Informatique">
+                                        <img src="http://serverimg.alwaysdata.net/img/{{x.utilisateur.img}}"  alt="Aide et Dépannage Informatique" title="Aide et Dépannage Informatique">
                                     </a>
                                 </header><div class="welp-card-content">
                                     <h2 class="welp-card-title"><a href="offre.jsp?objet={{x.titre}}" class="ng-binding">{{x.utilisateur.prenom}} <small>propose</small></a></h2>
@@ -125,11 +125,13 @@
         <script type="text/javascript">
             var module = angular.module('myApp', []);
             var str = <jsp:include page="Publication"></jsp:include>;
+            var categorieJSON = <jsp:include page="categorie"></jsp:include>;
             //console.log(str[1]);
             module.controller('namesCtrl', function ($scope, $http) {
                 $scope.names = str;
+                $scope.categorie = categorieJSON;
                 // console.log($scope.names);
-            });
+            });            
             module.controller('tailleCtrl', function ($scope, $http) {
                 var val = str[0].wawa.length + str[1].demande.length;
                 $scope.taille = val;
@@ -138,8 +140,7 @@
             module.filter('control', function () {
                 return function (obj, tab) {
                     console.log(obj[1].categorie);
-                    var min = parseInt(tab);
-                    //console.log(min);
+                    var min = parseInt(tab);                   
                     var table = Array();
                     for(var i=0;i<obj.length;i++){
                     if (min > 0) {

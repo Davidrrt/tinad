@@ -21,6 +21,7 @@ public class Annonce {
     
     private String titre;
     private String description;
+    private Date datePublication;   
     private Date dateDebut;
     private Date datefin;
     private String img;
@@ -106,5 +107,12 @@ public class Annonce {
     }
     public void setidCategorie(String string) {
         this.idcategorie=string;
+    }
+    public void setDatePublication(Date datePublication) {
+        this.datePublication = datePublication;
+    }
+
+    public Date getDatePublication() {
+        return datePublication;
     }
 }

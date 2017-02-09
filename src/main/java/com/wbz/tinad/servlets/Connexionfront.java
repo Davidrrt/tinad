@@ -44,31 +44,19 @@ public class Connexionfront extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ConnexionForm form = new ConnexionForm(utilisateurDao);
-
-        /* Traitement de la requête et récupération du bean en résultant */
         Utilisateur utilisateur = form.connexionUtilisateur(request);
-
-        /* Récupération de la session depuis la requête */
         HttpSession session = request.getSession();
-         // PrintWriter out = response.getWriter();
-           // out.print(utilisateur.getId());
-        /**
-         * Si aucune erreur de validation n'a eu lieu, alors ajout du bean
-         * Utilisateur à la session, sinon suppression du bean de la session.
-         */
+    
         if (utilisateur.getId()>0) {
-            session.setAttribute(ATT_SESSION_USER, utilisateur);
-          
+            session.setAttribute(ATT_SESSION_USER, utilisateur);          
             //this.getServletContext().getRequestDispatcher(VUES).forward(request, response);
             response.sendRedirect("acceuil.jsp");
         } else {
             session.setAttribute(ATT_SESSION_USER, null);
             request.setAttribute(ATT_FORM, form);
             request.setAttribute(ATT_USER, utilisateur);
-
             this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
         }
-
         /* Stockage du formulaire et du bean dans l'objet request */
     }
 }

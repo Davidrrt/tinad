@@ -27,5 +27,10 @@ public class UtilisateurService {
         return tab;
 
     }
+    
+    public String printUserConnecte(String email) {
+        Gson json = new Gson();
+        return json.toJson(utilisateurDao.trouver(email));        
+    }
 
 }

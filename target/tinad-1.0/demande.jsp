@@ -66,7 +66,7 @@
             <div ng-repeat="y in names[1].demande| filter:<% out.print("'" + request.getParameter("objet") + "'");%>">
                 <header class="proposition-show-header">
                     <div class="proposition-img-container">
-                        <img src="img/{{y.img}}" width="1250" height="833">
+                        <img src="http://serverimg.alwaysdata.net/img/{{y.img}}" width="1250" height="833">
                     </div>
                     <div class="proposition-show-title">
 
@@ -91,7 +91,7 @@
 
                             <span class="avatar-container">
 
-                                <img alt="shfrg6sbdf67divgadgf6rsduff45s7gzgfdsodk5.jpg" title="shfrg6sbdf67divgadgf6rsduff45s7gzgfdsodk5.jpg" src="img/ {{y.utilisateur.img}}" width="300" height="300" class="img-avatar" style="width: 195px;height: 195px;">
+                                <img alt="shfrg6sbdf67divgadgf6rsduff45s7gzgfdsodk5.jpg" title="shfrg6sbdf67divgadgf6rsduff45s7gzgfdsodk5.jpg" src="http://serverimg.alwaysdata.net/img/ {{y.utilisateur.img}}" width="300" height="300" class="img-avatar" style="width: 195px;height: 195px;">
                             </span>
                         </a>
                     </div>

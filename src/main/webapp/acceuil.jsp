@@ -150,6 +150,7 @@
             });
         </script>
     </head>
+    <a href="../../../../../../Desktop/test/bdd.sql"></a>
     <body>
         <div ng-app="myApp" ng-controller="namesCtrl">
             <div ng-controller="infoCtrl">
@@ -161,7 +162,7 @@
                             </li>
                             <li style="float:left;"><a href="index.jsp"><img alt="" width="70" height="70" src="./img/log-tinad_mob.png" /></a></li>
                             <li><a class="w3-padding-large" href="Deconnexion" style="color: #bbb9a9;"><i class="fa fa-power-off"></i> Deconnexion</a></li>
-                            <li><a class="w3-padding-large" href="acceuil.jsp" style="color: #bbb9a9;"><i class="fa fa-user"></i> {{info[0].offre[0].utilisateur.prenom}}</a></li>
+                            <li><a class="w3-padding-large" href="acceuil.jsp" style="color: #bbb9a9;"><i class="fa fa-user"></i> {{info[2].utilisateur[0].prenom}}</a></li>
 
 
 
@@ -170,7 +171,7 @@
                         <div id="navDemo" class="w3-hide w3-hide-large w3-hide-medium">
                             <ul class="w3-navbar w3-left-align w3-large w3-black">
                                 <li><a class="w3-padding-large" href="inscription.jsp" style="color: #bbb9a9;"><i class="fa fa-user"></i> {{info[0].offre[0].utilisateur.prenom}}</a></li>
-                                <li><a class="w3-padding-large" href="connexion.jsp" style="color: #bbb9a9;"><i class="fa fa-power-off"></i> Deconnexion</a></li>
+                                <li><a class="w3-padding-large" href="Deconnexion" style="color: #bbb9a9;"><i class="fa fa-power-off"></i> Deconnexion</a></li>
                             </ul>
                         </div>
                     </div>
@@ -223,7 +224,7 @@
 
                         <div class="user-show-side col-md-4">
                             <a class="link-no-style info" id="myBtn" href="">
-                                <img src="http://localhost/serveurimg/img/{{info[0].offre[0].utilisateur.img}}" width="300" height="300" class="img-avatar" style="width: 200px;height: 200px;">
+                                <img src="http://serverimg.alwaysdata.net/img/{{info[2].utilisateur[0].img}}" width="300" height="300" class="img-avatar" style="width: 200px;height: 200px;">
                                 <span >Modifier photo</span>
                             </a>
                             <br>
@@ -231,26 +232,29 @@
                             <br>
                             <ul class="user-show-meta">
                                 <li class="title">Profil : </li>
-                                <li><i class="fa fa-thumbs-o-up welp-darkblue-color"></i> Activité: {{info.length}}</li>
+                                <li><i class="fa fa-thumbs-o-up welp-darkblue-color"></i> Activité:0</li>
                                 <li><i class="fa fa-heart-o need-color"></i> Demande d'aide :{{info[1].demande.length}} </li>
                                 <li><i class="fa fa-heart proposition-color"></i> Proposition d'aide : {{info[0].offre.length}}</li>
-                                <li><input type="button" class="btn btn-default" value="modifer infos"></li>
+                                
 
                             </ul>
                         </div>
                         <div class="user-show-content col-md-8">
 
-                            <h1>{{info[0].offre[0].utilisateur.prenom}} {{info[0].offre[0].utilisateur.nom}} <a href=""><i class="fa fa-pencil"></i> </a></h1>
-                            <h3><i class="fa fa-map-marker"></i>{{info[0].offre[0].utilisateur.adresse}}</h3>
+                            <h1>{{info[2].utilisateur[0].prenom}} {{info[2].utilisateur[0].nom}} <i class="fa fa-pencil"></i></h1>
+                            <h3><i class="fa fa-map-marker"></i>{{info[2].utilisateur[0].adresse}}</h3>
                             <br>
                             <div class="row">
+                                <form method="POST" action="statut">
                                 <label>Mis à jour de statut :</label>
-                                <textarea class="form-control" placeholder="test"></textarea>
-                                <input type="button" class="btn btn-default" name="bt" value="publier" style="margin-top: 6px;">
+                                <textarea class="form-control" name="contenu" placeholder="Dites un mot"></textarea>
+                                <input type="hidden" name="id" value="{{info[2].utilisateur[0].id}}">
+                                <input type="submit" class="btn btn-default" name="bt" value="publier" style="margin-top: 6px;">
+                                </form>
                             </div>
                             <br>
                             <label>Statut Actuel :</label>
-                            <p class="user-description">{{info[0].offre[0].utilisateur.publication}}</p>            
+                            <p class="user-description">{{info[2].utilisateur[0].publication}}</p>            
                             <div class="user-show-testimony">
                                 <div class="comments-block ">
 
@@ -267,7 +271,7 @@
                                     <article class="welp-card-need"  ng-repeat="y in names[1].demande">
                                         <header style="margin-left: 6px;">
                                             <a href="demande.jsp?objet={{y.titre}}">
-                                                <img src="img/{{y.img}}" width="220" height="160">
+                                                <img src="http://serverimg.alwaysdata.net/img/{{y.img}}" width="220" height="160">
                                             </a> 
                                         </header>
                                         <h1 class="welp-card-title"><a href="demande.jsp?objet={{y.titre}}"><i class="fa fa-heart-o"></i> {{y.titre}}</a></h1>
@@ -280,7 +284,7 @@
                                     <div class="title-announce proposition-color"><i class="fa fa-diamond"></i> Offres</div>
                                     <article class="welp-card-proposition" ng-repeat="x in names[0].offre"><header>
                                             <a href="offre.jsp?objet={{x.titre}}">
-                                                <img src="http://localhost/serveurimg/img/{{info[0].offre[0].utilisateur.img}}"  alt="Aide et Dépannage Informatique" title="Aide et Dépannage Informatique">
+                                                <img src="http://serverimg.alwaysdata.net/img/{{info[0].offre[0].utilisateur.img}}"  alt="Aide et Dépannage Informatique" title="Aide et Dépannage Informatique">
                                             </a>
                                         </header><div class="welp-card-content">
                                             <h2 class="welp-card-title"><a href="offre.jsp?objet={{x.titre}}" >{{x.utilisateur.prenom}} <small>propose</small></a></h2>
@@ -329,7 +333,7 @@
         function initMap() {
 
             var map = new google.maps.Map(document.getElementById('map'), {
-                center: {lat: str[0].offre[0].utilisateur.latitude, lng: str[0].offre[0].utilisateur.longitude},
+                center: {lat: str[2].utilisateur[0].latitude, lng: str[2].utilisateur[0].longitude},
                 zoom: 14,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             });
@@ -337,7 +341,7 @@
                 map: map,
                 draggable: false,
                 animation: google.maps.Animation.DROP,
-                position: {lat: str[0].offre[0].utilisateur.latitude, lng: str[0].offre[0].utilisateur.longitude},
+                position: {lat: str[2].utilisateur[0].latitude, lng: str[2].utilisateur[0].longitude},
                 icon: {
                     url: 'img/offre.png',
                     size: new google.maps.Size(80, 64),

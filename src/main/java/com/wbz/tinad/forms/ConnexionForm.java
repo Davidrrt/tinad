@@ -43,9 +43,8 @@ public final class ConnexionForm {
             }
 
         } catch (DAOException e) {
-            resultat = "Èchec de connexion";
+                resultat = "Èchec de connexion";
         }
-
         return utilisateur;
     }
 
@@ -62,7 +61,7 @@ public final class ConnexionForm {
         if (email != null) {
             if (!email.matches("([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)")) {
                 throw new FormValidationException("Merci de saisir une adresse mail valide.");
-            } else if (utilisateurDao.trouver(email) != null) {
+            } else if (utilisateurDao.trouver(email) != null){
                 throw new FormValidationException("Cette adresse email est d√©j√  utilis√©e, merci d'en choisir une autre.");
             }
         } else {
@@ -83,11 +82,12 @@ public final class ConnexionForm {
         }
     }
 
-    private void traiterMotdepasse(String motDePasse, Utilisateur utilisateur) {
+    public void traiterMotdepasse(String motDePasse, Utilisateur utilisateur) {
         ConfigurablePasswordEncryptor passwordEncryptor = new ConfigurablePasswordEncryptor();
         passwordEncryptor.setAlgorithm(ALGO_CHIFFREMENT);
         passwordEncryptor.setPlainDigest(true);
-        String motDePasseChiffre = passwordEncryptor.encryptPassword(motDePasse);
+        String motDePasseChiffre = passwordEncryptor.encryptPassword(motDePasse);        
         utilisateur.setMotDePasse(motDePasseChiffre);
-    }
+    }    
+    
 }

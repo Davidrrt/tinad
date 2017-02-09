@@ -12,10 +12,16 @@ import com.wbz.tinad.dao.DAOException;
 import com.wbz.tinad.dao.UtilisateurDao;
 
 public final class InscriptionForm {
-    private static final String CHAMP_EMAIL      = "email";
-    private static final String CHAMP_PASS       = "motdepasse";
-    private static final String CHAMP_CONF       = "confirmation";
-    private static final String CHAMP_NOM        = "nom";
+    private static final String CHAMP_EMAIL           = "email";
+    private static final String CHAMP_PASS            = "motdepasse";
+    private static final String CHAMP_CONF            = "confirmation";
+    private static final String CHAMP_NOM             = "nom";
+    private static final String CHAMP_PRENOM          ="prenom";
+    private static final String CHAMP_LATITUDE        ="lat";
+    private static final String CHAMP_LONGITUDE       ="lng";
+    private static final String CHAMP_ADRESSE         ="position";
+    private static final String CHAMP_GENRE           ="genre";
+    private static final String CHAMP_SPECIALITE      ="specialite";
 
     private static final String ALGO_CHIFFREMENT = "SHA-256";
 
@@ -40,15 +46,22 @@ public final class InscriptionForm {
         String motDePasse = getValeurChamp( request, CHAMP_PASS );
         String confirmation = getValeurChamp( request, CHAMP_CONF );
         String nom = getValeurChamp( request, CHAMP_NOM );
-
+        String prenom = getValeurChamp( request, CHAMP_PRENOM );
+        String genre= getValeurChamp(request, CHAMP_GENRE);
+        String adresse= getValeurChamp(request, CHAMP_ADRESSE);
+        String latitude =  getValeurChamp(request, CHAMP_LATITUDE);
+        String longitude =  getValeurChamp(request, CHAMP_LONGITUDE);
+        String specialite = getValeurChamp(request, CHAMP_SPECIALITE );
         Utilisateur utilisateur = new Utilisateur();
         try {
             traiterEmail( email, utilisateur );
             traiterMotsDePasse( motDePasse, confirmation, utilisateur );
-            traiterNom( nom, utilisateur );
+            traiterNom( nom,prenom,genre,utilisateur );
+            traiterAdresse(adresse,latitude,longitude,utilisateur);
+            utilisateur.setSpecialite(specialite);
 
             if ( erreurs.isEmpty() ) {
-                utilisateurDao.creer( utilisateur );
+                
                 resultat = "Succés de l'inscription.";
             } else {
                 resultat = "échec de l'inscription.";
@@ -77,19 +90,22 @@ public final class InscriptionForm {
             setErreur( CHAMP_CONF, null );
         }
         ConfigurablePasswordEncryptor passwordEncryptor = new ConfigurablePasswordEncryptor();
-        passwordEncryptor.setAlgorithm( ALGO_CHIFFREMENT );
-        passwordEncryptor.setPlainDigest( false );
-        String motDePasseChiffre = passwordEncryptor.encryptPassword( motDePasse );
-
-        utilisateur.setMotDePasse( motDePasseChiffre );
+        passwordEncryptor.setAlgorithm(ALGO_CHIFFREMENT);
+        passwordEncryptor.setPlainDigest(true);
+        String motDePasseChiffre = passwordEncryptor.encryptPassword(motDePasse);        
+        utilisateur.setMotDePasse(motDePasseChiffre);
     }
-    private void traiterNom( String nom, Utilisateur utilisateur ) {
+    private void traiterNom( String nom,String prenom,String genre, Utilisateur utilisateur ) {
         try {
             validationNom( nom );
+            validationNom(prenom);
         } catch ( FormValidationException e ) {
             setErreur( CHAMP_NOM, e.getMessage() );
         }
         utilisateur.setNom( nom );
+        utilisateur.setPrenom(prenom);
+        utilisateur.setSexe(genre);
+        utilisateur.setImg("avatar.png");
     }
     
     private void validationEmail( String email ) throws FormValidationException {
@@ -137,4 +153,13 @@ public final class InscriptionForm {
             return valeur;
         }
     }
+
+    private void traiterAdresse(String adresse, String latitude, String longitude ,Utilisateur u) {
+        u.setAdresse(adresse);
+        u.setLatitude(Double.parseDouble(latitude));
+        u.setLongitude(Double.parseDouble(longitude));
+        u.setStatut("11");
+    }
+
+
 }
