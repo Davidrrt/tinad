@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AnnonceDaoImpl implements AnnonceDao {
 
@@ -20,6 +22,9 @@ public class AnnonceDaoImpl implements AnnonceDao {
     private static final String SQL_INSERT_ANNONCE = "INSERT INTO service( idcategorie, idutilisateur,titre, description, datepublication,datedebutdisponibilite ,datefindisponibilite, type , image) VALUES (?,?,?,?,NOW(),?,?,?,?)";
     private static final String SQL_SELECT_PHOTO = "SELECT idphoto FROM photo WHERE categorie_id= ? ORDER BY RANDOM() LIMIT 1";
     private static final String SQL_SELECT_USER = "SELECT utilisateur.idutilisateur,utilisateur.nom, utilisateur.prenom, utilisateur.adresse, utilisateur.latitude, utilisateur.longitude,profilimg.libelle,publiall.info  FROM utilisateur,profilimg,publiall WHERE utilisateur.idutilisateur=? AND publiall.utilisateur_id=utilisateur.idutilisateur AND profilimg.utilisateur_id=utilisateur.idutilisateur";
+    
+    private static final String SQL_SELECT_USER_NEW = "SELECT utilisateur.idutilisateur,utilisateur.nom, utilisateur.prenom, utilisateur.adresse, utilisateur.latitude, utilisateur.longitude,profilimg.libelle FROM utilisateur,profilimg WHERE utilisateur.idutilisateur=? AND profilimg.utilisateur_id=utilisateur.idutilisateur";
+    
     private static final String SQL_SELECT_PUB = "SELECT img,titre,type FROM pub";
     private static final String SQL_SELECT_EVENEMENT = "SELECT img, titre, contenu, dateevenement FROM evenement";
 
@@ -60,20 +65,39 @@ public class AnnonceDaoImpl implements AnnonceDao {
 
     public Utilisateur getUser(int id) throws DAOException {
         Connection connexion = null;
+        Connection connexion1 = null;
         PreparedStatement preparedStatement = null;
+         PreparedStatement preparedStatementUserNew = null;
+         ResultSet resultSetUserNew= null;
         ResultSet resultSet = null;
         Utilisateur perso = null;
         try {
             connexion = daoFactory.getConnection();
+            connexion1= daoFactory.getConnection();
             preparedStatement = initialisationRequetePreparee(connexion, SQL_SELECT_USER, false, id);
+            preparedStatementUserNew= initialisationRequetePreparee(connexion1, SQL_SELECT_USER_NEW, false, id);
             resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                perso = mapinfo(resultSet);
+            resultSetUserNew = preparedStatementUserNew.executeQuery();
+            if(resultSet.next()) {  
+                //System.out.println("user taloha");          
+                   
+                    perso = mapinfo(resultSet);                         
+                                           
+            }else {                
+                 // System.out.println("user vao");
+                while (resultSetUserNew.next()) {
+                    perso = mapinfoUserNew(resultSetUserNew);
+                }    
             }
             return perso;
         } catch (SQLException e) {
             throw new DAOException(e.getMessage());
         } finally {
+            try {
+                connexion1.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(AnnonceDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
             fermeturesSilencieuses(resultSet, preparedStatement, connexion);
         }
 
@@ -150,12 +174,14 @@ public class AnnonceDaoImpl implements AnnonceDao {
         Connection connexion = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
+       
         Publicite perso = null;
         ArrayList<Publicite> tab = new ArrayList<Publicite>();
         try {
             connexion = daoFactory.getConnection();
             preparedStatement = initialisationRequetePreparee(connexion, SQL_SELECT_PUB, false);
             resultSet = preparedStatement.executeQuery();
+            
             while (resultSet.next()) {
                 perso = mappub(resultSet);
                 tab.add(perso);
@@ -233,6 +259,18 @@ public class AnnonceDaoImpl implements AnnonceDao {
         user_annonceur.setLongitude(resultSet.getDouble("longitude"));
         user_annonceur.setImg(resultSet.getString("libelle"));
         user_annonceur.setPublication(resultSet.getString("info"));
+        return user_annonceur;
+    }
+        private static Utilisateur mapinfoUserNew(ResultSet resultSet) throws SQLException {
+        Utilisateur user_annonceur = new Utilisateur();
+        user_annonceur.setId(resultSet.getInt("idutilisateur"));
+        user_annonceur.setNom(resultSet.getString("nom"));
+        user_annonceur.setPrenom(resultSet.getString("prenom"));
+        user_annonceur.setAdresse(resultSet.getString("adresse"));
+        user_annonceur.setLatitude(resultSet.getDouble("latitude"));
+        user_annonceur.setLongitude(resultSet.getDouble("longitude"));
+        user_annonceur.setImg(resultSet.getString("libelle"));
+        // user_annonceur.setPublication(resultSet.getString("info"));
         return user_annonceur;
     }
 

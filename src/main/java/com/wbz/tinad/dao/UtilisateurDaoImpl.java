@@ -26,7 +26,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
       
     private static final String SQL_SELECT_CONNEXION = "SELECT COUNT(*) AS NOMBREUTILISATEUR FROM UTILISATEUR JOIN MOTDEPASSE ON MOTDEPASSE.IDUTILISATEUR = UTILISATEUR.IDUTILISATEUR WHERE UTILISATEUR.EMAIL = ? AND MOTDEPASSE.MOTDEPASSE= ?"; 
     private static final String SQL_SELECT_TOUT_MEMBRE ="SELECT utilisateur_id, image, nom, prenom, email, adresse, latitude, longitude, sexe, specialite, dateinscription FROM profil";
-    private static final String SQL_INSERT_STATUT ="INSERT INTO publication (utilisateur_id, info, datepubli) VALUES (?, ?,NOW())";
+    private static final String SQL_INSERT_STATUT ="INSERT INTO publication (utilisateur_id, info, datepubl) VALUES (?, ?,NOW())";
   
     private static final String SQL_SELECT_CONNEXION_FRONT ="SELECT UTILISATEUR.IDUTILISATEUR FROM UTILISATEUR JOIN MOTDEPASSE ON MOTDEPASSE.IDUTILISATEUR = UTILISATEUR.IDUTILISATEUR WHERE UTILISATEUR.EMAIL = ? AND MOTDEPASSE.MOTDEPASSE= ?"; 
     
