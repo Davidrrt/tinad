@@ -72,7 +72,7 @@
                                     <input class="form-control" placeholder="Confirmation " name="confirmation" type="password" style="width: 223px;" value="" required="">
                                 </div><br>
                                 <div class="form-inline">
-                                    <input class="form-control" placeholder="Adresse ou quartier" onchange="codeAddress()" id="address" name="position" type="text" style="width: 223px;" value="">
+                                    <input class="form-control" placeholder="Adresse ou quartier" onchange="deleteLocalisation()" id="address" name="position" type="text" style="width: 223px;" value="">
                                     <input type="button" class="btn btn-default" onclick="codeAddress()" value="localiser">
                                     <input type="hidden" id="lat" name="lat" value="" >
                                     <input type="hidden" id="lng" name="lng" value="">
@@ -123,6 +123,10 @@
                     alert("Le geocodage n\'a pu etre effectue pour la raison suivante: " + status);
                 }
             });
+        }
+        function deleteLocalisation() {
+            var div = document.getElementById('reponse');
+                    div.textContent = "";
         }
     </script>
 </html>
