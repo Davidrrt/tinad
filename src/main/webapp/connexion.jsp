@@ -56,10 +56,10 @@
                         <form role="form" method="POST" action="Connexionfront">
 
                             <div class="form-group">
-                                <input class="form-control" placeholder="Adresse email" name="email" type="email" autofocus>
+                                <input class="form-control" placeholder="Adresse email" name="email" type="email" autofocus required>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Mot de passe" name="motdepasse" type="password" value="">
+                                <input class="form-control" placeholder="Mot de passe" name="motdepasse" type="password" value="" required="">
                             </div>
                             <div class="checkbox">
                                 <label>

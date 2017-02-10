@@ -18,7 +18,7 @@
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="css/style.css" rel="stylesheet" type="text/css">
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-        <script src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyCgRfB1v9qicDQyrGds5MOAlM6s3Ylq5Jg&callback=initMap" async defer></script>
+        <script src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyCgRfB1v9qicDQyrGds5MOAlM6s3Ylq5Jg&callback=initMap" defer></script>
     </head>
 
     <body>
@@ -50,85 +50,39 @@
                     </div>
                     <div class="panel-body" style="background-color: #c4c3b4;">
                         <form role="form" action="Inscription" method="POST">
-                            <div class="form-inline">
-                                <div class="col-md-6">
-                                    <label style="margin-left: -172px;">Nom :</label>
-                                </div>
-                                <div class="col-md-4">
-                                    <label style="margin-left: -88px;">Prenom :</label>
-                                </div>
-                            </div>
-                            <div class="form-inline">
-                                <div class="col-md-6">
-                                    <input class="form-control" placeholder="nom" name="nom" type="text" style="width: 223px;" autofocus="">
-                                </div>
-                                <div class="col-md-4">
-                                    <input class="form-control" placeholder="prenom" name="prenom" type="text" autofocus="">
-                                </div>
-                            </div>
-                            <br><br>
-                            <div class="form-inline">
-                             <div class="col-md-6">
-                                    <input class="form-control" placeholder="specialite" name="specialite" type="text" style="width: 223px;" autofocus="">
-                                </div>
-                            </div>
+                            <div class="row">
+                                <div class="form-inline">
+                                    <input class="form-control" placeholder="nom" name="nom" type="text" style="width: 223px;" autofocus="" required="">
+                                    <input class="form-control" placeholder="prenom" name="prenom" type="text" style="width: 223px;" autofocus="">
+                                </div><br>
+                                <div class="form-inline">
+                                    <input class="form-control" placeholder="specialite" name="specialite" type="text" style="width: 223px;" autofocus="" required="">
+                                </div><br>
+                                <div class="form-inline">
+                                    <input class="form-control" placeholder="Adresse email" name="email" type="email" style="width: 223px;" autofocus="" required="">
 
-                            <br><br>
-
-                            <div class="form-inline">
-                                <div class="col-md-6">
-                                    <label style="margin-left: -167px;">Email :</label>
-                                </div>
-                                <div class="col-md-4">
-                                    <label style="margin-left: -101px;">Genre :</label>
-                                </div>
-                            </div>
-                            <div class="form-inline">
-                                <div class="col-md-6">
-                                    <input class="form-control" placeholder="Adresse email" name="email" type="email" style="width: 223px;" autofocus="">
-                                </div>
-                                <div class="col-md-4">
-                                    <select class="form-control" name="genre" style="width: 197px;">
+                                    <select class="form-control" name="genre" style="width: 223px;">
                                         <option value="M">Masculin</option>
                                         <option value="F">Feminin</option>
                                         <option value="A">Autre</option>
                                     </select>
-                                </div>
-                            </div>
-                            <br><br>
-                            <div class="form-inline">
-                                <div class="col-md-6">
-                                    <label style="margin-left: -112px;">Mot de passe :</label>
-                                </div>
-                                <div class="col-md-4">
-                                    <label style="margin-left: -53px;">Confirmation :</label>
-                                </div>
-                            </div>
-                            <div class="form-inline">
-                                <div class="col-md-6">
-                                    <input class="form-control" placeholder="Mot de passe" name="motdepasse" type="password" value="" style="width: 223px;">
-                                </div>
-                                <div class="col-md-4">
-                                    <input class="form-control" placeholder="Confirmation " name="confirmation" type="password" value="">
-                                </div>
-                            </div>
-                            <br><br>
-                            <div class="form-inline">
-                                <div class="col-md-6">
-                                    <label style="margin-left: -71px;">Adresse ou quartier :</label>
-                                </div>
+                                </div><br>
+                                <div class="form-inline">
+                                    <input class="form-control" placeholder="Mot de passe" name="motdepasse" type="password" value="" style="width: 223px;" required="">
+                                    <input class="form-control" placeholder="Confirmation " name="confirmation" type="password" style="width: 223px;" value="" required="">
+                                </div><br>
+                                <div class="form-inline">
+                                    <input class="form-control" placeholder="Adresse ou quartier" onchange="codeAddress()" id="address" name="position" type="text" style="width: 223px;" value="">
+                                    <input type="button" class="btn btn-default" onclick="codeAddress()" value="localiser">
+                                    <input type="hidden" id="lat" name="lat" value="" >
+                                    <input type="hidden" id="lng" name="lng" value="">
+                                    
+                                </div><br>
+                                <div style="color: rgb(61, 185, 0);" id="reponse"></div>
+                                <div style="margin-left: 31px;" class="g-recaptcha" data-sitekey="6LfbsxIUAAAAANkuC_5deRvVicJpJsl1RlGC_MkD"></div><br><br>
+                                <input class="w3-btn w3-large " style="background-color: #8a6d3b;width: 271px;" type="submit" value="Valider">
 
                             </div>
-                            <div class="form-inline">
-                                <input class="form-control" placeholder="Adresse ou quartier" id="address" name="position" type="text" style="width: 445px; margin-left: 29px;" value="">
-                                <input type="hidden" id="lat" name="lat" value="" >
-                                <input type="hidden" id="lng" name="lng" value="">
-                                <input type="button" class="btn btn-default" value="tester" onclick="codeAddress()">
-                            </div>
-                           <div style="color: rgb(61, 185, 0);" id="reponse"></div>
-                            <div style="margin-left: 31px;" class="g-recaptcha" data-sitekey="6LfbsxIUAAAAANkuC_5deRvVicJpJsl1RlGC_MkD"></div><br><br>
-                            <!-- Change this to a button or input when using this as a form -->
-                            <input class="w3-btn w3-large " style="background-color: #8a6d3b;width: 271px;" type="submit" value="Valider">
                         </form>
 
 
@@ -146,7 +100,7 @@
             <div class="w3-xlarge w3-padding-32">
                 <a href="#" class="w3-hover-text-indigo"><i class="fa fa-facebook-official"></i></a>
                 <a href="#" class="w3-hover-text-light-blue"><i class="fa fa-twitter"></i></a>
-               
+
             </div>
             <p>Tout droits réserve à <a href="#" target="_blank">Tinad company</a></p>
         </footer>
@@ -163,8 +117,8 @@
                 if (status === google.maps.GeocoderStatus.OK) {
                     document.getElementById('lat').value = results[0].geometry.location.lat();
                     document.getElementById('lng').value = results[0].geometry.location.lng();
-                    var div=document.getElementById('reponse');
-                    div.textContent="Adresse valide !!!";
+                    var div = document.getElementById('reponse');
+                    div.textContent = "Adresse valide !!!";
                 } else {
                     alert("Le geocodage n\'a pu etre effectue pour la raison suivante: " + status);
                 }
